@@ -27,6 +27,10 @@ public class ProductFeedback implements Serializable{
 	
 	@Column(name="FEEDBACK_MESSAGE")
 	private String feedbackMessage;
+
+    @Column(name="RATING")
+    private int rating;
+        
 	
 	@ManyToOne
 	@JoinColumn(name="PRODUCT_ID")
@@ -79,6 +83,15 @@ public class ProductFeedback implements Serializable{
 	public void setCustomer(CustomerDetails customer) {
 		this.customer = customer;
 	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	
 	
 	
 
