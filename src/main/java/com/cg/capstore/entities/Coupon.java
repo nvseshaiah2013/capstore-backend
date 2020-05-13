@@ -30,6 +30,9 @@ public class Coupon implements Serializable{
 	
 	@Column(name="INFO")
 	private String couponDesc;
+
+        @Column(name="IS_ACTIVE")
+	private boolean isActive;
 	
 	public Coupon() {
 		
@@ -81,6 +84,14 @@ public class Coupon implements Serializable{
 
 	public void setCouponDesc(String couponDesc) {
 		this.couponDesc = couponDesc;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	
