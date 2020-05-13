@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="CUSTOMERS")
@@ -31,6 +32,10 @@ public class CustomerDetails implements Serializable{
 	
 	@Column(name="ALT_EMAIL")
 	private String alternateEmail;
+	
+	@Column(name="GENDER")
+	@Pattern(regexp="Male|Female|Other")
+	private String gender;
 
 	@OneToMany(mappedBy="customer")
 	private Set<Order> orders = new HashSet<Order>();
@@ -141,6 +146,14 @@ public class CustomerDetails implements Serializable{
 
 	public void setWishlists(Set<Wishlist> wishlists) {
 		this.wishlists = wishlists;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	

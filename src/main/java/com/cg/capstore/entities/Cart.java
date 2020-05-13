@@ -31,11 +31,7 @@ public class Cart  implements Serializable {
 	private Product product;
 	
 	@Column(name="QUANT")
-	private int quantity;
-	
-	@Column(name="MIN_ORD_AMT")
-	private int minOrderAmount;
-	
+	private int quantity;	
 	
 	public Cart() {
 		
@@ -71,16 +67,6 @@ public class Cart  implements Serializable {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-
-	public int getMinOrderAmount() {
-		return minOrderAmount;
-	}
-
-	public void setMinOrderAmount(int minOrderAmount) {
-		this.minOrderAmount = minOrderAmount;
-	}
-	
-	
+	}	
 
 }

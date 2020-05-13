@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="MERCHANTS")
@@ -36,6 +37,10 @@ public class MerchantDetails implements Serializable{
 	
 	@Column(name="IS_DELETED")
 	private boolean isDeleted;
+	
+	@Column(name="GENDER")
+	@Pattern(regexp="Male|Female|Other")
+	private String gender;
 	
 	@Column(name="RATING")
 	private int rating;
@@ -159,6 +164,14 @@ public class MerchantDetails implements Serializable{
 
 	public void setInvites(Set<Invitation> invites) {
 		this.invites = invites;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	

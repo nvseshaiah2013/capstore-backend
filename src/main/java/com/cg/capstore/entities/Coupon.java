@@ -28,6 +28,9 @@ public class Coupon implements Serializable{
 	@Column(name="MIN_AMOUNT")
 	private int minOrderAmount;
 	
+	@Column(name="INFO")
+	private String couponDesc;
+	
 	public Coupon() {
 		
 	}
@@ -70,6 +73,14 @@ public class Coupon implements Serializable{
 
 	public void setMinOrderAmount(int minOrderAmount) {
 		this.minOrderAmount = minOrderAmount;
+	}
+
+	public String getCouponDesc() {
+		return couponDesc;
+	}
+
+	public void setCouponDesc(String couponDesc) {
+		this.couponDesc = couponDesc;
 	}
 	
 	

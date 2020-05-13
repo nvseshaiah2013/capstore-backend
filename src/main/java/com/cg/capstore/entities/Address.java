@@ -111,4 +111,6 @@ public class Address implements Serializable{
 	public void setMerchant(MerchantDetails merchant) {
 		this.merchant = merchant;
 	}
+	
+	
 }
