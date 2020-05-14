@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="PRODUCTS")
@@ -46,15 +49,12 @@ public class Product implements Serializable{
 	@Column(name="PROD_COUNT")
 	private int noOfProducts;
 	
-	@Column(name="PROD_INFO")
+	@Column(name="PROD_INFO",length=4000)
 	private String productInfo;
 	
-	@ManyToOne
-	@JoinColumn(name="PROD_CATEGORY")
-	private Category productCategory;
 	
-	@ManyToOne
-	@JoinColumn(name="SUB_CATEGORY")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="SUB_CAT_ID")
 	private Category subCategory;
 	
 	@Column(name="PRODUCT_IS_ACTIVATED")
@@ -63,7 +63,7 @@ public class Product implements Serializable{
 	@Column(name="FEATURED")
 	private boolean isFeatured;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="M_USERNAME")
 	private MerchantDetails merchant;
 	
@@ -170,6 +170,7 @@ public class Product implements Serializable{
 	}
 
 
+	@JsonIgnore
 	public Set<ProductFeedback> getFeedbacks() {
 		return feedbacks;
 	}
@@ -189,6 +190,36 @@ public class Product implements Serializable{
 		this.isFeatured = isFeatured;
 	}
 
+
+	public Category getSubCategory() {
+		return subCategory;
+	}
+
+
+	public void setSubCategory(Category subCategory) {
+		this.subCategory = subCategory;
+	}
+
+
+	public MerchantDetails getMerchant() {
+		return merchant;
+	}
+
+
+	public void setMerchant(MerchantDetails merchant) {
+		this.merchant = merchant;
+	}
+
+	public void addFeedback(ProductFeedback feedback) {
+		feedback.setProduct(this);
+		this.getFeedbacks().add(feedback);
+		
+	}
 	
+	public void removeFeedback(ProductFeedback feedback) {
+		feedback.setProduct(null);
+		this.getFeedbacks().remove(feedback);
+		
+	}
 	
 }

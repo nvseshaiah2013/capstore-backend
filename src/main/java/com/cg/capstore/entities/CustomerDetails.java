@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="CUSTOMERS")
 public class CustomerDetails implements Serializable{
@@ -36,6 +38,9 @@ public class CustomerDetails implements Serializable{
 	@Column(name="GENDER")
 	@Pattern(regexp="Male|Female|Other")
 	private String gender;
+	
+	@Column(name="W_BAL")
+	private int balance;
 
 	@OneToMany(mappedBy="customer")
 	private Set<Order> orders = new HashSet<Order>();
@@ -100,6 +105,7 @@ public class CustomerDetails implements Serializable{
 		this.alternateEmail = alternateEmail;
 	}
 
+	@JsonIgnore
 	public Set<Order> getOrders() {
 		return orders;
 	}
@@ -108,6 +114,7 @@ public class CustomerDetails implements Serializable{
 		this.orders = orders;
 	}
 
+	@JsonIgnore
 	public Set<Address> getAddresses() {
 		return addresses;
 	}
@@ -116,6 +123,7 @@ public class CustomerDetails implements Serializable{
 		this.addresses = addresses;
 	}
 
+	@JsonIgnore
 	public Set<CommonFeedback> getFeedbacks() {
 		return feedbacks;
 	}
@@ -124,6 +132,7 @@ public class CustomerDetails implements Serializable{
 		this.feedbacks = feedbacks;
 	}
 
+	@JsonIgnore
 	public Set<ProductFeedback> getProductFeedbacks() {
 		return productFeedbacks;
 	}
@@ -132,6 +141,7 @@ public class CustomerDetails implements Serializable{
 		this.productFeedbacks = productFeedbacks;
 	}
 
+	@JsonIgnore
 	public Set<Cart> getCarts() {
 		return carts;
 	}
@@ -140,6 +150,7 @@ public class CustomerDetails implements Serializable{
 		this.carts = carts;
 	}
 
+	@JsonIgnore
 	public Set<Wishlist> getWishlists() {
 		return wishlists;
 	}
@@ -155,6 +166,76 @@ public class CustomerDetails implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+	
+	public void addOrder(Order order) {
+		order.setCustomer(this);
+		this.getOrders().add(order);
+	}
+	
+	public void removeOrder(Order order) {
+		order.setCustomer(null);
+		this.getOrders().remove(order);
+	}
+	
+	public void addWishlist(Wishlist wishlist) {
+		wishlist.setCustomer(this);
+		this.getWishlists().add(wishlist);
+	}
+	
+	public void removeWishlist(Wishlist wishlist) {
+		wishlist.setCustomer(null);
+		this.getWishlists().remove(wishlist);
+	}
+	
+	public void addCart(Cart cart) {
+		cart.setCustomer(this);
+		this.getCarts().add(cart);
+	}
+	
+	public void removeCart(Cart cart) {
+		cart.setCustomer(null);
+		this.getCarts().remove(cart);
+	}
+	
+	public void addCommonFeedback(CommonFeedback commonFeedback) {
+		commonFeedback.setCustomer(this);
+		this.getFeedbacks().add(commonFeedback);
+	}
+	
+	public void removeCommonFeedback(CommonFeedback commonFeedback) {
+		commonFeedback.setCustomer(null);
+		this.getFeedbacks().remove(commonFeedback);
+	}
+	
+	public void addAddress(Address address) {
+		address.setCustomer(this);
+		this.getAddresses().add(address);
+	}
+	
+	public void removeAddress(Address address) {
+		address.setCustomer(null);
+		this.getAddresses().remove(address);
+	}
+
+	public void addProductFeedbacks(ProductFeedback productFeedbacks) {
+		productFeedbacks.setCustomer(this);
+		this.getProductFeedbacks().add(productFeedbacks);
+	}
+	
+	public void removeProductFeedbacks(ProductFeedback productFeedbacks) {
+		productFeedbacks.setCustomer(null);
+		this.getProductFeedbacks().remove(productFeedbacks);
+	}
 	
 	
-}
+	
+	
+	}

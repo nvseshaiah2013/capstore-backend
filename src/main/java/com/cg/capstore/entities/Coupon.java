@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="COUPONS")
@@ -31,8 +32,12 @@ public class Coupon implements Serializable{
 	@Column(name="INFO")
 	private String couponDesc;
 
-        @Column(name="IS_ACTIVE")
+    @Column(name="IS_ACTIVE")
 	private boolean isActive;
+    
+    @Column(name="ISS_BY")
+    @Pattern(regexp="Admin|Merchant")
+    private String issuedBy;
 	
 	public Coupon() {
 		
@@ -93,6 +98,16 @@ public class Coupon implements Serializable{
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
+	public String getIssuedBy() {
+		return issuedBy;
+	}
+
+	public void setIssuedBy(String issuedBy) {
+		this.issuedBy = issuedBy;
+	}
+	
+	
 	
 	
 }

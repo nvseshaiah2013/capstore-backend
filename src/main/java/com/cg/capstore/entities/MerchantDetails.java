@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="MERCHANTS")
 public class MerchantDetails implements Serializable{
@@ -102,6 +104,7 @@ public class MerchantDetails implements Serializable{
 		this.alternateEmail = alternateEmail;
 	}
 
+	@JsonIgnore
 	public Set<Order> getOrders() {
 		return orders;
 	}
@@ -110,6 +113,7 @@ public class MerchantDetails implements Serializable{
 		this.orders = orders;
 	}
 
+	@JsonIgnore
 	public Set<Address> getAddresses() {
 		return addresses;
 	}
@@ -118,6 +122,7 @@ public class MerchantDetails implements Serializable{
 		this.addresses = addresses;
 	}
 
+	@JsonIgnore
 	public Set<CommonFeedback> getFeedbacks() {
 		return feedbacks;
 	}
@@ -134,6 +139,7 @@ public class MerchantDetails implements Serializable{
 		this.rating = rating;
 	}
 
+	@JsonIgnore
 	public Set<Product> getProducts() {
 		return products;
 	}
@@ -174,7 +180,45 @@ public class MerchantDetails implements Serializable{
 		this.gender = gender;
 	}
 	
+
+	public void addAddress(Address address) {
+		address.setMerchant(this);
+		this.getAddresses().add(address);
+	}
 	
+	public void removeAddress(Address address) {
+		address.setMerchant(this);
+		this.getAddresses().remove(address);
+	}
 	
+	public void addFeedback(CommonFeedback feedback) {
+		feedback.setMerchant(this);
+		this.getFeedbacks().add(feedback);
+	}
+	
+	public void removeFeedback(CommonFeedback feedback) {
+		feedback.setMerchant(this);
+		this.getFeedbacks().remove(feedback);
+	}
+	
+	public void addInvitation(Invitation invitation) {
+		invitation.setMerchant(this);
+		this.getInvites().add(invitation);
+	}
+	
+	public void removeInvitation(Invitation invitation) {
+		invitation.setMerchant(this);
+		this.getInvites().remove(invitation);
+	}
+	
+	public void addProduct(Product product) {
+		product.setMerchant(this);
+		this.getProducts().add(product);
+	}
+	
+	public void removeProduct(Product product) {
+		product.setMerchant(this);
+		this.getProducts().remove(product);
+	}
 	
 }

@@ -3,7 +3,7 @@ package com.cg.capstore.entities;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.Entity;import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,11 +32,11 @@ public class ProductFeedback implements Serializable{
     private int rating;
         
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="PRODUCT_ID")
 	private Product product;
 	
-	@ManyToOne
+	@ManyToOne(fetch =  FetchType.EAGER)
 	@JoinColumn(name="USERNAME")
 	private CustomerDetails customer;
 	
