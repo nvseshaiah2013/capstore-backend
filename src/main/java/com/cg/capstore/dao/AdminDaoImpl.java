@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.CustomerDetails;
 
-@Repository("AdminOrderDaoImpl")
+
+
+@Repository("AdminDaoImpl")
 public class AdminDaoImpl implements IAdminDao {
 	
 	@PersistenceContext

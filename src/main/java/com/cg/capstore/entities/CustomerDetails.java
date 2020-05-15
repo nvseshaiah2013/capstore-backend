@@ -46,9 +46,6 @@ public class CustomerDetails implements Serializable{
 	private Set<Order> orders = new HashSet<Order>();
 	
 	@OneToMany(mappedBy="customer")
-	private Set<Address> addresses =new HashSet<Address>();
-	
-	@OneToMany(mappedBy="customer")
 	private Set<CommonFeedback> feedbacks =new HashSet<CommonFeedback>();
 	
 	@OneToMany(mappedBy="customer")
@@ -113,15 +110,7 @@ public class CustomerDetails implements Serializable{
 	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
-
-	@JsonIgnore
-	public Set<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(Set<Address> addresses) {
-		this.addresses = addresses;
-	}
+	
 
 	@JsonIgnore
 	public Set<CommonFeedback> getFeedbacks() {
@@ -215,15 +204,7 @@ public class CustomerDetails implements Serializable{
 		this.getFeedbacks().remove(commonFeedback);
 	}
 	
-	public void addAddress(Address address) {
-		address.setCustomer(this);
-		this.getAddresses().add(address);
-	}
 	
-	public void removeAddress(Address address) {
-		address.setCustomer(null);
-		this.getAddresses().remove(address);
-	}
 
 	public void addProductFeedbacks(ProductFeedback productFeedbacks) {
 		productFeedbacks.setCustomer(this);

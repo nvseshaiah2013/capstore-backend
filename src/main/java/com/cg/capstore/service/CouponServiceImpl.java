@@ -12,7 +12,9 @@ import com.cg.capstore.entities.Coupon;
 
 @Transactional
 @Service("CouponServiceImpl")
+
 public class CouponServiceImpl implements ICouponService{
+
  
 	@Autowired
 	private ICouponDao couponDao;

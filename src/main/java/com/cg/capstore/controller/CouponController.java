@@ -19,13 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.capstore.entities.Coupon;
 import com.cg.capstore.service.ICouponService;
 
+
 @SpringBootApplication
 @RestController
 @CrossOrigin("*")
 public class CouponController {
 	
 	@Autowired
+
 	private ICouponService couponService;
+
 	
 	@GetMapping("/hello")
 	public ResponseEntity<Object> checkWorking(){

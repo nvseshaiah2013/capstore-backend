@@ -2,16 +2,18 @@ package com.cg.capstore.service;
 
 import java.util.List;
 
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.capstore.dao.IAdminDao;
+
 import com.cg.capstore.entities.CustomerDetails;
 
 @Transactional
-@Service("AdminOrderServiceImpl")
+@Service("AdminServiceImpl")
 public class AdminServiceImpl implements IAdminService {
 
 	@Autowired
@@ -21,6 +23,7 @@ public class AdminServiceImpl implements IAdminService {
 	public List<CustomerDetails> getCustomerList() {
 		return adminDao.getCustomerList();
 	}
+
 	
 	
 }

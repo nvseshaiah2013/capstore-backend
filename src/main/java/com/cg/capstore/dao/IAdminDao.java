@@ -6,4 +6,6 @@ import com.cg.capstore.entities.CustomerDetails;
 
 public interface IAdminDao {
 	public List<CustomerDetails> getCustomerList();
+
+
 }

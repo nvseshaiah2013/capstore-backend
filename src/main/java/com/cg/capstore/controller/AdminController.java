@@ -33,5 +33,5 @@ public class AdminController {
 		return new ResponseEntity<List<CustomerDetails>>(customers,HttpStatus.OK);
 	}
 	
-//	@GetMapping(value="/customer/{")
+	
 }
