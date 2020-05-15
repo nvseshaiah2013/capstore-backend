@@ -154,6 +154,7 @@ public class MerchantDetails implements Serializable{
 		this.isDeleted = isDeleted;
 	}
 
+	@JsonIgnore
 	public Set<Invitation> getInvites() {
 		return invites;
 	}
