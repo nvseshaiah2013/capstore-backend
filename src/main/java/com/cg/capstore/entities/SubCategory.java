@@ -4,13 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="S_CATEGORY")
@@ -25,7 +26,7 @@ public class SubCategory implements Serializable{
 	@Column(name="NAME")
 	private String name;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="CAT_ID")
 	private Category category;
 
@@ -44,13 +45,18 @@ public class SubCategory implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	@JsonIgnore
 	public Category getCategory() {
 		return category;
 	}
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	@Override
+	public String toString() {
+		return "SubCategory [id=" + id + ", name=" + name + "]";
 	}
 	
 	
