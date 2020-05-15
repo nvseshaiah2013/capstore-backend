@@ -41,11 +41,7 @@ public class AdminServiceImpl implements IAdminService {
 		return adminDao.getAllCategory();
 	}
 
-	@Override
-	public List<Category> deleteCategory(int id) {
 
-		return adminDao.deleteCategory(id);
-	}
 
 	@Override
 	public List<SubCategory> getAllSubCategory(int categoryId) {
@@ -53,11 +49,6 @@ public class AdminServiceImpl implements IAdminService {
 		return adminDao.getAllSubCategory(categoryId);
 	}
 
-	@Override
-	public List<SubCategory> deleteSubCategory(int categoryId,int subCategoryId) {
-		
-		return adminDao.deleteSubCategory( categoryId, subCategoryId);
-	}
 
 	@Override
 	public List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId) {

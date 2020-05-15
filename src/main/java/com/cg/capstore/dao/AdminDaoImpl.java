@@ -55,17 +55,6 @@ public class AdminDaoImpl implements IAdminDao {
 		return categories;
 	}
 
-	@Override
-	public List<Category> deleteCategory(int id) {
-		Category category=entityManager.find(Category.class, id);
-		if(category!=null)
-		entityManager.remove(category);
-		String str="SELECT categories FROM Category categories";
-		TypedQuery<Category> query=entityManager.createQuery(str, Category.class);
-		List<Category> categories=query.getResultList();
-		return categories;
-		
-	}
 
 	@Override
 	public List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId) {
@@ -90,17 +79,6 @@ public class AdminDaoImpl implements IAdminDao {
 		return subCategories;
 	}
 
-	@Override
-	public List<SubCategory> deleteSubCategory(int categoryId,int subCategoryId) {
-		SubCategory subCategory=entityManager.find(SubCategory.class, subCategoryId);
-		System.out.println(subCategory);
-		entityManager.remove(subCategory);
-		System.out.println("deleted");
-		String str="SELECT subCategories FROM SubCategory subCategories WHERE subCategories.category.id=:id";
-		TypedQuery<SubCategory> query=entityManager.createQuery(str, SubCategory.class);
-		query.setParameter("id", categoryId);
-		List<SubCategory> subCategories=query.getResultList();
-		return subCategories;
-	}
+	
 
 }

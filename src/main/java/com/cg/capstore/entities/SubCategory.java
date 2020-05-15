@@ -1,7 +1,6 @@
 package com.cg.capstore.entities;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,11 +53,6 @@ public class SubCategory implements Serializable{
 		this.category = category;
 	}
 
-	@Override
-	public String toString() {
-		return "SubCategory [id=" + id + ", name=" + name + "]";
-	}
-	
 	
 	
 }

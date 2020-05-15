@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,15 +57,7 @@ public class AdminController {
 		List<Category> categories=adminService.getAllCategory();
 		return new ResponseEntity<List<Category>>(categories,HttpStatus.OK);
 	}
-	@DeleteMapping(value="/category/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Category>> deleteCategoryById(@PathVariable int id)
-	{
-		List<Category> categories=adminService.deleteCategory(id);
-		return new ResponseEntity<List<Category>>(categories,HttpStatus.OK);
-	}
-	
-	
-	
+		
 	@PostMapping(value="/subCategory/{id}",consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<SubCategory>> addCategory(@RequestBody SubCategory subCategory,@PathVariable int id)
 	{
@@ -80,11 +71,5 @@ public class AdminController {
 		List<SubCategory> subCategories=adminService.getAllSubCategory(categoryId);
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.OK);
 	}
-	@DeleteMapping(value="/subCategory/{categoryId}/{subCategoryId}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<SubCategory>> deleteSubCategoryById(@PathVariable int categoryId,@PathVariable int subCategoryId)
-	{
-		List<SubCategory> subCategory=adminService.deleteSubCategory(categoryId,subCategoryId);
-		return new ResponseEntity<List<SubCategory>>(subCategory,HttpStatus.OK);
-	}
-	
+		
 }

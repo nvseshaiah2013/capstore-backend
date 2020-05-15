@@ -63,10 +63,7 @@ public class Category implements Serializable{
 		this.getSubCategory().add(sub_Category);
 	}
 
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", categoryName=" + categoryName + "]";
-	}
+	
 
 	
 	
