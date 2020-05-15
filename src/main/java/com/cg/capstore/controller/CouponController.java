@@ -123,9 +123,6 @@ public class CouponController {
 			throw new Exception("Internal Server Error...");
 		}
 	}
-	
-	
-
 }
 
 class CouponValue{
