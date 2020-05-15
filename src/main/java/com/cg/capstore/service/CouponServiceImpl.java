@@ -3,16 +3,16 @@ package com.cg.capstore.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.capstore.dao.ICouponDao;
 import com.cg.capstore.entities.Coupon;
 
+@Service
 @Transactional
-@Service("CouponServiceImpl")
-
 public class CouponServiceImpl implements ICouponService{
 
  

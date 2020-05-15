@@ -8,9 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.capstore.dao.ICustomerDao;
 
+@Service
 @Transactional
-@Service("CustomerServiceImpl")
-
 public class CustomerServiceImpl implements ICustomerService{
 
 	

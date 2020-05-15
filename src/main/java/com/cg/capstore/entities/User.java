@@ -79,6 +79,7 @@ public class User implements Serializable{
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
 	@JsonIgnore
 	public Set<Address> getAddresses() {
 		return addresses;

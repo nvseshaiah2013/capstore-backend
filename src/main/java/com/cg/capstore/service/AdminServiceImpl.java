@@ -2,7 +2,6 @@ package com.cg.capstore.service;
 
 import java.util.List;
 
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,8 @@ import com.cg.capstore.dao.IAdminDao;
 
 import com.cg.capstore.entities.CustomerDetails;
 
+@Service
 @Transactional
-@Service("AdminServiceImpl")
 public class AdminServiceImpl implements IAdminService {
 
 	@Autowired

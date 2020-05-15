@@ -6,13 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+
 import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.CustomerDetails;
 
-
-
-@Repository("AdminDaoImpl")
+@Repository
 public class AdminDaoImpl implements IAdminDao {
 	
 	@PersistenceContext
