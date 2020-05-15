@@ -52,10 +52,13 @@ public class Product implements Serializable{
 	@Column(name="PROD_INFO",length=4000)
 	private String productInfo;
 	
+	@Column(name="PROD_DISC")
+	private int discount;
+	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="SUB_CAT_ID")
-	private Category subCategory;
+	private SubCategory subCategory;
 	
 	@Column(name="PRODUCT_IS_ACTIVATED")
 	private boolean productActivated;
@@ -191,12 +194,12 @@ public class Product implements Serializable{
 	}
 
 
-	public Category getSubCategory() {
+	public SubCategory getSubCategory() {
 		return subCategory;
 	}
 
 
-	public void setSubCategory(Category subCategory) {
+	public void setSubCategory(SubCategory subCategory) {
 		this.subCategory = subCategory;
 	}
 
@@ -220,6 +223,15 @@ public class Product implements Serializable{
 		feedback.setProduct(null);
 		this.getFeedbacks().remove(feedback);
 		
+	}
+
+	public int getDiscount() {
+		return discount;
+	}
+
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
 	}
 	
 }
