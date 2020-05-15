@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.capstore.dao.IAdminDao;
-
+import com.cg.capstore.entities.Address;
+import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
+
+import com.cg.capstore.entities.SubCategory;
+
 
 @Service
 @Transactional
@@ -27,6 +31,37 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public List<Invitation> getInvites(){
 		return adminDao.getInvites();
+	}
+
+	@Override
+	public List<Address> getAddressByUsername(String username) {
+		return adminDao.getAddressByUsername(username);
+	}
+
+	@Override
+	public List<Category> addCategory(Category category) {
+		return adminDao.addCategory(category);
+	}
+
+	@Override
+	public List<Category> getAllCategory() {
+
+		return adminDao.getAllCategory();
+	}
+
+
+
+	@Override
+	public List<SubCategory> getAllSubCategory(int categoryId) {
+		
+		return adminDao.getAllSubCategory(categoryId);
+	}
+
+
+	@Override
+	public List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId) {
+
+		return adminDao.addSubCategory(subCategory, categoryId);
 	}
 	
 	@Override
