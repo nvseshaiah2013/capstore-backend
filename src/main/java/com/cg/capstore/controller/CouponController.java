@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.capstore.entities.Coupon;
-import com.cg.capstore.service.CouponService;
+import com.cg.capstore.service.ICouponService;
 
 @SpringBootApplication
 @RestController
@@ -25,7 +25,7 @@ import com.cg.capstore.service.CouponService;
 public class CouponController {
 	
 	@Autowired
-	private CouponService couponService;
+	private ICouponService couponService;
 	
 	@GetMapping("/hello")
 	public ResponseEntity<Object> checkWorking(){

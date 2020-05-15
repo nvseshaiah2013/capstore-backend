@@ -1,6 +1,6 @@
 package com.cg.capstore.service;
 
-public interface MerchantService {
+public interface IMerchantService {
 	
 	Long countOfMerchants() throws Exception;
 	

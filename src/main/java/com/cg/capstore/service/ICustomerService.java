@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cg.capstore.entities.CustomerDetails;
 
-public interface CustomerService {
+public interface ICustomerService {
 	
 	Long countOfCustomers() throws Exception;
 

@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.capstore.entities.CustomerDetails;
-import com.cg.capstore.service.CouponService;
-import com.cg.capstore.service.CustomerService;
+import com.cg.capstore.service.ICouponService;
+import com.cg.capstore.service.ICustomerService;
 
 @RestController
 @CrossOrigin("*")
 public class CustomerController {
 	
 	@Autowired
-	private CustomerService customerService;
+	private ICustomerService customerService;
 	
 	@GetMapping("/helloCust")
 	public ResponseEntity<Object> checkWorking(){

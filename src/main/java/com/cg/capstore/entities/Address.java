@@ -37,12 +37,9 @@ public class Address implements Serializable{
 	private String landmark;
 	
 	@ManyToOne
-	@JoinColumn(name="C_USERNAME")
-	private CustomerDetails customer;
+	@JoinColumn(name="USERNAME")
+	private User user;
 	
-	@ManyToOne
-	@JoinColumn(name="M_USERNAME")
-	private MerchantDetails merchant;
 	
 	public Address() {
 		
@@ -96,21 +93,15 @@ public class Address implements Serializable{
 		this.landmark = landmark;
 	}
 
-	public CustomerDetails getCustomer() {
-		return customer;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCustomer(CustomerDetails customer) {
-		this.customer = customer;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public MerchantDetails getMerchant() {
-		return merchant;
-	}
 
-	public void setMerchant(MerchantDetails merchant) {
-		this.merchant = merchant;
-	}
 	
 	
 }

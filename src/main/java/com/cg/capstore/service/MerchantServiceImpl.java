@@ -9,7 +9,7 @@ import com.cg.capstore.dao.IMerchantDao;
 
 @Transactional
 @Service("MerchantServiceImpl")
-public class MerchantInterfaceImpl implements MerchantService {
+public class MerchantServiceImpl implements IMerchantService {
 
 	@Autowired
 	private IMerchantDao merchantDao;

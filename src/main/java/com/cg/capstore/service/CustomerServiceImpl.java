@@ -11,7 +11,7 @@ import com.cg.capstore.entities.CustomerDetails;
 
 @Transactional
 @Service("CustomerServiceImpl")
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements ICustomerService{
 	
 	@Autowired
 	private ICustomerDao customerDao;
