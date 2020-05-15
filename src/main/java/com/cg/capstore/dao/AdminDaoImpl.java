@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 @Repository("AdminOrderDaoImpl")
-public class AdminOrderDaoImpl implements AdminOrderDao {
+public class AdminDaoImpl implements IAdminDao {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

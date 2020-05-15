@@ -13,7 +13,7 @@ import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.MerchantDetails;
 
 @Repository("MerchantDaoImpl")
-public class MerchantDaoImpl implements MerchantDao {
+public class MerchantDaoImpl implements IMerchantDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;

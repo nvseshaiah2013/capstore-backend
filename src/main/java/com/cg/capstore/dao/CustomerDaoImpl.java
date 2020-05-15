@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.capstore.entities.CustomerDetails;
 
 @Repository("CustomerDaoImpl")
-public class CustomerDaoImpl implements CustomerDao{
+public class CustomerDaoImpl implements ICustomerDao{
 
 	@PersistenceContext
 	private EntityManager entityManager;

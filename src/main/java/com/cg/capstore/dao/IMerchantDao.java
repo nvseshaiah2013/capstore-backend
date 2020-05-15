@@ -1,6 +1,6 @@
 package com.cg.capstore.dao;
 
-public interface MerchantDao {
+public interface IMerchantDao {
 	
 	Long countOfMerchants() throws Exception;
 	

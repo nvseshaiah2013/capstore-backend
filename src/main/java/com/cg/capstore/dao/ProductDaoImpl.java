@@ -1,5 +1,5 @@
 package com.cg.capstore.dao;
 
-public class ProductDaoImpl implements ProductDao {
+public class ProductDaoImpl implements IProductDao {
 
 }

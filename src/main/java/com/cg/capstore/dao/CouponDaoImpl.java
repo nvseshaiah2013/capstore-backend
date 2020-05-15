@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.capstore.entities.Coupon;
 
 @Repository("CouponDaoImpl")
-public class CouponDaoImpl implements CouponDao{
+public class CouponDaoImpl implements ICouponDao{
 	@PersistenceContext
 	private EntityManager entityManager;
 

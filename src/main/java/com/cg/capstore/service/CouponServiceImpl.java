@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cg.capstore.dao.CouponDao;
+import com.cg.capstore.dao.ICouponDao;
 import com.cg.capstore.entities.Coupon;
 
 @Transactional
@@ -15,7 +15,7 @@ import com.cg.capstore.entities.Coupon;
 public class CouponServiceImpl implements CouponService{
  
 	@Autowired
-	private CouponDao couponDao;
+	private ICouponDao couponDao;
 	
 	
 	@Override
