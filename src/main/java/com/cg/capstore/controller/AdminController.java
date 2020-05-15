@@ -17,7 +17,7 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@GetMapping("/orders")
-	public String checkMethod() {
+	public String orderStatus() {
 		return "Working fine";
 	}
 
