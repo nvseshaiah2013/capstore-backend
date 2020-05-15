@@ -55,7 +55,7 @@ public class Product implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="SUB_CAT_ID")
-	private Category subCategory;
+	private SubCategory subCategory;
 	
 	@Column(name="PRODUCT_IS_ACTIVATED")
 	private boolean productActivated;
@@ -191,12 +191,12 @@ public class Product implements Serializable{
 	}
 
 
-	public Category getSubCategory() {
+	public SubCategory getSubCategory() {
 		return subCategory;
 	}
 
 
-	public void setSubCategory(Category subCategory) {
+	public void setSubCategory(SubCategory subCategory) {
 		this.subCategory = subCategory;
 	}
 
