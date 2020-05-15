@@ -1,15 +1,18 @@
 package com.cg.capstore.service;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.cg.capstore.dao.ICustomerDao;
 import com.cg.capstore.dao.IMerchantDao;
+import com.cg.capstore.entities.MerchantDetails;
 
+@Service
 @Transactional
-@Service("MerchantServiceImpl")
-public class MerchantInterfaceImpl implements MerchantService {
+public class MerchantServiceImpl implements IMerchantService {
 
 	@Autowired
 	private IMerchantDao merchantDao;
@@ -17,6 +20,11 @@ public class MerchantInterfaceImpl implements MerchantService {
 	@Override
 	public Long countOfMerchants() throws Exception {
 		return merchantDao.countOfMerchants();
+	}
+
+	@Override
+	public List<MerchantDetails> getMerchants() throws Exception {
+		return merchantDao.getMerchants();
 	}
 
 }

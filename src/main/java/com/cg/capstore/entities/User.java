@@ -1,11 +1,16 @@
 package com.cg.capstore.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="USER_MASTER")
@@ -28,10 +33,13 @@ public class User implements Serializable{
 	@Column(name="ROLE")
 	private String role;
 	
+	@OneToMany(mappedBy="user")
+	private Set<Address> addresses =new HashSet<Address>();
+	
 	public User() {
 		
 	}
-
+	
 	public String getUsername() {
 		return username;
 	}
@@ -72,4 +80,21 @@ public class User implements Serializable{
 		this.role = role;
 	}
 	
+	@JsonIgnore
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
+	}
+	public void addAddress(Address address) {
+		address.setUser(this);
+		this.getAddresses().add(address);
+	}
+	
+	public void removeAddress(Address address) {
+		address.setUser(null);
+		this.getAddresses().remove(address);
+	}
 }

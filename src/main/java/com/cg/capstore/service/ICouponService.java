@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.cg.capstore.entities.Coupon;
 
-public interface CouponService {
+public interface ICouponService {
 	   boolean checkCouponCode(String code) throws Exception;
 	   boolean addCoupon(Coupon coupon) throws Exception;
 	   boolean updateStatus() throws Exception;

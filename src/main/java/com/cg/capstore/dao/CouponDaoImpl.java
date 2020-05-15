@@ -8,11 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+
 import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.Coupon;
 
-@Repository("CouponDaoImpl")
+@Repository
 public class CouponDaoImpl implements ICouponDao{
 	@PersistenceContext
 	private EntityManager entityManager;

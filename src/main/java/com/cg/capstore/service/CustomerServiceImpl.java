@@ -1,17 +1,17 @@
 package com.cg.capstore.service;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.capstore.dao.ICustomerDao;
-import com.cg.capstore.entities.CustomerDetails;
 
+@Service
 @Transactional
-@Service("CustomerServiceImpl")
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements ICustomerService{
+
 	
 	@Autowired
 	private ICustomerDao customerDao;
