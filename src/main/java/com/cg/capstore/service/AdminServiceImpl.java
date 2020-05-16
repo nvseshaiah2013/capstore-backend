@@ -12,7 +12,7 @@ import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
-
+import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
@@ -105,4 +105,12 @@ public class AdminServiceImpl implements IAdminService {
 	}
 	
 	
+	public List<Order> getOrders() {
+		return adminDao.getOrders();
+	}
+
+	@Override
+	public boolean updateStatus(long orderId, String status) {
+		return adminDao.updateStatus(orderId, status);
+	}
 }

@@ -7,7 +7,7 @@ import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 
 import com.cg.capstore.entities.Invitation;
-
+import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
@@ -33,6 +33,12 @@ public interface IAdminService {
 	public boolean checkValidPhoneNumber(String phoneNo) throws InvalidAttributeException;
 	
 	public boolean checkValidEmail(String email) throws InvalidAttributeException;
+	
 	public int setMinOrderValueAmount(int amount);
+	
 	public int getMinOrderValueAmount();
+	
+	List<Order> getOrders();
+	
+	boolean updateStatus(long orderId,String status);
 }
