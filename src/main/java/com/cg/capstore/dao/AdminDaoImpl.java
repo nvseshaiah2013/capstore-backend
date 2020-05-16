@@ -13,6 +13,7 @@ import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
+import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.SubCategory;
 
 
@@ -94,6 +95,19 @@ public class AdminDaoImpl implements IAdminDao {
 		return subCategories;
 	}
 
-	
+	@Override
+	public List<Order> getOrders() {
+		String str="SELECT allOrders FROM Order allOrders";
+		TypedQuery<Order> query=entityManager.createQuery(str,Order.class);
+		List<Order> orders=query.getResultList();
+		return orders;
+	}
 
+	@Override
+	public boolean updateStatus(long orderId,String status) {
+		Order order=entityManager.find(Order.class, orderId);
+		order.setOrderStatus(status);
+		entityManager.merge(order);
+		return true;
+	}
 }

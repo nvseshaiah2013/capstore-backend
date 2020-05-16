@@ -19,6 +19,7 @@ import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
+import com.cg.capstore.entities.Order;
 import com.cg.capstore.response.SuccessMessage;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.service.IAdminService;
@@ -31,10 +32,12 @@ public class AdminController {
 	@Autowired
 	private IAdminService adminService;
 	
-	@GetMapping("/orders")
-	public String orderStatus() {
-		return "Working fine";
+	@GetMapping(value="/orders",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Order>> getAllOrders() {
+		List<Order> orders=adminService.getOrders();
+		return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
 	}
+	
 	@GetMapping(value="/customer",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CustomerDetails>> getAllCustomers()
 	{
@@ -86,5 +89,11 @@ public class AdminController {
 		List<SubCategory> subCategories=adminService.getAllSubCategory(categoryId);
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.OK);
 	}
-		
+	
+	@PostMapping(value="/orders/{orderId}/{status}")
+	public ResponseEntity<Object> updateStatus(@PathVariable long orderId,@PathVariable String status)
+	{
+		adminService.updateStatus(orderId, status);
+		return new ResponseEntity<>("Updated..!!",HttpStatus.OK);
+	}
 }
