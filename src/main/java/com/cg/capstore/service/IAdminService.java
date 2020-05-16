@@ -50,5 +50,4 @@ public interface IAdminService {
 	List<Order> getOrders();
 	
 	boolean updateStatus(long orderId,String status);
-
 }
