@@ -6,7 +6,7 @@ import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
-
+import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.SubCategory;
 
 public interface IAdminDao {
@@ -23,4 +23,10 @@ public interface IAdminDao {
 	public List<SubCategory> getAllSubCategory(int categoryId);
 
 	List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
+	
+	Long countOfMerchants() throws Exception;
+	
+	Long countOfCustomers() throws Exception;
+	
+	public List<MerchantDetails> topRatedMerchants();
 }

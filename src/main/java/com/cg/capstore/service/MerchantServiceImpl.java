@@ -16,11 +16,6 @@ public class MerchantServiceImpl implements IMerchantService {
 
 	@Autowired
 	private IMerchantDao merchantDao;
-	
-	@Override
-	public Long countOfMerchants() throws Exception {
-		return merchantDao.countOfMerchants();
-	}
 
 	@Override
 	public List<MerchantDetails> getMerchants() throws Exception {

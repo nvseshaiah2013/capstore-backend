@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.service.IMerchantService;
 
-
 @RestController
 @CrossOrigin("*")
 public class MerchantController {
@@ -20,12 +19,6 @@ public class MerchantController {
 	@Autowired
 
 	private IMerchantService merchantService;
-
-	
-	@GetMapping("/countOfMerchants")
-	public ResponseEntity<Long> countOfMerchants() throws Exception{
-		return new ResponseEntity<Long>(merchantService.countOfMerchants(), HttpStatus.OK);
-	}
 	
 	@GetMapping("/merchants/all")
 	public ResponseEntity<List<MerchantDetails>> getMerchants() throws Exception {

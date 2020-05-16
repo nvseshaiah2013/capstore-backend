@@ -23,10 +23,5 @@ public class CustomerController {
 	public ResponseEntity<Object> checkWorking(){
 		return new ResponseEntity<Object>("Hello Customer..", HttpStatus.OK);
 	}
-	
-	@GetMapping("/countOfCustomers")
-	public ResponseEntity<Long> countOfCustomers() throws Exception{
-		return new ResponseEntity<Long>(customerService.countOfCustomers(), HttpStatus.OK);
-	}
 
 }

@@ -19,6 +19,7 @@ import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
+import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.response.SuccessMessage;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.service.IAdminService;
@@ -85,6 +86,21 @@ public class AdminController {
 	{
 		List<SubCategory> subCategories=adminService.getAllSubCategory(categoryId);
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.OK);
+	}
+	
+	@GetMapping("/countOfCustomers")
+	public ResponseEntity<Long> countOfCustomers() throws Exception{
+		return new ResponseEntity<Long>(adminService.countOfCustomers(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/countOfMerchants")
+	public ResponseEntity<Long> countOfMerchants() throws Exception{
+		return new ResponseEntity<Long>(adminService.countOfMerchants(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/topRatedMerchants")
+	public ResponseEntity<List<MerchantDetails>> topRatedMerchants() throws Exception{
+		return new ResponseEntity<List<MerchantDetails>>(adminService.topRatedMerchants(), HttpStatus.OK);
 	}
 		
 }

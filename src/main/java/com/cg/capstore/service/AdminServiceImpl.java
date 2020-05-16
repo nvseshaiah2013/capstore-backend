@@ -12,7 +12,7 @@ import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
-
+import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.SubCategory;
 
 
@@ -67,5 +67,20 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public void sendInvite(Invitation invitation) throws Exception {
 		adminDao.sendInvite(invitation);
+	}
+	
+	@Override
+	public Long countOfCustomers() throws Exception {
+		return adminDao.countOfCustomers();
+	}
+	
+	@Override
+	public Long countOfMerchants() throws Exception {
+		return adminDao.countOfMerchants();
+	}
+
+	@Override
+	public List<MerchantDetails> topRatedMerchants() {
+		return adminDao.topRatedMerchants();
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 
@@ -13,6 +14,7 @@ import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
+import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.SubCategory;
 
 
@@ -93,7 +95,23 @@ public class AdminDaoImpl implements IAdminDao {
 		List<SubCategory> subCategories=query.getResultList();
 		return subCategories;
 	}
-
 	
+	@Override
+	public Long countOfMerchants() throws Exception {
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM MerchantDetails");
+		return (Long) query.getSingleResult();
+	}
+	
+	@Override
+	public Long countOfCustomers() throws Exception {
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM CustomerDetails");
+		return (Long) query.getSingleResult();
+	}
+
+	@Override
+	public List<MerchantDetails> topRatedMerchants() {
+		Query query=entityManager.createQuery("SELECT m FROM MerchantDetails m ORDER BY m.rating DESC");
+		return query.setMaxResults(3).getResultList();
+	}
 
 }
