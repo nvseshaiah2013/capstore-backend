@@ -94,6 +94,24 @@ public class AdminDaoImpl implements IAdminDao {
 		List<SubCategory> subCategories=query.getResultList();
 		return subCategories;
 	}
+	
+	@Override
+	public Long countOfMerchants() throws Exception {
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM MerchantDetails");
+		return (Long) query.getSingleResult();
+	}
+	
+	@Override
+	public Long countOfCustomers() throws Exception {
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM CustomerDetails");
+		return (Long) query.getSingleResult();
+	}
+
+	@Override
+	public List<MerchantDetails> topRatedMerchants() {
+		Query query=entityManager.createQuery("SELECT m FROM MerchantDetails m ORDER BY m.rating DESC");
+		return query.setMaxResults(3).getResultList();
+	}
 
 	@Override
 	public void addMerchant(ThirdPartyMerchantDetails details) {
@@ -128,9 +146,7 @@ public class AdminDaoImpl implements IAdminDao {
 		userDetails.addAddress(addressDetails);
 		
 		entityManager.merge(userDetails);
-		
-		
-		
+
 	}
 
 	@Override

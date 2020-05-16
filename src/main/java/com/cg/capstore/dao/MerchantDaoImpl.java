@@ -18,11 +18,6 @@ public class MerchantDaoImpl implements IMerchantDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	@Override
-	public Long countOfMerchants() throws Exception {
-		Query query=entityManager.createQuery("SELECT COUNT(*) FROM MerchantDetails");
-		return (Long) query.getSingleResult();
-	}
 
 	@Override
 	public List<MerchantDetails> getMerchants() throws Exception {

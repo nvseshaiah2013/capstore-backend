@@ -12,9 +12,4 @@ public class CustomerDaoImpl implements ICustomerDao{
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	@Override
-	public Long countOfCustomers() throws Exception {
-		Query query=entityManager.createQuery("SELECT COUNT(*) FROM CustomerDetails");
-		return (Long) query.getSingleResult();
-	}
 }

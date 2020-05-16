@@ -12,11 +12,11 @@ import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
+import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
-
 
 @Service
 @Transactional
@@ -70,7 +70,22 @@ public class AdminServiceImpl implements IAdminService {
 	public void sendInvite(Invitation invitation) throws Exception {
 		adminDao.sendInvite(invitation);
 	}
+	
+	@Override
+	public Long countOfCustomers() throws Exception {
+		return adminDao.countOfCustomers();
+	}
+	
+	@Override
+	public Long countOfMerchants() throws Exception {
+		return adminDao.countOfMerchants();
+	}
 
+	@Override
+	public List<MerchantDetails> topRatedMerchants() {
+		return adminDao.topRatedMerchants();
+	}
+	
 	@Override
 	public void addMerchant(ThirdPartyMerchantDetails details) {
 		adminDao.addMerchant(details);
