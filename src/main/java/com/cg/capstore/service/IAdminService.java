@@ -49,6 +49,10 @@ public interface IAdminService {
 	
 	List<Order> getOrders();
 	
+<<<<<<< HEAD
 	boolean updateStatus(long orderId,String status);
 
+=======
+	int updateStatus(long orderId,String status);
+>>>>>>> ankit
 }

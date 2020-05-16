@@ -71,6 +71,7 @@ public class Product implements Serializable{
 	private MerchantDetails merchant;
 	
 	@OneToMany(mappedBy="product")
+	@JsonIgnore
 	private Set<ProductFeedback> feedbacks = new HashSet<>();
 
 

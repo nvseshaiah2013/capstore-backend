@@ -209,10 +209,23 @@ public class AdminDaoImpl implements IAdminDao {
 	}
 
 	@Override
-	public boolean updateStatus(long orderId,String status) {
+	public int updateStatus(long orderId,String status) {
 		Order order=entityManager.find(Order.class, orderId);
+		if(order.getOrderStatus().equals("Returned") || order.getOrderStatus().equals("Cancelled")) {
+			return 0;
+		}
+		if(status.equals("Returned") && order.getTransaction().getCoupon()!=null) {
+			return -1;
+		}
+		if(status.equals("Cancelled") && order.getOrderStatus().equals("Delivered")) {
+			return 2;
+		}
+		
 		order.setOrderStatus(status);
+		if(status.equals("Returned") || status.equals("Cancelled")) {
+			order.getCustomer().setBalance(order.getCustomer().getBalance()+order.getOrderAmount());
+		}
 		entityManager.merge(order);
-		return true;
+		return 1;
 	}
 }
