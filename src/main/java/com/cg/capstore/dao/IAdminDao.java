@@ -4,9 +4,10 @@ import java.util.List;
 
 import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
+import com.cg.capstore.entities.CommonFeedback;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
-
+import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.SubCategory;
 
 public interface IAdminDao {
@@ -23,4 +24,9 @@ public interface IAdminDao {
 	public List<SubCategory> getAllSubCategory(int categoryId);
 
 	List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
+	
+	public List<CommonFeedback> getFeedbacks();
+	public CommonFeedback findCommonFeedbackById(int id) throws Exception;
+	public void redirectFeedback(CommonFeedback feedback);
+	public MerchantDetails findMerchantByUsername(String username);
 }
