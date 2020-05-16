@@ -14,6 +14,8 @@ import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 
 import com.cg.capstore.entities.SubCategory;
+import com.cg.capstore.exceptions.InvalidAttributeException;
+import com.cg.capstore.response.ThirdPartyMerchantDetails;
 
 
 @Service
@@ -68,4 +70,39 @@ public class AdminServiceImpl implements IAdminService {
 	public void sendInvite(Invitation invitation) throws Exception {
 		adminDao.sendInvite(invitation);
 	}
+
+	@Override
+	public void addMerchant(ThirdPartyMerchantDetails details) {
+		adminDao.addMerchant(details);
+		
+	}
+
+	@Override
+	public boolean checkValidPhoneNumber(String phoneNo) throws InvalidAttributeException {
+		if(adminDao.checkValidPhoneNumber(phoneNo))
+			return true;
+		else
+			throw new InvalidAttributeException("Phone Number Already Exists");
+	}
+
+	@Override
+	public boolean checkValidEmail(String email) throws InvalidAttributeException {
+		if(adminDao.checkValidEmail(email))
+			return true;
+		else
+			throw new InvalidAttributeException("Email Already Exists");
+	}
+
+	@Override
+	public int setMinOrderValueAmount(int amount) {
+		return adminDao.setMinOrderValueAmount(amount);
+	}
+
+	@Override
+	public int getMinOrderValueAmount() {
+		
+		return  adminDao.getMinOrderValueAmount();
+	}
+	
+	
 }

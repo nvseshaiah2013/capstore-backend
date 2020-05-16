@@ -38,6 +38,9 @@ public class Address implements Serializable{
 	@Column(name="ADDRESS_LANDMARK")
 	private String landmark;
 	
+	@Column(name="IS_DELETED")
+	private boolean isDeleted;
+	
 	@ManyToOne
 	@JoinColumn(name="USERNAME")
 	private User user;
@@ -104,6 +107,13 @@ public class Address implements Serializable{
 		this.user = user;
 	}
 
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
 	
 	

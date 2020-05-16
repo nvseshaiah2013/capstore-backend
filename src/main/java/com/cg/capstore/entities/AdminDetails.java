@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,10 +34,6 @@ public class AdminDetails implements Serializable{
 	@Column(name="T_PHONE")
 	private String tollFreeNo;
 	
-	@OneToOne
-	@JoinColumn(name="ADDRESS_ID")
-	private Address address;
-
 	public String getUsername() {
 		return username;
 	}
@@ -96,15 +90,6 @@ public class AdminDetails implements Serializable{
 		this.tollFreeNo = tollFreeNo;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	
-	
 	
 	
 }
