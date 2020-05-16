@@ -36,9 +36,13 @@ public class User implements Serializable{
 	
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	@JsonIgnore
 >>>>>>> ankit
+=======
+	@JsonIgnore
+>>>>>>> fddfae32b28f09e8652e0626c3c08200ed47d480
 	private Set<Address> addresses =new HashSet<Address>();
 	
 	public User() {

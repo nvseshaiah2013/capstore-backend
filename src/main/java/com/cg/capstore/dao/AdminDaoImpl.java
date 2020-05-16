@@ -8,11 +8,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-
 import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
+import com.cg.capstore.entities.CommonFeedback;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
@@ -148,6 +148,60 @@ public class AdminDaoImpl implements IAdminDao {
 		entityManager.merge(userDetails);
 
 	}
+<<<<<<< HEAD
+
+	@Override
+	public boolean checkValidEmail(String email) {
+		String str="SELECT details.username FROM MerchantDetails details";
+		TypedQuery<String> query=entityManager.createQuery(str,String.class);
+		List<String> list = query.getResultList().stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+		str="SELECT details.alternateEmail FROM MerchantDetails details";
+		query=entityManager.createQuery(str,String.class);
+		List<String> list2 = query.getResultList().stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+		if(list.contains(email) || list2.contains(email))
+			return false;
+		else
+			return true;
+
+	}
+
+	@Override
+	public boolean checkValidPhoneNumber(String phoneNo) {
+		String str="SELECT details.phoneNo FROM MerchantDetails details";
+		TypedQuery<String> query=entityManager.createQuery(str,String.class);
+		List<String> list = query.getResultList();
+		str="SELECT details.alternatePhoneNo FROM MerchantDetails details";
+		query=entityManager.createQuery(str,String.class);
+		List<String> list2 = query.getResultList();
+		if(list.contains(phoneNo) || list2.contains(phoneNo))
+			return false;
+		else
+			return true;
+	}
+
+	@Override
+	public int setMinOrderValueAmount(int amount) {
+		String str="UPDATE AdminDetails details SET details.minOrderAmount=:amount";
+		Query query=entityManager.createQuery(str);
+		query.setParameter("amount",amount);
+		System.out.println("setted");
+		query.executeUpdate();
+		System.out.println("done");
+		return getMinOrderValueAmount();
+	}
+
+	@Override
+	public int getMinOrderValueAmount() {
+		String str="SELECT details.minOrderAmount FROM AdminDetails details GROUP BY details.minOrderAmount";
+		TypedQuery<Integer> query=entityManager.createQuery(str, Integer.class);
+		return query.getSingleResult();
+	}
+=======
+>>>>>>> fddfae32b28f09e8652e0626c3c08200ed47d480
 
 	@Override
 	public boolean checkValidEmail(String email) {
@@ -200,7 +254,21 @@ public class AdminDaoImpl implements IAdminDao {
 		return query.getSingleResult();
 	}
 
+	@Override
+	public List<CommonFeedback> getFeedbacks(){
+		String str = "SELECT feedback FROM CommonFeedback feedback";
+		TypedQuery<CommonFeedback> query = entityManager.createQuery(str,CommonFeedback.class);
+		List<CommonFeedback> feedbacks = query.getResultList();
+		return feedbacks;
+	}
 	
+	@Override
+	public CommonFeedback findCommonFeedbackById(int id) throws Exception{
+		CommonFeedback feedback = entityManager.find(CommonFeedback.class, id);
+		return feedback;
+	}
+	
+<<<<<<< HEAD
 	public List<Order> getOrders() {
 		String str="SELECT allOrders FROM Order allOrders";
 		TypedQuery<Order> query=entityManager.createQuery(str,Order.class);
@@ -227,5 +295,32 @@ public class AdminDaoImpl implements IAdminDao {
 		}
 		entityManager.merge(order);
 		return 1;
+=======
+	@Override
+	public MerchantDetails findMerchantByUsername(String username) {
+		MerchantDetails merchant = entityManager.find(MerchantDetails.class,username);
+		return merchant;
+	}
+
+	@Override
+	public void redirectFeedback(CommonFeedback feedback) {
+		feedback.setEnableRead(true);
+		entityManager.merge(feedback);		
+	}
+	
+	public List<Order> getOrders() {
+		String str="SELECT allOrders FROM Order allOrders";
+		TypedQuery<Order> query=entityManager.createQuery(str,Order.class);
+		List<Order> orders=query.getResultList();
+		return orders;
+	}
+
+	@Override
+	public boolean updateStatus(long orderId,String status) {
+		Order order=entityManager.find(Order.class, orderId);
+		order.setOrderStatus(status);
+		entityManager.merge(order);
+		return true;
+>>>>>>> fddfae32b28f09e8652e0626c3c08200ed47d480
 	}
 }

@@ -1,6 +1,7 @@
 package com.cg.capstore.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -10,10 +11,16 @@ import org.springframework.stereotype.Service;
 import com.cg.capstore.dao.IAdminDao;
 import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
+import com.cg.capstore.entities.CommonFeedback;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+<<<<<<< HEAD
+=======
+
+import com.cg.capstore.entities.Product;
+>>>>>>> fddfae32b28f09e8652e0626c3c08200ed47d480
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
@@ -70,6 +77,10 @@ public class AdminServiceImpl implements IAdminService {
 	public void sendInvite(Invitation invitation) throws Exception {
 		adminDao.sendInvite(invitation);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> fddfae32b28f09e8652e0626c3c08200ed47d480
 	
 	@Override
 	public Long countOfCustomers() throws Exception {
@@ -125,7 +136,89 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public int updateStatus(long orderId, String status) {
 		return adminDao.updateStatus(orderId, status);
 	}
+=======
+	public boolean updateStatus(long orderId, String status) {
+		return adminDao.updateStatus(orderId, status);
+	}
+
+
+	@Override
+	public List<CommonFeedback> getFeedbacks() {
+		return this.adminDao.getFeedbacks();
+	}
+	
+	@Override
+	public CommonFeedback redirectFeedback(int id) throws Exception {
+		CommonFeedback feedback = findCommonFeedbackById(id) ;
+		this.adminDao.redirectFeedback(feedback);
+		return feedback;
+	}
+	
+	@Override
+	public CommonFeedback findCommonFeedbackById(int id) throws Exception {
+		CommonFeedback feedback = this.adminDao.findCommonFeedbackById(id);
+		if(feedback==null) {
+			throw new Exception("Common Feedback Not Found For id: " + id);
+		}
+		return feedback;
+	}
+	
+	@Override
+	public MerchantDetails findMerchantByUsername(String username) throws Exception {
+		MerchantDetails merchant = this.adminDao.findMerchantByUsername(username);
+		if(merchant == null)
+		{
+			throw new Exception("Merchant With username : " + username + " not found!");
+		}
+		return merchant;
+	}
+	
+	@Override
+	public Integer getOrderCount(String username) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		return merchant.getOrders().size();
+	}
+	
+	@Override
+	public Integer getProductCount(String username) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		return merchant.getProducts().size();
+	}
+	
+	@Override
+	public Integer getMerchantRating(String username) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		return merchant.getRating();
+	}
+	
+	@Override 
+	public Set<CommonFeedback> getCommonFeedbackByMerchant(String username) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		return merchant.getFeedbacks();
+	}
+	
+	@Override 
+	public Set<Order> getOrdersByMerchant(String username) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		return merchant.getOrders();
+	}
+	
+	@Override 
+	public Set<Product> getProductsByMerchant(String username) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		return merchant.getProducts();
+	}
+	
+	@Override 
+	public Set<CommonFeedback> getFeedbacksByMerchant(String username) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		return merchant.getFeedbacks();
+	}
+	
+
+>>>>>>> fddfae32b28f09e8652e0626c3c08200ed47d480
 }

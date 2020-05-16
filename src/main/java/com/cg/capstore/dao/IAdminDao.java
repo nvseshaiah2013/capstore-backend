@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
+import com.cg.capstore.entities.CommonFeedback;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
@@ -25,6 +26,10 @@ public interface IAdminDao {
 	public List<SubCategory> getAllSubCategory(int categoryId);
 
 	List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
+<<<<<<< HEAD
+=======
+
+>>>>>>> fddfae32b28f09e8652e0626c3c08200ed47d480
 	
 	Long countOfMerchants() throws Exception;
 	
@@ -45,9 +50,20 @@ public interface IAdminDao {
 	List<Order> getOrders();
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	boolean updateStatus(long orderId,String status);
 
 =======
 	int updateStatus(long orderId,String status);
 >>>>>>> ankit
+=======
+	boolean updateStatus(long orderId,String status);
+
+
+	public List<CommonFeedback> getFeedbacks();
+	public CommonFeedback findCommonFeedbackById(int id) throws Exception;
+	public void redirectFeedback(CommonFeedback feedback);
+	public MerchantDetails findMerchantByUsername(String username);
+
+>>>>>>> fddfae32b28f09e8652e0626c3c08200ed47d480
 }
