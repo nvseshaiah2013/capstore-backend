@@ -35,6 +35,7 @@ public class User implements Serializable{
 	private String role;
 	
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private Set<Address> addresses =new HashSet<Address>();
 	
 	public User() {
