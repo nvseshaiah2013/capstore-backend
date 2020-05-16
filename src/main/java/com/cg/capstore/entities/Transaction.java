@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="TRANSACTIONS")
@@ -43,6 +45,7 @@ public class Transaction implements Serializable{
 	private String transactionStatus;
 	
 	@OneToMany(mappedBy="transaction")
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<Order>();
 	
 	@ManyToOne(fetch = FetchType.EAGER)

@@ -43,6 +43,7 @@ public class CustomerDetails implements Serializable{
 	private int balance;
 
 	@OneToMany(mappedBy="customer")
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<Order>();
 	
 	@OneToMany(mappedBy="customer")

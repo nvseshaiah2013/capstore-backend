@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,7 +34,8 @@ public class User implements Serializable{
 	@Column(name="ROLE")
 	private String role;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private Set<Address> addresses =new HashSet<Address>();
 	
 	public User() {
