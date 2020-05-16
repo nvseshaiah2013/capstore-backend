@@ -7,7 +7,9 @@ import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
+import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.SubCategory;
+import com.cg.capstore.response.ThirdPartyMerchantDetails;
 
 public interface IAdminDao {
 	public List<CustomerDetails> getCustomerList();
@@ -29,4 +31,19 @@ public interface IAdminDao {
 	Long countOfCustomers() throws Exception;
 	
 	public List<MerchantDetails> topRatedMerchants();
+
+	public void addMerchant(ThirdPartyMerchantDetails details);
+	
+	public boolean checkValidEmail(String email);
+	
+	public boolean checkValidPhoneNumber(String phoneNo);
+	
+	public int setMinOrderValueAmount(int amount);
+	
+	public int getMinOrderValueAmount();
+	
+	List<Order> getOrders();
+	
+	boolean updateStatus(long orderId,String status);
+
 }

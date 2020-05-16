@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,8 +21,11 @@ import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
+import com.cg.capstore.entities.Order;
 import com.cg.capstore.response.SuccessMessage;
+import com.cg.capstore.response.ThirdPartyMerchantDetails;
 import com.cg.capstore.entities.SubCategory;
+import com.cg.capstore.exceptions.InvalidAttributeException;
 import com.cg.capstore.service.IAdminService;
 
 @RestController
@@ -32,10 +36,12 @@ public class AdminController {
 	@Autowired
 	private IAdminService adminService;
 	
-	@GetMapping("/orders")
-	public String orderStatus() {
-		return "Working fine";
+	@GetMapping(value="/orders",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Order>> getAllOrders() {
+		List<Order> orders=adminService.getOrders();
+		return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
 	}
+	
 	@GetMapping(value="/customer",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CustomerDetails>> getAllCustomers()
 	{
@@ -61,6 +67,7 @@ public class AdminController {
 		List<Address> addresses=adminService.getAddressByUsername(username);
 		return new ResponseEntity<List<Address>>(addresses,HttpStatus.OK);
 	}
+	
 	@PostMapping(value="/category",consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Category>> addCategory(@RequestBody Category category)
 	{
@@ -103,4 +110,42 @@ public class AdminController {
 		return new ResponseEntity<List<MerchantDetails>>(adminService.topRatedMerchants(), HttpStatus.OK);
 	}
 		
+	@PostMapping(value="/addMerchant",consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SuccessMessage> addMerchant(@RequestBody ThirdPartyMerchantDetails details)
+	{
+		adminService.addMerchant(details);
+		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Add Merchant Request","Merchant Successfully Registered"),HttpStatus.CREATED);
+	}
+	
+	@GetMapping(value="/checkPhoneNo/{phoneNo}")
+	public ResponseEntity<SuccessMessage> checkValidPhoneNo(@PathVariable String phoneNo) throws InvalidAttributeException
+	{
+		adminService.checkValidPhoneNumber(phoneNo);
+		return new ResponseEntity<SuccessMessage>(new SuccessMessage("PhoneNo Validation Request","PhoneNo Doesn't Exist"),HttpStatus.OK);
+	}
+	@GetMapping(value="/checkEmail/{email}")
+	public ResponseEntity<SuccessMessage> checkValidEmail(@PathVariable String email) throws InvalidAttributeException
+	{
+		adminService.checkValidEmail(email);
+		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Email Validation Request","Email Doesn't Exist"),HttpStatus.OK);
+	}
+	@PatchMapping("/minOrderValue/{amount}")
+	public ResponseEntity<Integer> setMinOrderValueAmount(@PathVariable int amount)
+	{
+		int updatedAmount=adminService.setMinOrderValueAmount(amount);
+		return new ResponseEntity<Integer>(updatedAmount,HttpStatus.ACCEPTED);
+	}
+	@GetMapping("/minOrderValue")
+	public ResponseEntity<Integer> getMinOrderValueAmount()
+	{
+		int amount=adminService.getMinOrderValueAmount();
+		return new ResponseEntity<Integer>(amount,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping(value="/orders/{orderId}/{status}")
+	public ResponseEntity<Object> updateStatus(@PathVariable long orderId,@PathVariable String status)
+	{
+		adminService.updateStatus(orderId, status);
+		return new ResponseEntity<>("Updated..!!",HttpStatus.OK);
+	}
 }
