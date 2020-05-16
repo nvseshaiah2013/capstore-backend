@@ -52,7 +52,7 @@ public class AdminDaoImpl implements IAdminDao {
 
 	@Override
 	public List<Address> getAddressByUsername(String username) {
-		String str="SELECT address FROM Address address WHERE address.user.username=:username";
+		String str="SELECT address FROM Address address WHERE address.user.username=:username AND address.isDeleted=0";
 		TypedQuery<Address> query=entityManager.createQuery(str, Address.class);
 		query.setParameter("username", username);
 		List<Address> addresses=query.getResultList();
