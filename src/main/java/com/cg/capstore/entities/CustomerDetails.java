@@ -40,9 +40,10 @@ public class CustomerDetails implements Serializable{
 	private String gender;
 	
 	@Column(name="W_BAL")
-	private int balance;
+	private double balance;
 
 	@OneToMany(mappedBy="customer")
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<Order>();
 	
 	@OneToMany(mappedBy="customer")
@@ -156,11 +157,11 @@ public class CustomerDetails implements Serializable{
 		this.gender = gender;
 	}
 
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(int balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 	

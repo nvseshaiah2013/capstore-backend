@@ -91,9 +91,20 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="/orders/{orderId}/{status}")
-	public ResponseEntity<Object> updateStatus(@PathVariable long orderId,@PathVariable String status)
+	public ResponseEntity<String> updateStatus(@PathVariable long orderId,@PathVariable String status)
 	{
-		adminService.updateStatus(orderId, status);
-		return new ResponseEntity<>("Updated..!!",HttpStatus.OK);
+		int result=adminService.updateStatus(orderId, status);
+		if(result==0) {
+			return new ResponseEntity<>("Order Already Cancelled/Returned !!",HttpStatus.BAD_REQUEST);
+		}
+		
+		if(result==-1) {
+			return new ResponseEntity<>("Can't be Returned due to Applied Coupons !!",HttpStatus.BAD_REQUEST);
+		}
+		
+		if(result==2) {
+			return new ResponseEntity<>("Can't be Cancelled..Already Delivered !!",HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>("Order Updated..!!",HttpStatus.OK);
 	}
 }

@@ -48,18 +48,22 @@ public class MerchantDetails implements Serializable{
 	private int rating;
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<Order>();
 	
 	
 
 	
 	@OneToMany(mappedBy="merchant")
+	@JsonIgnore
 	private Set<CommonFeedback> feedbacks = new HashSet<CommonFeedback>();
 	
 	@OneToMany(mappedBy="merchant")
+	@JsonIgnore
 	private Set<Product> products = new HashSet<Product>();
 	
 	@OneToMany(mappedBy="merchant")
+	@JsonIgnore
 	private Set<Invitation> invites = new HashSet<Invitation>();
 	
 

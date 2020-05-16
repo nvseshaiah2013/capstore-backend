@@ -27,7 +27,7 @@ public class Category implements Serializable{
 	private int id;
 	
 	@Column(name="CAT_NAME")
-	private String categoryName;
+	private String name;
 
 	@OneToMany(cascade=CascadeType.ALL)
 	private Set<SubCategory> subCategory=new HashSet<SubCategory>();
@@ -41,12 +41,12 @@ public class Category implements Serializable{
 		this.id = id;
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	@JsonIgnore
