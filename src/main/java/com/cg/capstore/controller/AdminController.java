@@ -90,7 +90,7 @@ public class AdminController {
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/orders/{orderId}/{status}")
+	@GetMapping(value="/orders/{orderId}/{status}")
 	public ResponseEntity<Object> updateStatus(@PathVariable long orderId,@PathVariable String status)
 	{
 		adminService.updateStatus(orderId, status);
