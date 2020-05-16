@@ -1,6 +1,7 @@
 package com.cg.capstore.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,14 +15,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.capstore.entities.Address;
 import com.cg.capstore.entities.Category;
+import com.cg.capstore.entities.CommonFeedback;
 import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+
+import com.cg.capstore.entities.Product;
+
 import com.cg.capstore.response.SuccessMessage;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
 import com.cg.capstore.entities.SubCategory;
@@ -94,6 +100,7 @@ public class AdminController {
 		List<SubCategory> subCategories=adminService.getAllSubCategory(categoryId);
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.OK);
 	}
+
 	
 	@GetMapping("/countOfCustomers")
 	public ResponseEntity<Long> countOfCustomers() throws Exception{
@@ -109,6 +116,47 @@ public class AdminController {
 	public ResponseEntity<List<MerchantDetails>> topRatedMerchants() throws Exception{
 		return new ResponseEntity<List<MerchantDetails>>(adminService.topRatedMerchants(), HttpStatus.OK);
 	}
+
+	
+	@GetMapping(value="/commonFeedbacks",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CommonFeedback>> getFeedbacks(){
+		List<CommonFeedback> feedbacks = this.adminService.getFeedbacks();
+		return new ResponseEntity<List<CommonFeedback>>(feedbacks,HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/redirectFeedback/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SuccessMessage> redirectFeedback(@PathVariable int id) throws Exception
+	{
+		CommonFeedback feedback = this.adminService.redirectFeedback(id);
+		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Feedback Redirection","Feedback Redirected To Merchant " + feedback.getMerchant().getUsername()),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/productCount",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Integer> getProductCount(@RequestParam("username") String username) throws Exception {
+		return new ResponseEntity<Integer>(this.adminService.getProductCount(username),HttpStatus.OK);
+	}
+	
+
+	@GetMapping(value="/orderCount",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Integer> getOrderCount(@RequestParam("username") String username) throws Exception {
+		return new ResponseEntity<Integer>(this.adminService.getOrderCount(username),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/orders/all/",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Set<Order>> getOrdersByMerchantUsername(@RequestParam("username") String username) throws Exception{
+		return new ResponseEntity<Set<Order>>(this.adminService.getOrdersByMerchant(username),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="products/all",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Set<Product>> getProductsByMerchantUsername(@RequestParam("username") String username ) throws Exception {
+		return new ResponseEntity<Set<Product>>(this.adminService.getProductsByMerchant(username),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="feedbacks/all",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Set<CommonFeedback>> getFeedbacksByMerchantUsername(@RequestParam("username") String username ) throws Exception {
+		return new ResponseEntity<Set<CommonFeedback>>(this.adminService.getFeedbacksByMerchant(username),HttpStatus.OK);
+	}
+
 		
 	@PostMapping(value="/addMerchant",consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> addMerchant(@RequestBody ThirdPartyMerchantDetails details)
