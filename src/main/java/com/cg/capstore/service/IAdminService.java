@@ -9,8 +9,7 @@ import com.cg.capstore.entities.CommonFeedback;
 import com.cg.capstore.entities.CustomerDetails;
 
 import com.cg.capstore.entities.Invitation;
-import com.cg.capstore.entities.MerchantDetails;
-import com.cg.capstore.entities.Order;
+
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.Product;
@@ -79,6 +78,7 @@ public interface IAdminService {
 	public Set<CommonFeedback> getFeedbacksByMerchant(String username) throws Exception;
 
 	public List<Category> updateCategory(Category category);
+
 
 	public List<Product> getTrendingProducts();
 

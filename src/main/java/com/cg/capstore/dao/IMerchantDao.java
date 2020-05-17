@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+import com.cg.capstore.entities.Product;
 
 public interface IMerchantDao {
 	
@@ -15,4 +16,15 @@ public interface IMerchantDao {
 	Set<Order> getMerchantOrders(String username);
 
 	Order acceptMerchantOrder(long orderId, String status);
+
+
+	void activateMerchant(MerchantDetails merchant) throws Exception;
+
+	void deActivateMerchant(MerchantDetails merchant) throws Exception;
+
+	MerchantDetails findMerchantByUsername(String username) throws Exception;
+
+
+	Set<Product> getMerchantProducts(String username);
+
 }

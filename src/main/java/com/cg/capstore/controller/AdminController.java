@@ -103,6 +103,7 @@ public class AdminController {
 		List<SubCategory> subCategories=adminService.getAllSubCategory(categoryId);
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.OK);
 	}
+
 	
 	@GetMapping("/countOfCustomers")
 	public ResponseEntity<Long> countOfCustomers() throws Exception{
@@ -118,6 +119,7 @@ public class AdminController {
 	public ResponseEntity<List<MerchantDetails>> topRatedMerchants() throws Exception{
 		return new ResponseEntity<List<MerchantDetails>>(adminService.topRatedMerchants(), HttpStatus.OK);
 	}
+
 	
 	@GetMapping(value="/commonFeedbacks",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CommonFeedback>> getFeedbacks(){
@@ -143,7 +145,7 @@ public class AdminController {
 		return new ResponseEntity<Integer>(this.adminService.getOrderCount(username),HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/orders/all/",produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/orders/all",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Set<Order>> getOrdersByMerchantUsername(@RequestParam("username") String username) throws Exception{
 		return new ResponseEntity<Set<Order>>(this.adminService.getOrdersByMerchant(username),HttpStatus.OK);
 	}

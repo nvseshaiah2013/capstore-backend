@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+import com.cg.capstore.entities.Product;
 
 
 @Repository
@@ -43,6 +44,31 @@ public class MerchantDaoImpl implements IMerchantDao {
 		Order order = entityManager.find(Order.class, orderId);
 		order.setOrderStatus(status);
 		return entityManager.merge(order);
+	}
+
+
+	
+	@Override
+	public void activateMerchant(MerchantDetails merchant) throws Exception {
+		merchant.setDeleted(false);
+		entityManager.merge(merchant);
+	}
+	
+	@Override
+	public void deActivateMerchant(MerchantDetails merchant) throws Exception {
+		merchant.setDeleted(true);
+		entityManager.merge(merchant);
+	}
+	
+	@Override
+	public MerchantDetails findMerchantByUsername(String username) throws Exception {
+		MerchantDetails merchant = entityManager.find(MerchantDetails.class, username);
+		return merchant;
+	}
+
+	@Override
+	public Set<Product> getMerchantProducts(String username){
+		return entityManager.find(MerchantDetails.class, username).getProducts();
 	}
 
 }

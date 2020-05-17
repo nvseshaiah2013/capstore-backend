@@ -29,11 +29,13 @@ public interface IAdminDao {
 
 	public List<SubCategory> getAllSubCategory(int categoryId);
 
-	public List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
+	List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
+
 
 	public Long countOfMerchants() throws Exception;
-	
+
 	public Long countOfCustomers() throws Exception;
+
 	
 	public List<MerchantDetails> topRatedMerchants();
 
