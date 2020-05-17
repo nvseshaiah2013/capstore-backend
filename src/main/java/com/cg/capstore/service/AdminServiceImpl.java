@@ -207,5 +207,36 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public List<Category> updateCategory(Category category) {
 		return adminDao.updateCategory(category);
+}
+
+	@Override
+	public List<Product> getTrendingProducts() {
+		return adminDao.getTrendingProducts();
+	}
+
+	@Override
+	public Double todayRevenue() {
+		return adminDao.todayRevenue();
+	}
+	
+	@Override
+	public Long todayProductSales() {
+		return adminDao.todayProductSales();
+	}
+
+	@Override
+	public List<Order> recentOrders() {
+		return adminDao.recentOrders();
+	}
+
+	@Override
+	public List<Double> recentRevenues() {
+		return adminDao.recentRevenues();
+	}
+
+	@Override
+	public List<Long> recentOrdersCount() {
+		return adminDao.recentOrdersCount();
+
 	}
 }

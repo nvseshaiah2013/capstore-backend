@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+import com.cg.capstore.entities.Product;
 
 
 @Repository
@@ -45,6 +46,7 @@ public class MerchantDaoImpl implements IMerchantDao {
 		return entityManager.merge(order);
 	}
 
+
 	
 	@Override
 	public void activateMerchant(MerchantDetails merchant) throws Exception {
@@ -63,4 +65,10 @@ public class MerchantDaoImpl implements IMerchantDao {
 		MerchantDetails merchant = entityManager.find(MerchantDetails.class, username);
 		return merchant;
 	}
+
+	@Override
+	public Set<Product> getMerchantProducts(String username){
+		return entityManager.find(MerchantDetails.class, username).getProducts();
+	}
+
 }

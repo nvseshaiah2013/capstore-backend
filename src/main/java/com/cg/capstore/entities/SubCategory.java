@@ -3,6 +3,7 @@ package com.cg.capstore.entities;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class SubCategory implements Serializable{
 	@Column(name="NAME")
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="CAT_ID")
 	private Category category;
 
@@ -44,7 +45,7 @@ public class SubCategory implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	@JsonIgnore
+	
 	public Category getCategory() {
 		return category;
 	}
