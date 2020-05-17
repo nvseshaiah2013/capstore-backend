@@ -1,5 +1,6 @@
 package com.cg.capstore.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+import com.cg.capstore.entities.Product;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.entities.User;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
@@ -247,9 +249,46 @@ public class AdminDaoImpl implements IAdminDao {
 		return true;
 	}
 
-	@Override
 	public List<Category> updateCategory(Category category) {
 		entityManager.merge(category);
 		return getAllCategory();
 	}
+
+	public List<Product> getTrendingProducts() {
+		String str="SELECT p FROM Product p ORDER BY p.noOfViews DESC";
+		TypedQuery<Product> query=entityManager.createQuery(str,Product.class);
+		return query.setMaxResults(3).getResultList();
+	}
+
+	@Override
+	public Double todayRevenue() {
+		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
+		return (Double)query.getSingleResult();
+	}
+	
+	@Override
+	public Long todayProductSales() {
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
+		return (Long)query.getSingleResult();
+	}
+
+	@Override
+	public List<Order> recentOrders() {
+		String str="SELECT o FROM Order o ORDER BY o.orderDate DESC";
+		TypedQuery<Order> query=entityManager.createQuery(str,Order.class);
+		return query.setMaxResults(3).getResultList();
+	}
+
+	@Override
+	public List<Double> recentRevenues() {
+		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o GROUP BY to_char(o.orderDate,'dd-mm-yy') ORDER BY to_char(o.orderDate,'dd-mm-yy') DESC");
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Long> recentOrdersCount() {
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o GROUP BY to_char(o.orderDate,'dd-mm-yy') ORDER BY to_char(o.orderDate,'dd-mm-yy') DESC");
+		return query.getResultList();
+	}
+	
 }

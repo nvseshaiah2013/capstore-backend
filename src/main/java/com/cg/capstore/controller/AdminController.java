@@ -198,4 +198,41 @@ public class AdminController {
 		return new ResponseEntity<>("Updated..!!",HttpStatus.OK);
 	}
 	
+	@GetMapping(value="/trendingProducts")
+	public ResponseEntity<List<Product>> getTrendingProducts()
+	{
+		return new ResponseEntity<List<Product>>(adminService.getTrendingProducts(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/todayRevenue")
+	public ResponseEntity<Double> todayRevenue()
+	{
+		return new ResponseEntity<Double>(adminService.todayRevenue(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/todayProductSales")
+	public ResponseEntity<Long> todayProductSales()
+	{
+		return new ResponseEntity<Long>(adminService.todayProductSales(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/recentOrders") //recent 3 orders - Dashboard
+	public ResponseEntity<List<Order>> recentOrders()
+	{
+		return new ResponseEntity<List<Order>>(adminService.recentOrders(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/recentRevenues") //Recent 7 days revenues - Statistics
+	public ResponseEntity<List<Double>> recentRevenues()
+	{
+		return new ResponseEntity<List<Double>>(adminService.recentRevenues(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/recentOrdersCount") //Recent 7 days orders count - Statistics
+	
+	public ResponseEntity<List<Long>> recentOrdersCount()
+	{
+		return new ResponseEntity<List<Long>>(adminService.recentOrdersCount(),HttpStatus.OK);
+	}
+	
 }

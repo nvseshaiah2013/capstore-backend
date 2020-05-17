@@ -34,11 +34,11 @@ public interface IAdminService {
 
 	public List<SubCategory> getAllSubCategory(int categoryId);
 
-	List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
+	public List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
 
-	Long countOfMerchants() throws Exception;
+	public Long countOfMerchants() throws Exception;
 	
-	Long countOfCustomers() throws Exception;
+	public Long countOfCustomers() throws Exception;
 	
 	public List<MerchantDetails> topRatedMerchants();
 	
@@ -52,7 +52,7 @@ public interface IAdminService {
 	
 	public int getMinOrderValueAmount();
 	
-	List<Order> getOrders();
+	public List<Order> getOrders();
 	
 	boolean updateStatus(long orderId,String status);
 
@@ -61,14 +61,34 @@ public interface IAdminService {
 	public CommonFeedback redirectFeedback(int id) throws Exception;
 	
 	public CommonFeedback findCommonFeedbackById(int id) throws Exception;
+	
 	public Integer getOrderCount(String username) throws Exception;
+	
 	public MerchantDetails findMerchantByUsername(String username) throws Exception;
+	
 	public Integer getProductCount(String username) throws Exception;
+	
 	public Integer getMerchantRating(String username) throws Exception;
+	
 	public Set<CommonFeedback> getCommonFeedbackByMerchant(String username) throws Exception;
+	
 	public Set<Order> getOrdersByMerchant(String username) throws Exception;
+	
 	public Set<Product> getProductsByMerchant(String username) throws Exception;
+	
 	public Set<CommonFeedback> getFeedbacksByMerchant(String username) throws Exception;
 
 	public List<Category> updateCategory(Category category);
+
+	public List<Product> getTrendingProducts();
+
+	public Double todayRevenue();
+	
+	public Long todayProductSales();
+
+	public List<Order> recentOrders();
+
+	public List<Double> recentRevenues();
+
+	public List<Long> recentOrdersCount();
 }
