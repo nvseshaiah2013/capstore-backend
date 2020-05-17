@@ -91,4 +91,6 @@ public interface IAdminService {
 	public List<Double> recentRevenues();
 
 	public List<Long> recentOrdersCount();
+
+	public Product getProductById(int prodId);
 }

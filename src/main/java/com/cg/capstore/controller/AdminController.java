@@ -229,10 +229,21 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="/recentOrdersCount") //Recent 7 days orders count - Statistics
-	
 	public ResponseEntity<List<Long>> recentOrdersCount()
 	{
 		return new ResponseEntity<List<Long>>(adminService.recentOrdersCount(),HttpStatus.OK);
 	}
 	
+	@GetMapping(value="/getProduct/{prodId}")
+	public ResponseEntity<Product> getproductById(@PathVariable int prodId) throws Exception
+	{
+		return new ResponseEntity<Product>(adminService.getProductById(prodId),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/getMerchant/{username}")
+	public ResponseEntity<MerchantDetails> findMerchantByUsername(@PathVariable String username) throws Exception
+	{
+		return new ResponseEntity<MerchantDetails>(adminService.findMerchantByUsername(username),HttpStatus.OK);
+	}
+
 }

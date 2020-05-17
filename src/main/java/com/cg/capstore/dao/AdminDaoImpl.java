@@ -262,13 +262,15 @@ public class AdminDaoImpl implements IAdminDao {
 
 	@Override
 	public Double todayRevenue() {
-		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
+		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where to_char(o.orderDate,'dd-mm-yy')='17-05-20'");
+		//Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
 		return (Double)query.getSingleResult();
 	}
 	
 	@Override
 	public Long todayProductSales() {
-		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
+		//Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where to_char(o.orderDate,'dd-mm-yy')='17-05-20'");
 		return (Long)query.getSingleResult();
 	}
 
@@ -289,6 +291,11 @@ public class AdminDaoImpl implements IAdminDao {
 	public List<Long> recentOrdersCount() {
 		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o GROUP BY to_char(o.orderDate,'dd-mm-yy') ORDER BY to_char(o.orderDate,'dd-mm-yy') DESC");
 		return query.getResultList();
+	}
+
+	@Override
+	public Product getProductById(int prodId) {
+		return entityManager.find(Product.class, prodId);
 	}
 	
 }

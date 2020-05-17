@@ -237,6 +237,10 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public List<Long> recentOrdersCount() {
 		return adminDao.recentOrdersCount();
+	}
 
+	@Override
+	public Product getProductById(int prodId) {
+		return adminDao.getProductById(prodId);
 	}
 }
