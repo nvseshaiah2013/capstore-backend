@@ -37,5 +37,12 @@ public class MerchantDaoImpl implements IMerchantDao {
 	public Set<Order> getMerchantOrders(String username){
 		return entityManager.find(MerchantDetails.class, username).getOrders();
 	}
+	
+	@Override
+	public Order acceptMerchantOrder(long orderId, String status) {
+		Order order = entityManager.find(Order.class, orderId);
+		order.setOrderStatus(status);
+		return entityManager.merge(order);
+	}
 
 }

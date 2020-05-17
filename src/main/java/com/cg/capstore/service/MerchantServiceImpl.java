@@ -33,4 +33,9 @@ public class MerchantServiceImpl implements IMerchantService {
 	public Set<Order> getMerchantOrders(String username){
 		return merchantDao.getMerchantOrders(username);
 	}
+	
+	@Override
+	public Order acceptMerchantOrder(long orderId, String status) {
+		return merchantDao.acceptMerchantOrder(orderId, status);
+	}
 }

@@ -39,4 +39,9 @@ public class MerchantController {
 	public ResponseEntity<Set<Order>> getMerchantOrders(@PathVariable String username){
 		return new ResponseEntity<Set<Order>> (merchantService.getMerchantOrders(username), HttpStatus.OK);
 	}
+	
+	@GetMapping("/acceptMerchantOrder/{orderId}/{status}")
+	public ResponseEntity<Order> acceptMerchantOrder(@PathVariable long orderId,@PathVariable String status){
+		return new ResponseEntity<Order> (merchantService.acceptMerchantOrder(orderId, status), HttpStatus.OK);
+	}
 }

@@ -13,4 +13,6 @@ public interface IMerchantDao {
 	MerchantDetails getMerchantInfo(String username);
 
 	Set<Order> getMerchantOrders(String username);
+
+	Order acceptMerchantOrder(long orderId, String status);
 }

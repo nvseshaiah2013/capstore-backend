@@ -45,9 +45,12 @@ public interface IAdminDao {
 	
 	List<Order> getOrders();
 	boolean updateStatus(long orderId,String status);
+
 	public List<CommonFeedback> getFeedbacks();
 	public CommonFeedback findCommonFeedbackById(int id) throws Exception;
 	public void redirectFeedback(CommonFeedback feedback);
 	public MerchantDetails findMerchantByUsername(String username);
+	
+	public List<Category> updateCategory(Category category);
 
 }
