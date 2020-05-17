@@ -12,9 +12,7 @@ import com.cg.capstore.entities.Invitation;
 
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
-
 import com.cg.capstore.entities.Product;
-
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
@@ -37,7 +35,6 @@ public interface IAdminService {
 
 	List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
 
-	
 	Long countOfMerchants() throws Exception;
 	
 	Long countOfCustomers() throws Exception;
@@ -72,4 +69,5 @@ public interface IAdminService {
 	public Set<Product> getProductsByMerchant(String username) throws Exception;
 	public Set<CommonFeedback> getFeedbacksByMerchant(String username) throws Exception;
 
+	public List<Category> updateCategory(Category category);
 }

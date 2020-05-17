@@ -151,17 +151,18 @@ public class AdminDaoImpl implements IAdminDao {
 
 	@Override
 	public boolean checkValidEmail(String email) {
-		String str="SELECT details.username FROM MerchantDetails details";
+		String str="SELECT details.username FROM User details";
 		TypedQuery<String> query=entityManager.createQuery(str,String.class);
 		List<String> list = query.getResultList().stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
 		str="SELECT details.alternateEmail FROM MerchantDetails details";
 		query=entityManager.createQuery(str,String.class);
-		List<String> list2 = query.getResultList().stream()
-                .map(String::toLowerCase)
-                .collect(Collectors.toList());
-		if(list.contains(email) || list2.contains(email))
+		List<String> list2 = query.getResultList();
+		str="SELECT details.alternateEmail FROM CustomerDetails details";
+		query=entityManager.createQuery(str,String.class);
+		List<String> list3 = query.getResultList();
+		if(list.contains(email) || list2.contains(email) || list3.contains(email))
 			return false;
 		else
 			return true;
@@ -176,7 +177,14 @@ public class AdminDaoImpl implements IAdminDao {
 		str="SELECT details.alternatePhoneNo FROM MerchantDetails details";
 		query=entityManager.createQuery(str,String.class);
 		List<String> list2 = query.getResultList();
-		if(list.contains(phoneNo) || list2.contains(phoneNo))
+		
+		str="SELECT details.phoneNo FROM CustomerDetails details";
+	    query=entityManager.createQuery(str,String.class);
+		List<String> list3 = query.getResultList();
+		str="SELECT details.alternatePhoneNo FROM CustomerDetails details";
+		query=entityManager.createQuery(str,String.class);
+		List<String> list4 = query.getResultList();
+		if(list.contains(phoneNo) || list2.contains(phoneNo) || list3.contains(phoneNo) || list4.contains(phoneNo))
 			return false;
 		else
 			return true;
@@ -187,9 +195,7 @@ public class AdminDaoImpl implements IAdminDao {
 		String str="UPDATE AdminDetails details SET details.minOrderAmount=:amount";
 		Query query=entityManager.createQuery(str);
 		query.setParameter("amount",amount);
-		System.out.println("setted");
 		query.executeUpdate();
-		System.out.println("done");
 		return getMinOrderValueAmount();
 	}
 
@@ -239,5 +245,11 @@ public class AdminDaoImpl implements IAdminDao {
 		order.setOrderStatus(status);
 		entityManager.merge(order);
 		return true;
+	}
+
+	@Override
+	public List<Category> updateCategory(Category category) {
+		entityManager.merge(category);
+		return getAllCategory();
 	}
 }

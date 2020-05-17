@@ -16,7 +16,6 @@ import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
-
 import com.cg.capstore.entities.Product;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
@@ -75,7 +74,6 @@ public class AdminServiceImpl implements IAdminService {
 		adminDao.sendInvite(invitation);
 	}
 
-	
 	@Override
 	public Long countOfCustomers() throws Exception {
 		return adminDao.countOfCustomers();
@@ -94,7 +92,6 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public void addMerchant(ThirdPartyMerchantDetails details) {
 		adminDao.addMerchant(details);
-		
 	}
 
 	@Override
@@ -133,7 +130,6 @@ public class AdminServiceImpl implements IAdminService {
 	public boolean updateStatus(long orderId, String status) {
 		return adminDao.updateStatus(orderId, status);
 	}
-
 
 	@Override
 	public List<CommonFeedback> getFeedbacks() {
@@ -207,6 +203,9 @@ public class AdminServiceImpl implements IAdminService {
 		MerchantDetails merchant = findMerchantByUsername(username);
 		return merchant.getFeedbacks();
 	}
-	
 
+	@Override
+	public List<Category> updateCategory(Category category) {
+		return adminDao.updateCategory(category);
+	}
 }
