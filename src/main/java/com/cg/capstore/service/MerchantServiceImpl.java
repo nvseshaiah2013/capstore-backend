@@ -38,4 +38,25 @@ public class MerchantServiceImpl implements IMerchantService {
 	public Order acceptMerchantOrder(long orderId, String status) {
 		return merchantDao.acceptMerchantOrder(orderId, status);
 	}
+	
+	@Override
+	public void activateMerchant(String username ) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		this.merchantDao.activateMerchant(merchant);
+	}
+	
+	@Override
+	public void deActivateMerchant(String username ) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		this.merchantDao.deActivateMerchant(merchant);
+	}
+	
+	@Override
+	public MerchantDetails findMerchantByUsername(String username ) throws Exception {
+		MerchantDetails merchant = this.merchantDao.findMerchantByUsername(username);
+		if(merchant == null) {
+			throw new Exception("Merchant with " + username  + " Not Found");
+		}
+		return merchant;
+	}
 }

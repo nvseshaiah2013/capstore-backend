@@ -15,4 +15,10 @@ public interface IMerchantDao {
 	Set<Order> getMerchantOrders(String username);
 
 	Order acceptMerchantOrder(long orderId, String status);
+
+	void activateMerchant(MerchantDetails merchant) throws Exception;
+
+	void deActivateMerchant(MerchantDetails merchant) throws Exception;
+
+	MerchantDetails findMerchantByUsername(String username) throws Exception;
 }

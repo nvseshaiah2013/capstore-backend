@@ -45,4 +45,22 @@ public class MerchantDaoImpl implements IMerchantDao {
 		return entityManager.merge(order);
 	}
 
+	
+	@Override
+	public void activateMerchant(MerchantDetails merchant) throws Exception {
+		merchant.setDeleted(false);
+		entityManager.merge(merchant);
+	}
+	
+	@Override
+	public void deActivateMerchant(MerchantDetails merchant) throws Exception {
+		merchant.setDeleted(true);
+		entityManager.merge(merchant);
+	}
+	
+	@Override
+	public MerchantDetails findMerchantByUsername(String username) throws Exception {
+		MerchantDetails merchant = entityManager.find(MerchantDetails.class, username);
+		return merchant;
+	}
 }

@@ -15,4 +15,10 @@ public interface IMerchantService {
 	Set<Order> getMerchantOrders(String username);
 
 	Order acceptMerchantOrder(long orderId, String status);
+
+	void activateMerchant(String username) throws Exception;
+
+	void deActivateMerchant(String username) throws Exception;
+
+	MerchantDetails findMerchantByUsername(String username) throws Exception;
 }
