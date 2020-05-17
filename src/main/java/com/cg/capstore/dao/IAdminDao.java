@@ -50,5 +50,7 @@ public interface IAdminDao {
 	public CommonFeedback findCommonFeedbackById(int id) throws Exception;
 	public void redirectFeedback(CommonFeedback feedback);
 	public MerchantDetails findMerchantByUsername(String username);
+	
+	public List<Category> updateCategory(Category category);
 
 }

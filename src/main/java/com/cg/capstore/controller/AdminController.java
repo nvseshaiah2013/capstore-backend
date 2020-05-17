@@ -9,8 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -84,7 +84,12 @@ public class AdminController {
 		List<Category> categories=adminService.getAllCategory();
 		return new ResponseEntity<List<Category>>(categories,HttpStatus.OK);
 	}
-		
+	@PutMapping(value="/category",consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Category>> updateCategory(@RequestBody Category category)
+	{
+		List<Category> categories=adminService.updateCategory(category);
+		return new ResponseEntity<List<Category>>(categories,HttpStatus.OK);
+	}
 	@PostMapping(value="/subCategory/{id}",consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<SubCategory>> addCategory(@RequestBody SubCategory subCategory,@PathVariable int id)
 	{
@@ -180,6 +185,7 @@ public class AdminController {
 		int updatedAmount=adminService.setMinOrderValueAmount(amount);
 		return new ResponseEntity<Integer>(updatedAmount,HttpStatus.ACCEPTED);
 	}
+	
 	@GetMapping("/minOrderValue")
 	public ResponseEntity<Integer> getMinOrderValueAmount()
 	{

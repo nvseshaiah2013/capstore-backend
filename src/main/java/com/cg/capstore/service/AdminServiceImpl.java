@@ -203,4 +203,9 @@ public class AdminServiceImpl implements IAdminService {
 		MerchantDetails merchant = findMerchantByUsername(username);
 		return merchant.getFeedbacks();
 	}
+
+	@Override
+	public List<Category> updateCategory(Category category) {
+		return adminDao.updateCategory(category);
+	}
 }

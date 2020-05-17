@@ -68,4 +68,6 @@ public interface IAdminService {
 	public Set<Order> getOrdersByMerchant(String username) throws Exception;
 	public Set<Product> getProductsByMerchant(String username) throws Exception;
 	public Set<CommonFeedback> getFeedbacksByMerchant(String username) throws Exception;
+
+	public List<Category> updateCategory(Category category);
 }
