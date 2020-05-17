@@ -174,7 +174,7 @@ public class AdminController {
 		adminService.checkValidEmail(email);
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Email Validation Request","Email Doesn't Exist"),HttpStatus.OK);
 	}
-	@PatchMapping("/minOrderValue/{amount}")
+	@GetMapping("/minOrderValue/{amount}")
 	public ResponseEntity<Integer> setMinOrderValueAmount(@PathVariable int amount)
 	{
 		int updatedAmount=adminService.setMinOrderValueAmount(amount);
