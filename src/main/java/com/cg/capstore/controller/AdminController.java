@@ -25,9 +25,7 @@ import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
-
 import com.cg.capstore.entities.Product;
-
 import com.cg.capstore.response.SuccessMessage;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
 import com.cg.capstore.entities.SubCategory;
@@ -155,8 +153,7 @@ public class AdminController {
 	@GetMapping(value="feedbacks/all",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Set<CommonFeedback>> getFeedbacksByMerchantUsername(@RequestParam("username") String username ) throws Exception {
 		return new ResponseEntity<Set<CommonFeedback>>(this.adminService.getFeedbacksByMerchant(username),HttpStatus.OK);
-	}
-
+	}	
 		
 	@PostMapping(value="/addMerchant",consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> addMerchant(@RequestBody ThirdPartyMerchantDetails details)
@@ -196,4 +193,5 @@ public class AdminController {
 		adminService.updateStatus(orderId, status);
 		return new ResponseEntity<>("Updated..!!",HttpStatus.OK);
 	}
+	
 }

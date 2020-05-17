@@ -26,7 +26,6 @@ public interface IAdminDao {
 	public List<SubCategory> getAllSubCategory(int categoryId);
 
 	List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
-
 	
 	Long countOfMerchants() throws Exception;
 	
@@ -45,10 +44,8 @@ public interface IAdminDao {
 	public int getMinOrderValueAmount();
 	
 	List<Order> getOrders();
-	
 	boolean updateStatus(long orderId,String status);
-
-
+	
 	public List<CommonFeedback> getFeedbacks();
 	public CommonFeedback findCommonFeedbackById(int id) throws Exception;
 	public void redirectFeedback(CommonFeedback feedback);
