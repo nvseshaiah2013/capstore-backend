@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+import com.cg.capstore.entities.Product;
 import com.cg.capstore.service.IMerchantService;
 
 @RestController
@@ -43,5 +44,10 @@ public class MerchantController {
 	@GetMapping("/acceptMerchantOrder/{orderId}/{status}")
 	public ResponseEntity<Order> acceptMerchantOrder(@PathVariable long orderId,@PathVariable String status){
 		return new ResponseEntity<Order> (merchantService.acceptMerchantOrder(orderId, status), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getMerchantProducts/{username}")
+	public ResponseEntity<Set<Product>> getMerchantProducts(@PathVariable String username){
+		return new ResponseEntity<Set<Product>> (merchantService.getMerchantProducts(username), HttpStatus.OK);
 	}
 }

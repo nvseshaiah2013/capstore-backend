@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.cg.capstore.dao.IMerchantDao;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+import com.cg.capstore.entities.Product;
 
 @Service
 @Transactional
@@ -37,5 +38,10 @@ public class MerchantServiceImpl implements IMerchantService {
 	@Override
 	public Order acceptMerchantOrder(long orderId, String status) {
 		return merchantDao.acceptMerchantOrder(orderId, status);
+	}
+	
+	@Override
+	public Set<Product> getMerchantProducts(String username){
+		return merchantDao.getMerchantProducts(username);
 	}
 }
