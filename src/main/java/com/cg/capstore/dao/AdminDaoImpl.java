@@ -234,7 +234,7 @@ public class AdminDaoImpl implements IAdminDao {
 	}
 	
 	public List<Order> getOrders() {
-		String str="SELECT allOrders FROM Order allOrders ORDER BY allOrders.orderId DESC";
+		String str="SELECT allOrders FROM Order allOrders ORDER BY allOrders.orderDate DESC";
 		TypedQuery<Order> query=entityManager.createQuery(str,Order.class);
 		List<Order> orders=query.getResultList();
 		return orders;
@@ -246,16 +246,22 @@ public class AdminDaoImpl implements IAdminDao {
 		if(order.getOrderStatus().equals("Placed")) {
 			return 0;
 		}
-		if(order.getOrderStatus().equals("Returned") || order.getOrderStatus().equals("Cancelled")) {
-			return 2;
-		}
-		if(status.equals("Returned") && order.getTransaction().getCoupon()!=null) {
-			return 3;
-		}
 		if(order.getOrderStatus().equals("Delivered")){
 			if(!status.equals("Returned")) {
-				return 4;
+				return 2;
 			}
+		}
+		if(status.equals("Returned") && !order.getOrderStatus().equals("Request For Return")) {
+			return 3;
+		}
+		if(status.equals("Returned") && order.getTransaction().getCoupon()!=null) {
+			return 4;
+		}
+		if(status.equals("Cancelled") && !order.getOrderStatus().equals("Request For Cancellation")) {
+			return 5;
+		}
+		if(order.getOrderStatus().equals("Returned") || order.getOrderStatus().equals("Cancelled")) {
+			return 6;
 		}
 		order.setOrderStatus(status);
 		if(status.equals("Returned") || status.equals("Cancelled")) {
