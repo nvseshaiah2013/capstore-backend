@@ -206,6 +206,7 @@ public class AdminController {
 	{
 		int result=adminService.updateStatus(orderId, status);
 		if(result==0) {
+<<<<<<< HEAD
 			return new ResponseEntity<>(new ErrorMessage(HttpStatus.BAD_REQUEST,"Order Already Cancelled/Returned !!"),HttpStatus.BAD_REQUEST);
 		}
 
@@ -215,6 +216,20 @@ public class AdminController {
 
 		if(result==2) {
 			return new ResponseEntity<>(new ErrorMessage(HttpStatus.BAD_REQUEST,"Can't be Cancelled..Already Delivered !!"),HttpStatus.BAD_REQUEST);
+=======
+			return new ResponseEntity<>(new ErrorMessage(HttpStatus.BAD_REQUEST,"This order is not accepted by Merchant yet !!"),HttpStatus.BAD_REQUEST);
+		}
+		if(result==2) {
+			return new ResponseEntity<>(new ErrorMessage(HttpStatus.BAD_REQUEST,"Order Already Cancelled/Returned !!"),HttpStatus.BAD_REQUEST);
+		}
+
+		if(result==3) {
+			return new ResponseEntity<>(new ErrorMessage(HttpStatus.BAD_REQUEST,"Can't be Returned due to Applied Coupons !!"),HttpStatus.BAD_REQUEST);
+		}
+
+		if(result==4) {
+			return new ResponseEntity<>(new ErrorMessage(HttpStatus.BAD_REQUEST,"This order can only be returned as already delivered !!"),HttpStatus.BAD_REQUEST);
+>>>>>>> ankit
 		}
 		return new ResponseEntity<>(new SuccessMessage("Order Status","Order Updated..!!"),HttpStatus.OK);
 	}
