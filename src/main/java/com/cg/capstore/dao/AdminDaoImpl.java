@@ -35,7 +35,6 @@ public class AdminDaoImpl implements IAdminDao {
 		TypedQuery<CustomerDetails> query=entityManager.createQuery(str, CustomerDetails.class);
 		List<CustomerDetails> customers=query.getResultList();
 		return customers;
-		
 	}
 	
 	@Override

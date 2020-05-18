@@ -219,37 +219,37 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="/trendingProducts")
-	public ResponseEntity<List<Product>> getTrendingProducts()
+	public ResponseEntity<List<Product>> getTrendingProducts() throws Exception
 	{
 		return new ResponseEntity<List<Product>>(adminService.getTrendingProducts(),HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/todayRevenue")
-	public ResponseEntity<Double> todayRevenue()
+	public ResponseEntity<Double> todayRevenue() throws Exception
 	{
 		return new ResponseEntity<Double>(adminService.todayRevenue(),HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/todayProductSales")
-	public ResponseEntity<Long> todayProductSales()
+	public ResponseEntity<Long> todayProductSales() throws Exception
 	{
 		return new ResponseEntity<Long>(adminService.todayProductSales(),HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/recentOrders") //recent 3 orders - Dashboard
-	public ResponseEntity<List<Order>> recentOrders()
+	public ResponseEntity<List<Order>> recentOrders() throws Exception
 	{
 		return new ResponseEntity<List<Order>>(adminService.recentOrders(),HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/recentRevenues") //Recent 7 days revenues - Statistics
-	public ResponseEntity<List<Double>> recentRevenues()
+	public ResponseEntity<List<Double>> recentRevenues() throws Exception
 	{
 		return new ResponseEntity<List<Double>>(adminService.recentRevenues(),HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/recentOrdersCount") //Recent 7 days orders count - Statistics
-	public ResponseEntity<List<Long>> recentOrdersCount()
+	public ResponseEntity<List<Long>> recentOrdersCount() throws Exception
 	{
 		return new ResponseEntity<List<Long>>(adminService.recentOrdersCount(),HttpStatus.OK);
 	}

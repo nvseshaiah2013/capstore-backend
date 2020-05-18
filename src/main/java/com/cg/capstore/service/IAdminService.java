@@ -39,7 +39,7 @@ public interface IAdminService {
 	
 	public Long countOfCustomers() throws Exception;
 	
-	public List<MerchantDetails> topRatedMerchants();
+	public List<MerchantDetails> topRatedMerchants() throws Exception;
 	
 	public void addMerchant(ThirdPartyMerchantDetails details);
 	
@@ -80,19 +80,19 @@ public interface IAdminService {
 	public List<Category> updateCategory(Category category);
 
 
-	public List<Product> getTrendingProducts();
+	public List<Product> getTrendingProducts() throws Exception;
 
-	public Double todayRevenue();
+	public Double todayRevenue() throws Exception;
 	
-	public Long todayProductSales();
+	public Long todayProductSales() throws Exception;
 
-	public List<Order> recentOrders();
+	public List<Order> recentOrders() throws Exception;
 
-	public List<Double> recentRevenues();
+	public List<Double> recentRevenues() throws Exception;
 
-	public List<Long> recentOrdersCount();
+	public List<Long> recentOrdersCount() throws Exception;
 
-	public Product getProductById(int prodId);
+	public Product getProductById(int prodId) throws Exception;
 
 	public List<Address> deleteAddressByAddressId(int addressId, String username);
 }

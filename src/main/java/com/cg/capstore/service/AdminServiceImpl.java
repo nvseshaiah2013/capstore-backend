@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,8 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Autowired
 	private IAdminDao adminDao;
+	
+	private Logger logger = Logger.getLogger(getClass());
 
 	@Override
 	public List<CustomerDetails> getCustomerList() {
@@ -76,17 +79,39 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public Long countOfCustomers() throws Exception {
-		return adminDao.countOfCustomers();
+		if(adminDao.countOfCustomers()!=null) {
+			logger.info("Customer's Count returned");
+			return adminDao.countOfCustomers();
+		}
+		else {
+			logger.error("No Customers Found");
+			throw new Exception("0");
+		}
 	}
 	
 	@Override
 	public Long countOfMerchants() throws Exception {
-		return adminDao.countOfMerchants();
+		if(adminDao.countOfMerchants()!=null) {
+			logger.info("Merchant's Count returned");
+			return adminDao.countOfMerchants();
+		}
+		else {
+			logger.error("No Merchants Found");
+			throw new Exception("0");
+		}
 	}
 
 	@Override
-	public List<MerchantDetails> topRatedMerchants() {
-		return adminDao.topRatedMerchants();
+	public List<MerchantDetails> topRatedMerchants() throws Exception {
+		
+		if(adminDao.topRatedMerchants()!=null) {
+			logger.info("Top Rated Merchants returned");
+			return adminDao.topRatedMerchants();
+		}
+		else {
+			logger.error("No Top Rated Merchants Found");
+			throw new Exception("No Top Rated Merchants Found");
+		}
 	}
 	
 	@Override
@@ -210,38 +235,95 @@ public class AdminServiceImpl implements IAdminService {
 }
 
 	@Override
-	public List<Product> getTrendingProducts() {
-		return adminDao.getTrendingProducts();
+	public List<Product> getTrendingProducts() throws Exception {
+
+		if(adminDao.getTrendingProducts()!=null) {
+			logger.info("Trending Products returned");
+			return adminDao.getTrendingProducts();
+		}
+		else {
+			logger.error("No Trending Products Found");
+			throw new Exception("No Trending Products Found");
+		}
 	}
 
 	@Override
-	public Double todayRevenue() {
-		return adminDao.todayRevenue();
+	public Double todayRevenue() throws Exception {
+
+		if(adminDao.todayRevenue()!=null) {
+			logger.info("Today's Revenues returned");
+			return adminDao.todayRevenue();
+		}
+		else
+		{
+			logger.error("No Revenue for today");
+			throw new Exception("No Revenue for today");
+		}
 	}
 	
 	@Override
-	public Long todayProductSales() {
-		return adminDao.todayProductSales();
+	public Long todayProductSales() throws Exception {
+	
+		if(adminDao.todayProductSales()!=null) {
+			logger.info("Today's Product Sales returned");
+			return adminDao.todayProductSales();
+		}
+		else {
+			logger.error("No Products Sold today");
+			throw new Exception("No Products Sold today");
+		}
 	}
 
 	@Override
-	public List<Order> recentOrders() {
-		return adminDao.recentOrders();
+	public List<Order> recentOrders() throws Exception {
+	
+		if(adminDao.recentOrders()!=null) {
+			logger.info("Recent Orders returned");
+			return adminDao.recentOrders();
+		}
+		else {
+			logger.error("No Recent Orders Found");
+			throw new Exception("No Recent Orders Found");
+		}
 	}
 
 	@Override
-	public List<Double> recentRevenues() {
-		return adminDao.recentRevenues();
+	public List<Double> recentRevenues() throws Exception {
+		
+		if(adminDao.recentRevenues()!=null) {
+			logger.info("Last 7 Days revenues returned");
+			return adminDao.recentRevenues();
+		}
+		else {
+			logger.error("No Revenues in last 7 Days");
+			throw new Exception("No Revenues in last 7 Days");
+		}
 	}
 
 	@Override
-	public List<Long> recentOrdersCount() {
-		return adminDao.recentOrdersCount();
+	public List<Long> recentOrdersCount() throws Exception {
+		
+		if(adminDao.recentOrdersCount()!=null) {
+			logger.info("Last 7 Days orders returned");
+			return adminDao.recentOrdersCount();
+		}
+		else {
+			logger.error("No Orders in last 7 Days");
+			throw new Exception("No Orders in last 7 Days");
+		}
 	}
 
 	@Override
-	public Product getProductById(int prodId) {
-		return adminDao.getProductById(prodId);
+	public Product getProductById(int prodId) throws Exception {
+		
+		if(adminDao.getProductById(prodId)!=null) {
+			logger.info("Product Data Returned");
+			return adminDao.getProductById(prodId);
+		}
+		else {
+			logger.error("Product Not Found");
+			throw new Exception("Product Not Found");
+		}
 	}
 
 	@Override
