@@ -93,4 +93,6 @@ public interface IAdminService {
 	public List<Long> recentOrdersCount();
 
 	public Product getProductById(int prodId);
+
+	public List<Address> deleteAddressByAddressId(int addressId, String username);
 }
