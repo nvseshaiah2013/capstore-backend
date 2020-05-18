@@ -127,7 +127,7 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	@Override
-	public boolean updateStatus(long orderId, String status) {
+	public int updateStatus(long orderId, String status) {
 		return adminDao.updateStatus(orderId, status);
 	}
 

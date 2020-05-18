@@ -70,5 +70,21 @@ public class MerchantDaoImpl implements IMerchantDao {
 	public Set<Product> getMerchantProducts(String username){
 		return entityManager.find(MerchantDetails.class, username).getProducts();
 	}
+	@Override
+	public void activateProduct(Product product) throws Exception {
+		product.setProductActivated(true);
+		entityManager.merge(product);
+	}
+	
+	@Override
+	public void inActivateProduct(Product product) throws Exception {
+		product.setProductActivated(false);
+		entityManager.merge(product);
+	}
+	
+	@Override
+	public Product findProductById(int id) throws Exception {
+		return entityManager.find(Product.class, id);
+	}
 
 }
