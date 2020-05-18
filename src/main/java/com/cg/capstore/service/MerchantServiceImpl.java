@@ -74,5 +74,25 @@ public class MerchantServiceImpl implements IMerchantService {
 		MerchantDetails merchant = findMerchantByUsername(username);
 		return merchant.getInvites();
 	}
+	
+	@Override
+	public void activateProduct(int id) throws Exception {
+		Product product = findProductById(id);
+		merchantDao.activateProduct(product);
+	}
+	
+	@Override
+	public void deActivateProduct(int id) throws Exception {
+		Product product = findProductById(id);
+		merchantDao.inActivateProduct(product);
+	}
+	
+	@Override
+	public Product findProductById(int id) throws Exception {
+		Product product = this.merchantDao.findProductById(id);
+		if(product == null) 
+			throw new Exception("Product with " + id + " not found");
+		return product;
+	}
 
 }

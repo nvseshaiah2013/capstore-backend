@@ -29,5 +29,11 @@ public interface IMerchantService {
 	Set<Product> getMerchantProducts(String username);
 
 	Set<Invitation> getInvites(String username) throws Exception;
+	
+	public void activateProduct(int id) throws Exception;
+
+	void deActivateProduct(int id) throws Exception;
+
+	Product findProductById(int id) throws Exception;
 
 }
