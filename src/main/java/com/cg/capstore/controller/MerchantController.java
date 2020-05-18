@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
 import com.cg.capstore.response.SuccessMessage;
@@ -67,6 +68,11 @@ public class MerchantController {
 	@GetMapping("/getMerchantProducts/{username}")
 	public ResponseEntity<Set<Product>> getMerchantProducts(@PathVariable String username){
 		return new ResponseEntity<Set<Product>> (merchantService.getMerchantProducts(username), HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/merchant/invites",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Set<Invitation>> getInvites(@RequestParam("username") String username) throws Exception {
+		return new ResponseEntity<Set<Invitation>>(merchantService.getInvites(username),HttpStatus.OK);
 	}
 
 }

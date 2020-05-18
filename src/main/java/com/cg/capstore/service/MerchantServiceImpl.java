@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.capstore.dao.IMerchantDao;
+import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.Product;
@@ -66,6 +67,12 @@ public class MerchantServiceImpl implements IMerchantService {
 	@Override
 	public Set<Product> getMerchantProducts(String username){
 		return merchantDao.getMerchantProducts(username);
+	}
+	
+	@Override
+	public Set<Invitation> getInvites(String username) throws Exception {
+		MerchantDetails merchant = findMerchantByUsername(username);
+		return merchant.getInvites();
 	}
 
 }

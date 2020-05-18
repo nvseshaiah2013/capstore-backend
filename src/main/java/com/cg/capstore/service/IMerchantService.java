@@ -3,6 +3,7 @@ package com.cg.capstore.service;
 import java.util.List;
 import java.util.Set;
 
+import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.Product;
@@ -26,5 +27,7 @@ public interface IMerchantService {
 
 
 	Set<Product> getMerchantProducts(String username);
+
+	Set<Invitation> getInvites(String username) throws Exception;
 
 }

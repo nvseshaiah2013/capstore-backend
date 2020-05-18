@@ -20,13 +20,13 @@ public class ProductController {
 	private IProductService productService;
 
 	@PostMapping(value="/admin/activateProduct",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SuccessMessage> markProductAsActive(@RequestParam("username") String username, @RequestParam("id") int id) throws Exception {
+	public ResponseEntity<SuccessMessage> markProductAsActive(@RequestParam("username") String username, @RequestParam("id") Integer id) throws Exception {
 		productService.activateProduct(id);
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product Activation ","Activated Product " +  id + "Successfully "),HttpStatus.OK);	
 	}
 	
 	@PostMapping(value="/admin/inActivateProduct",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SuccessMessage> markProductAsInActive(@RequestParam("username") String username, @RequestParam("id") int id) throws Exception {
+	public ResponseEntity<SuccessMessage> markProductAsInActive(@RequestParam("username") String username, @RequestParam("id") Integer id) throws Exception {
 		productService.deActivateProduct(id);
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product In Activation ","In Activated Product " +  id + "Successfully "),HttpStatus.OK);	
 	}
