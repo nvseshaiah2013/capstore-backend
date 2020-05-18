@@ -296,5 +296,14 @@ public class AdminDaoImpl implements IAdminDao {
 	public Product getProductById(int prodId) {
 		return entityManager.find(Product.class, prodId);
 	}
+
+	@Override
+	public List<Address> deleteAddressByAddressId(int addressId,String username) {
+		String str="UPDATE Address address SET address.isDeleted=1 WHERE address.addressId=:addressId";
+		Query query=entityManager.createQuery(str);
+		query.setParameter("addressId",addressId);
+		query.executeUpdate();
+		return getAddressByUsername(username);
+	}
 	
 }

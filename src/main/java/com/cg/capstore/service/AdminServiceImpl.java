@@ -243,4 +243,9 @@ public class AdminServiceImpl implements IAdminService {
 	public Product getProductById(int prodId) {
 		return adminDao.getProductById(prodId);
 	}
+
+	@Override
+	public List<Address> deleteAddressByAddressId(int addressId,String username) {
+		return adminDao.deleteAddressByAddressId(addressId,username);
+	}
 }
