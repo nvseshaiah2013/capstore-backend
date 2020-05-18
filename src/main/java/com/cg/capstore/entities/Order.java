@@ -28,7 +28,7 @@ public class Order implements Serializable{
 	private double orderAmount;	
 	
 	@Column(name="ORDER_STATUS")
-	@Pattern(regexp="Placed|Accepted|Shipped|(Out For Delivery)|Delivered|(Request For Return)|Returned|Refunded|Cancelled")
+	@Pattern(regexp="Placed|Accepted|Shipped|(Out For Delivery)|Delivered|(Request For Return)|(Request For Cancellation)|Returned|Refunded|Cancelled")
 	private String orderStatus;
 	
 	@Column(name="ORDER_DATE")
