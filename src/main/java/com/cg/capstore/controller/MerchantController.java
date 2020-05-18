@@ -74,5 +74,18 @@ public class MerchantController {
 	public ResponseEntity<Set<Invitation>> getInvites(@RequestParam("username") String username) throws Exception {
 		return new ResponseEntity<Set<Invitation>>(merchantService.getInvites(username),HttpStatus.OK);
 	}
+	
+	@PostMapping(value="/merchant/activateProduct",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SuccessMessage> markProductAsActive(@RequestParam("username") String username, @RequestParam("id") Integer id) throws Exception {
+		merchantService.activateProduct(id);
+		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product Activation ","Activated Product " +  id + " Successfully "),HttpStatus.OK);	
+	}
+	
+	@PostMapping(value="/merchant/inActivateProduct",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SuccessMessage> markProductAsInActive(@RequestParam("username") String username, @RequestParam("id") Integer id) throws Exception {
+		merchantService.deActivateProduct(id);
+		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product In Activation ","In Activated Product " +  id + " Successfully "),HttpStatus.OK);	
+	}
+	
 
 }

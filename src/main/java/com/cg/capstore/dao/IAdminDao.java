@@ -51,7 +51,7 @@ public interface IAdminDao {
 	
 	public List<Order> getOrders();
 	
-	boolean updateStatus(long orderId,String status);
+	int updateStatus(long orderId,String status);
 
 	public List<CommonFeedback> getFeedbacks();
 	
