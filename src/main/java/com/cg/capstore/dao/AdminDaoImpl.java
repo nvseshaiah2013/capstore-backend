@@ -234,7 +234,7 @@ public class AdminDaoImpl implements IAdminDao {
 	}
 	
 	public List<Order> getOrders() {
-		String str="SELECT allOrders FROM Order allOrders";
+		String str="SELECT allOrders FROM Order allOrders ORDER BY allOrders.orderId DESC";
 		TypedQuery<Order> query=entityManager.createQuery(str,Order.class);
 		List<Order> orders=query.getResultList();
 		return orders;
@@ -243,16 +243,20 @@ public class AdminDaoImpl implements IAdminDao {
 	@Override
 	public int updateStatus(long orderId,String status) {
 		Order order=entityManager.find(Order.class, orderId);
-		if(order.getOrderStatus().equals("Returned") || order.getOrderStatus().equals("Cancelled")) {
+		if(order.getOrderStatus().equals("Placed")) {
 			return 0;
 		}
-		if(status.equals("Returned") && order.getTransaction().getCoupon()!=null) {
-			return -1;
-		}
-		if(status.equals("Cancelled") && order.getOrderStatus().equals("Delivered")) {
+		if(order.getOrderStatus().equals("Returned") || order.getOrderStatus().equals("Cancelled")) {
 			return 2;
 		}
-
+		if(status.equals("Returned") && order.getTransaction().getCoupon()!=null) {
+			return 3;
+		}
+		if(order.getOrderStatus().equals("Delivered")){
+			if(!status.equals("Returned")) {
+				return 4;
+			}
+		}
 		order.setOrderStatus(status);
 		if(status.equals("Returned") || status.equals("Cancelled")) {
 			order.getCustomer().setBalance(order.getCustomer().getBalance()+order.getOrderAmount());
