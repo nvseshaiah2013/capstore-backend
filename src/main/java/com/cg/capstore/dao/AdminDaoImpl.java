@@ -17,6 +17,7 @@ import com.cg.capstore.entities.CustomerDetails;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
+import com.cg.capstore.entities.Product;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.entities.User;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
@@ -240,16 +241,82 @@ public class AdminDaoImpl implements IAdminDao {
 	}
 
 	@Override
-	public boolean updateStatus(long orderId,String status) {
+	public int updateStatus(long orderId,String status) {
 		Order order=entityManager.find(Order.class, orderId);
+		if(order.getOrderStatus().equals("Returned") || order.getOrderStatus().equals("Cancelled")) {
+			return 0;
+		}
+		if(status.equals("Returned") && order.getTransaction().getCoupon()!=null) {
+			return -1;
+		}
+		if(status.equals("Cancelled") && order.getOrderStatus().equals("Delivered")) {
+			return 2;
+		}
+
 		order.setOrderStatus(status);
+		if(status.equals("Returned") || status.equals("Cancelled")) {
+			order.getCustomer().setBalance(order.getCustomer().getBalance()+order.getOrderAmount());
+		}
 		entityManager.merge(order);
-		return true;
+		return 1;
 	}
 
-	@Override
 	public List<Category> updateCategory(Category category) {
 		entityManager.merge(category);
 		return getAllCategory();
 	}
+
+	public List<Product> getTrendingProducts() {
+		String str="SELECT p FROM Product p ORDER BY p.noOfViews DESC";
+		TypedQuery<Product> query=entityManager.createQuery(str,Product.class);
+		return query.setMaxResults(3).getResultList();
+	}
+
+	@Override
+	public Double todayRevenue() {
+		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where to_char(o.orderDate,'dd-mm-yy')='17-05-20'");
+		//Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
+		return (Double)query.getSingleResult();
+	}
+	
+	@Override
+	public Long todayProductSales() {
+		//Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where to_char(o.orderDate,'dd-mm-yy')='17-05-20'");
+		return (Long)query.getSingleResult();
+	}
+
+	@Override
+	public List<Order> recentOrders() {
+		String str="SELECT o FROM Order o ORDER BY o.orderDate DESC";
+		TypedQuery<Order> query=entityManager.createQuery(str,Order.class);
+		return query.setMaxResults(3).getResultList();
+	}
+
+	@Override
+	public List<Double> recentRevenues() {
+		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o GROUP BY to_char(o.orderDate,'dd-mm-yy') ORDER BY to_char(o.orderDate,'dd-mm-yy') DESC");
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Long> recentOrdersCount() {
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o GROUP BY to_char(o.orderDate,'dd-mm-yy') ORDER BY to_char(o.orderDate,'dd-mm-yy') DESC");
+		return query.getResultList();
+	}
+
+	@Override
+	public Product getProductById(int prodId) {
+		return entityManager.find(Product.class, prodId);
+	}
+
+	@Override
+	public List<Address> deleteAddressByAddressId(int addressId,String username) {
+		String str="UPDATE Address address SET address.isDeleted=1 WHERE address.addressId=:addressId";
+		Query query=entityManager.createQuery(str);
+		query.setParameter("addressId",addressId);
+		query.executeUpdate();
+		return getAddressByUsername(username);
+	}
+	
 }

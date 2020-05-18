@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -72,6 +73,13 @@ public class AdminController {
 		return new ResponseEntity<List<Address>>(addresses,HttpStatus.OK);
 	}
 	
+	@DeleteMapping(value="/address/{addressId}/{username}",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Address>> deleteAddressByAddressId(@PathVariable int addressId,@PathVariable String username)
+	{
+		List<Address> addresses=adminService.deleteAddressByAddressId(addressId,username);
+		return new ResponseEntity<List<Address>>(addresses,HttpStatus.OK);
+	}
+	
 	@PostMapping(value="/category",consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Category>> addCategory(@RequestBody Category category)
 	{
@@ -104,7 +112,6 @@ public class AdminController {
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.OK);
 	}
 
-	
 	@GetMapping("/countOfCustomers")
 	public ResponseEntity<Long> countOfCustomers() throws Exception{
 		return new ResponseEntity<Long>(adminService.countOfCustomers(), HttpStatus.OK);
@@ -145,7 +152,7 @@ public class AdminController {
 		return new ResponseEntity<Integer>(this.adminService.getOrderCount(username),HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/orders/all/",produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/orders/all",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Set<Order>> getOrdersByMerchantUsername(@RequestParam("username") String username) throws Exception{
 		return new ResponseEntity<Set<Order>>(this.adminService.getOrdersByMerchant(username),HttpStatus.OK);
 	}
@@ -194,10 +201,69 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="/orders/{orderId}/{status}")
-	public ResponseEntity<Object> updateStatus(@PathVariable long orderId,@PathVariable String status)
+	public ResponseEntity<String> updateStatus(@PathVariable long orderId,@PathVariable String status)
 	{
-		adminService.updateStatus(orderId, status);
-		return new ResponseEntity<>("Updated..!!",HttpStatus.OK);
+		int result=adminService.updateStatus(orderId, status);
+		if(result==0) {
+			return new ResponseEntity<>("Order Already Cancelled/Returned !!",HttpStatus.BAD_REQUEST);
+		}
+
+		if(result==-1) {
+			return new ResponseEntity<>("Can't be Returned due to Applied Coupons !!",HttpStatus.BAD_REQUEST);
+		}
+
+		if(result==2) {
+			return new ResponseEntity<>("Can't be Cancelled..Already Delivered !!",HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>("Order Updated..!!",HttpStatus.OK);
 	}
 	
+	@GetMapping(value="/trendingProducts")
+	public ResponseEntity<List<Product>> getTrendingProducts()
+	{
+		return new ResponseEntity<List<Product>>(adminService.getTrendingProducts(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/todayRevenue")
+	public ResponseEntity<Double> todayRevenue()
+	{
+		return new ResponseEntity<Double>(adminService.todayRevenue(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/todayProductSales")
+	public ResponseEntity<Long> todayProductSales()
+	{
+		return new ResponseEntity<Long>(adminService.todayProductSales(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/recentOrders") //recent 3 orders - Dashboard
+	public ResponseEntity<List<Order>> recentOrders()
+	{
+		return new ResponseEntity<List<Order>>(adminService.recentOrders(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/recentRevenues") //Recent 7 days revenues - Statistics
+	public ResponseEntity<List<Double>> recentRevenues()
+	{
+		return new ResponseEntity<List<Double>>(adminService.recentRevenues(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/recentOrdersCount") //Recent 7 days orders count - Statistics
+	public ResponseEntity<List<Long>> recentOrdersCount()
+	{
+		return new ResponseEntity<List<Long>>(adminService.recentOrdersCount(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/getProduct/{prodId}")
+	public ResponseEntity<Product> getproductById(@PathVariable int prodId) throws Exception
+	{
+		return new ResponseEntity<Product>(adminService.getProductById(prodId),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/getMerchant/{username}")
+	public ResponseEntity<MerchantDetails> findMerchantByUsername(@PathVariable String username) throws Exception
+	{
+		return new ResponseEntity<MerchantDetails>(adminService.findMerchantByUsername(username),HttpStatus.OK);
+	}
+
 }
