@@ -3,18 +3,15 @@ package com.cg.capstore.service;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.cg.capstore.dao.ICouponDao;
 import com.cg.capstore.entities.Coupon;
 
-@Service
 @Transactional
+@Service("CouponServiceImpl")
 public class CouponServiceImpl implements ICouponService{
-
  
 	@Autowired
 	private ICouponDao couponDao;
@@ -47,7 +44,7 @@ public class CouponServiceImpl implements ICouponService{
 			return true;
 		}
 		else {
-			throw new Exception("Start date is not valid...");
+			throw new Exception("Start date must be greater then current time...");
 		}
 	}
 
@@ -56,7 +53,7 @@ public class CouponServiceImpl implements ICouponService{
 		if(couponDao.checkEndDate(startDate, endDate))
 			return true;
 		else {
-			throw new Exception("End Date is not valid...");
+			throw new Exception("End Date must be greater then start date..");
 		}
 	}
 
@@ -76,9 +73,9 @@ public class CouponServiceImpl implements ICouponService{
 	}
 
 	@Override
-	public boolean updateCoupon(Coupon coupon) throws Exception {
+	public boolean updateCoupon(String couponCode, Timestamp start, Timestamp end) throws Exception {
 		
-		return couponDao.updateCoupon(coupon);
+		return couponDao.updateCoupon(couponCode, start, end);
 	}
 
 	@Override
