@@ -21,7 +21,7 @@ import com.cg.capstore.service.IProductService;
 @SpringBootApplication
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/product")
+@RequestMapping("/merchant/product")
 public class ProductController {
 
 	@Autowired

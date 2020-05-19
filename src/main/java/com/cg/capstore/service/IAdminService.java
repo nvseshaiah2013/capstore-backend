@@ -95,4 +95,8 @@ public interface IAdminService {
 	public Product getProductById(int prodId) throws Exception;
 
 	public List<Address> deleteAddressByAddressId(int addressId, String username);
+
+	public void activateProduct(int prodId) throws Exception;
+
+	public void inActivateProduct(int prodId) throws Exception;
 }

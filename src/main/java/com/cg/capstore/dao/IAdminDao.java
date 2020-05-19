@@ -78,4 +78,8 @@ public interface IAdminDao {
 	public Product getProductById(int prodId);
 
 	public List<Address> deleteAddressByAddressId(int addressId, String username);
+
+	public void activateProduct(Product product) throws Exception;
+
+	public void inActivateProduct(Product product) throws Exception;
 }

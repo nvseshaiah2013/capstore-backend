@@ -3,6 +3,8 @@ package com.cg.capstore.controller;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +22,7 @@ import com.cg.capstore.entities.Order;
 import com.cg.capstore.response.SuccessMessage;
 import com.cg.capstore.entities.Product;
 import com.cg.capstore.service.IMerchantService;
+import com.cg.capstore.util.JwtUtil;
 
 @RestController
 @CrossOrigin("*")
@@ -28,44 +31,47 @@ public class MerchantController {
 	@Autowired
 
 	private IMerchantService merchantService;
+
+	@Autowired
+	private JwtUtil jwtUtil;
 	
-	@GetMapping("/merchants/all")
+	@GetMapping("/admin/merchants/all")
 	public ResponseEntity<List<MerchantDetails>> getMerchants() throws Exception {
 		List<MerchantDetails> merchants = merchantService.getMerchants();
 		return new ResponseEntity<List<MerchantDetails>>(merchants,HttpStatus.OK);
 	}
 	
-	@GetMapping("/merchantInfo/{username}")
+	@GetMapping("/merchant/merchantInfo/{username}")
 	public ResponseEntity<MerchantDetails> getMerchantInfo(@PathVariable String username){
 		return new ResponseEntity<MerchantDetails>(merchantService.getMerchantInfo(username), HttpStatus.OK);
 	}
 	
 	
-	@GetMapping("/merchantOrders/{username}")
+	@GetMapping("/merchant/merchantOrders/{username}")
 	public ResponseEntity<Set<Order>> getMerchantOrders(@PathVariable String username){
 		return new ResponseEntity<Set<Order>> (merchantService.getMerchantOrders(username), HttpStatus.OK);
 	}
 	
-	@GetMapping("/acceptMerchantOrder/{orderId}/{status}")
+	@GetMapping("/merchant/acceptMerchantOrder/{orderId}/{status}")
 	public ResponseEntity<Order> acceptMerchantOrder(@PathVariable long orderId,@PathVariable String status){
 		return new ResponseEntity<Order> (merchantService.acceptMerchantOrder(orderId, status), HttpStatus.OK);
 	}
 
 	
-	@PostMapping(value="/merchant/activate",produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/admin/merchant/activate",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> activateMerchant(@RequestParam("username") String username ) throws Exception {
 		this.merchantService.activateMerchant(username);
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Merchant Activation","Merchant " + username + " Activated Successfully"),HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/merchant/deactivate",produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/admin/merchant/deactivate",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> deActivateMerchant(@RequestParam("username") String username ) throws Exception {
 		this.merchantService.deActivateMerchant(username);
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Merchant De-Activation","Merchant " + username + " De-Activated Successfully"),HttpStatus.OK);
 	}
 
 	
-	@GetMapping("/getMerchantProducts/{username}")
+	@GetMapping("/merchant/getMerchantProducts/{username}")
 	public ResponseEntity<Set<Product>> getMerchantProducts(@PathVariable String username){
 		return new ResponseEntity<Set<Product>> (merchantService.getMerchantProducts(username), HttpStatus.OK);
 	}
@@ -87,5 +93,20 @@ public class MerchantController {
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product In Activation ","In Activated Product " +  id + " Successfully "),HttpStatus.OK);	
 	}
 	
+	public String getUsernameOfMerchant(HttpServletRequest request) throws Exception {
+			String header = request.getHeader("Authorization");
+			String token = header.substring(7);
+			String username = jwtUtil.extractUsername(token);
+			return username;	
+	}
+
+	@GetMapping(value="/sampleRoute")
+	public ResponseEntity<Object> viewUsername(HttpServletRequest request) throws Exception {
+		String username = getUsernameOfMerchant(request);
+		// then u can pass on the username to furthur functions;
+		// in the function parameter u can pass any kind of arguments along with HttpServletRequest @ReqestBody etc.  See Line 104
+		System.out.println(username);
+		return ResponseEntity.ok().build();
+	}
 
 }

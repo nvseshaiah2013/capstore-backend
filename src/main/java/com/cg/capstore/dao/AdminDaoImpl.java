@@ -327,5 +327,18 @@ public class AdminDaoImpl implements IAdminDao {
 		query.executeUpdate();
 		return getAddressByUsername(username);
 	}
+
+	@Override
+	public void activateProduct(Product product) throws Exception {
+		product.setProductActivated(true);
+		entityManager.merge(product);
+	}
+
+	@Override
+	public void inActivateProduct(Product product) throws Exception {
+		product.setProductActivated(false);
+		entityManager.merge(product);
+
+	}
 	
 }

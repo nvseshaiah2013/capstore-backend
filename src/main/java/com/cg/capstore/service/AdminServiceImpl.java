@@ -344,4 +344,17 @@ public class AdminServiceImpl implements IAdminService {
 	public List<Address> deleteAddressByAddressId(int addressId,String username) {
 		return adminDao.deleteAddressByAddressId(addressId,username);
 	}
+
+	@Override
+	public void activateProduct(int prodId) throws Exception {
+		Product product = getProductById(prodId);
+		adminDao.activateProduct(product);
+	}
+
+	@Override
+	public void inActivateProduct(int prodId) throws Exception {
+		Product product = getProductById(prodId);
+		adminDao.inActivateProduct(product);
+
+	}
 }
