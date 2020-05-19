@@ -13,7 +13,7 @@ public interface ICouponDao {
    boolean checkEndDate(Timestamp startDate, Timestamp endDate) throws Exception;
    boolean checkIsActive(String couponName) throws Exception;
    Coupon getCouponByName(String couponName) throws Exception;
-   boolean updateCoupon(Coupon coupon) throws Exception;
+   boolean updateCoupon(String couponCode, Timestamp start, Timestamp end) throws Exception;
    boolean deleteCoupon(String couponName) throws Exception;
    List<Object> listOfCoupons() throws Exception;
 }
