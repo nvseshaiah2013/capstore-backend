@@ -43,7 +43,7 @@ public class AdminController {
 	private IAdminService adminService;
 	
 	@GetMapping(value="/orders",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Order>> getAllOrders() {
+	public ResponseEntity<List<Order>> getAllOrders() throws Exception{
 		List<Order> orders=adminService.getOrders();
 		return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
 	}

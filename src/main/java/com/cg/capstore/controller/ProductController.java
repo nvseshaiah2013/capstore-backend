@@ -1,33 +1,96 @@
 package com.cg.capstore.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.capstore.response.SuccessMessage;
+import com.cg.capstore.entities.Category;
+import com.cg.capstore.entities.Product;
 import com.cg.capstore.service.IProductService;
 
+@SpringBootApplication
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/product")
 public class ProductController {
-	
+
 	@Autowired
 	private IProductService productService;
-
-	@PostMapping(value="/admin/activateProduct",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SuccessMessage> markProductAsActive(@RequestParam("username") String username, @RequestParam("id") Integer id) throws Exception {
-		productService.activateProduct(id);
-		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product Activation ","Activated Product " +  id + "Successfully "),HttpStatus.OK);	
+	
+	
+	@GetMapping("/hello")
+	public ResponseEntity<Object> checkWorking(){
+		return new ResponseEntity<Object>("Working with product...", HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/admin/inActivateProduct",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SuccessMessage> markProductAsInActive(@RequestParam("username") String username, @RequestParam("id") Integer id) throws Exception {
-		productService.deActivateProduct(id);
-		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product In Activation ","In Activated Product " +  id + "Successfully "),HttpStatus.OK);	
+	@PostMapping("/addProduct")
+	public ResponseEntity<Object> addProduct(@RequestBody GetProduct productAndUserName) throws Exception{
+		Product product = new Product();
+		product.setDiscount(0);
+		product.setFeatured(false);
+		product.setProductActivated(false);
+		product.setProductName(productAndUserName.productName);
+		product.setProductPrice(productAndUserName.productPrice);
+		product.setProductBrand(productAndUserName.productBrand);
+		product.setNoOfProducts(productAndUserName.noOfProducts);
+		product.setNoOfViews(0);
+		product.setProductRating(0);
+		product.setProductInfo(productAndUserName.productInfo);
+		product.setProductImage(productAndUserName.productImage);
+		int category = productAndUserName.categoryName;
+		String subCategory = productAndUserName.subCategory;
+		
+		if(productService.addProduct(product,productAndUserName.username, category, subCategory)) {
+			return new ResponseEntity<Object>("Product is added successfully...", HttpStatus.OK);
+		}
+		else {
+			throw new Exception("Internal server Error...");
+		}
 	}
+	
+	@PostMapping("/updateproduct")
+	public ResponseEntity<Object> updateStock(@RequestParam("prodId") int productId,@RequestParam("prodCount") int productCount, @RequestParam("ProdPrice") int prodctPrice, @RequestParam("Prodinfo") String ProductInfo) throws Exception{
+		if(productService.updateStock(productId, productCount, prodctPrice, ProductInfo)) {
+			return new ResponseEntity<Object>("Product List updated...", HttpStatus.OK);
+		}
+		else {
+			throw new Exception("Internal server error...");
+		}
+	}
+	
+	@GetMapping("/getProduct")
+	public ResponseEntity<Product> getProductName(@RequestParam("prodId") int productId) throws Exception{
+		return new ResponseEntity<Product>(productService.getProductName(productId), HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/getCategory")
+	public ResponseEntity<List<Category>> getAllcategory() throws Exception{
+		return new ResponseEntity<List<Category>>(productService.getAllCategory(), HttpStatus.OK);
+	}
+	
 }
+
+
+class GetProduct{
+	public String productName;
+	public double productPrice;
+	public String productBrand;
+	public int categoryName;
+	public String subCategory;
+	public int noOfProducts;
+	public String productInfo;
+	public String productImage;
+	public String username;
+}
+
