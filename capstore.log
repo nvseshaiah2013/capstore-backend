@@ -249,4 +249,5 @@
  2020/05/19 17:47:45.300  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Top Rated Merchants returned
  2020/05/19 17:47:48.138  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Trending Products returned
  2020/05/19 17:47:48.899  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Recent Orders returned
+ 2020/05/19 20:55:46.352  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
  
