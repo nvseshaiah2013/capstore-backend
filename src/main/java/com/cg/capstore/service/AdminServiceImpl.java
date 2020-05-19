@@ -147,13 +147,27 @@ public class AdminServiceImpl implements IAdminService {
 	}
 	
 	
-	public List<Order> getOrders() {
-		return adminDao.getOrders();
+	public List<Order> getOrders() throws Exception{
+		List<Order> orders=adminDao.getOrders();
+		if(orders==null) {
+			logger.error("No orders found..!!");
+			throw new Exception("No orders found in the database..!!");
+		}
+		logger.info("Fetched all orders..!!");
+		return orders;
 	}
 
 	@Override
 	public int updateStatus(long orderId, String status) {
-		return adminDao.updateStatus(orderId, status);
+		int response=adminDao.updateStatus(orderId, status);
+		
+		if(response==1) {
+			logger.info("Order updated..!!");
+		}
+		else {
+			logger.error("Error while updating the order..!!");
+		}
+		return response;
 	}
 
 	@Override

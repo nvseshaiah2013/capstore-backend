@@ -51,7 +51,7 @@ public interface IAdminService {
 	
 	public int getMinOrderValueAmount();
 	
-	public List<Order> getOrders();
+	public List<Order> getOrders() throws Exception;
 	
 	int updateStatus(long orderId,String status);
 
