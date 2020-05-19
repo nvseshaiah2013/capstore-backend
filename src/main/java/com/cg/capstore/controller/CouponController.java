@@ -6,29 +6,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.capstore.entities.Coupon;
 import com.cg.capstore.service.ICouponService;
 
-
 @SpringBootApplication
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/admin")
 public class CouponController {
 	
 	@Autowired
-
 	private ICouponService couponService;
-
 	
 	@GetMapping("/hello")
 	public ResponseEntity<Object> checkWorking(){
@@ -38,12 +36,19 @@ public class CouponController {
 	@PostMapping("/addCoupon")
 	public ResponseEntity<Object> addCoupon(@RequestBody CouponValue couponValue) throws Exception{
 	   Coupon coupon = new Coupon();
+	   System.out.println("--------------------------------------------");
+	   System.out.println(couponValue);
+	   System.out.println("--------------------------------------------");
 	   coupon.setCouponCode(couponValue.couponCode);
 	   coupon.setCouponAmount(couponValue.couponAmount);
 	   coupon.setCouponDesc(couponValue.couponDesc);
 	   coupon.setMinOrderAmount(couponValue.minOrderAmount);
-	   coupon.setCouponStartDate(Timestamp.valueOf(couponValue.couponStartDate));
-	   coupon.setCouponEndDate(Timestamp.valueOf(couponValue.couponEndDate));
+	   coupon.setIssuedBy("Admin");
+	   Timestamp startDate = Timestamp.valueOf(couponValue.couponStartDate);
+	   Timestamp endDate = Timestamp.valueOf(couponValue.couponEndDate);
+	   coupon.setCouponStartDate(startDate);
+	   coupon.setCouponEndDate(endDate);
+	   coupon.setActive(false);
 	   if(couponService.addCoupon(coupon)) {
 	   return new ResponseEntity<Object>("Coupon with coupon code: " + couponValue.couponCode + " generated successfully.", HttpStatus.OK);
 	   }
@@ -54,7 +59,9 @@ public class CouponController {
 	
 	@GetMapping("/checkstartdate")
 	public ResponseEntity<Object> checkStartDate(@RequestParam("start") String dateTime) throws Exception {
-		Timestamp time = Timestamp.valueOf(dateTime);
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//	    String dateandtime = formatter.format(dateTime);
+		Timestamp  time = Timestamp.valueOf(dateTime);
 		if(couponService.checkStartDate(time)) {
 			return new ResponseEntity<Object>(true, HttpStatus.OK);
 		}
@@ -108,16 +115,18 @@ public class CouponController {
 		return new ResponseEntity<List<Object>>(couponService.listOfCoupons(), HttpStatus.OK);
 	}
 	
-	@PutMapping("/updateCoupon")
-	public ResponseEntity<Object> updateCoupon(@RequestBody Coupon coupon) throws Exception{
-		if(couponService.updateCoupon(coupon)) {
+	@PostMapping(value="updateCoupon", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> updateCoupon(@RequestParam("coupon") String CouponCode, @RequestParam("start") String startDate, @RequestParam("end") String endDate) throws Exception{
+		Timestamp Date1 = Timestamp.valueOf(startDate);
+		Timestamp Date2 = Timestamp.valueOf(endDate);
+		if(couponService.updateCoupon(CouponCode, Date1, Date2)) {
 			return new ResponseEntity<Object>("Coupon updated and activated successfully...",HttpStatus.OK);
 		}else {
 			throw new Exception("Something wents wrong...");
 		}
 	}
 	
-	@DeleteMapping("/deleteCoupon")
+	@PostMapping("/deleteCoupon")
 	public ResponseEntity<Object> deleteCoupon(@RequestParam("couponName") String couponName) throws Exception{
 		if(couponService.deleteCoupon(couponName)) {
 			return new ResponseEntity<Object>("coupon with name "+ couponName + " deleted...", HttpStatus.OK);
@@ -126,6 +135,9 @@ public class CouponController {
 			throw new Exception("Internal Server Error...");
 		}
 	}
+	
+	
+
 }
 
 class CouponValue{

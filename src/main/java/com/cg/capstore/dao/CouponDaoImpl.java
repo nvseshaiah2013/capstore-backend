@@ -8,12 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-
 import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.Coupon;
 
-@Repository
+@Repository("CouponDaoImpl")
 public class CouponDaoImpl implements ICouponDao{
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -85,6 +84,7 @@ public class CouponDaoImpl implements ICouponDao{
 	@Override
 	public boolean checkEndDate(Timestamp startDate, Timestamp endDate) throws Exception {
 		int num = startDate.compareTo(endDate);
+		System.out.println("End date and start date...." + num);
 		if(num >= 0) {
 		return false;
 	   }
@@ -110,22 +110,30 @@ public class CouponDaoImpl implements ICouponDao{
 	}
 
 	@Override
-	public boolean updateCoupon(Coupon coupon) throws Exception {
+	public boolean updateCoupon(String couponCode, Timestamp start, Timestamp end) throws Exception {
 		try {
-		entityManager.merge(coupon);
-		System.out.println("Here We are means we are next to update the details...");
-		updateStatus();
-		return true;
-		}catch(Exception exception) {
+		 Coupon coupon = entityManager.find(Coupon.class, couponCode);
+		 coupon.setCouponStartDate(start);
+		 coupon.setCouponEndDate(end);
+		 
+		 entityManager.merge(coupon);
+		 System.out.println("Here We are means we are next to update the details...");
+		 updateStatus();
+		 System.out.println("--------------------------------");
+		 return true;
+		 }catch(Exception exception) {
 			throw new Exception("Internal Server Error...");
-		}
+		 }
 	}
 
 	@Override
 	public boolean deleteCoupon(String couponName) throws Exception {
+		System.out.println("we are here----------------------------------------------------------------------------------------");
 		Coupon coupon = entityManager.find(Coupon.class, couponName);
+		System.out.println("Now here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
 		if(coupon != null) {
 			entityManager.remove(coupon);
+			System.out.println("Now Removed...");
 			return true;
 		}
 		else {

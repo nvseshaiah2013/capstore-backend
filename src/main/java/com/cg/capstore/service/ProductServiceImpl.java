@@ -1,37 +1,41 @@
 package com.cg.capstore.service;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.cg.capstore.dao.IProductDao;
+import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.Product;
 
-@Service
-@Transactional
-public class ProductServiceImpl implements IProductService{
 
+@Transactional
+@Service("ProductServiceImpl")
+public class ProductServiceImpl implements IProductService{
+	
 	@Autowired
-	private IProductDao productDao;
-	
+	private IProductDao couponDao;
+
 	@Override
-	public void activateProduct(int id) throws Exception {
-		Product product = findProductById(id);
-		productDao.activateProduct(product);
+	public boolean addProduct(Product product, String merchantUserName, int category, String subCategory) throws Exception {
+		return couponDao.addProduct(product, merchantUserName, category, subCategory);
+	}
+
+	@Override
+	public boolean updateStock(int productId, int productCount, int prodPrice, String productInfo) throws Exception {
+		return couponDao.updateStock(productId,productCount, prodPrice, productInfo);
+	}
+
+	@Override
+	public Product getProductName(int productId) throws Exception {
+		return couponDao.getProductName(productId);
+	}
+
+	@Override
+	public List<Category> getAllCategory() throws Exception {
+		return couponDao.getAllCategory();
 	}
 	
-	@Override
-	public void deActivateProduct(int id) throws Exception {
-		Product product = findProductById(id);
-		productDao.inActivateProduct(product);
-	}
-	
-	@Override
-	public Product findProductById(int id) throws Exception {
-		Product product = this.productDao.findProductById(id);
-		if(product == null) 
-			throw new Exception("Product with " + id + " not found");
-		return product;
-	}
+
 }
