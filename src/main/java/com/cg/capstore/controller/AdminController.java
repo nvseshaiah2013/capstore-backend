@@ -274,4 +274,22 @@ public class AdminController {
 		return new ResponseEntity<MerchantDetails>(adminService.findMerchantByUsername(username),HttpStatus.OK);
 	}
 
+
+	@PostMapping(value = "/activateProduct", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SuccessMessage> markProductAsActive(@RequestParam("username") String username,
+			@RequestParam("id") Integer id) throws Exception {
+		adminService.activateProduct(id);
+		return new ResponseEntity<SuccessMessage>(
+				new SuccessMessage("Product Activation ", "Activated Product " + id + " Successfully "), HttpStatus.OK);
+	}
+
+	@PostMapping(value = "/inActivateProduct", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SuccessMessage> markProductAsInActive(@RequestParam("username") String username,
+			@RequestParam("id") Integer id) throws Exception {
+		adminService.inActivateProduct(id);
+		return new ResponseEntity<SuccessMessage>(
+				new SuccessMessage("Product In Activation ", "In Activated Product " + id + " Successfully "),
+				HttpStatus.OK);
+	}
+
 }
