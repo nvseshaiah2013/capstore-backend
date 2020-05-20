@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.CustomerDetails;
@@ -40,7 +41,7 @@ public class CustomerDaoImpl implements ICustomerDao{
 		}
 		else {
 			user.setUsername(userDetails.getUsername());
-			user.setPassword(userDetails.getPassword());
+			user.setPassword(BCrypt.hashpw(userDetails.getPassword(), BCrypt.gensalt(12)));
 			user.setRole(userDetails.getRole());
 			user.setSecurityQuestion(userDetails.getSecurityQuestion());
 			user.setSecurityAnswer(userDetails.getSecurityAnswer());

@@ -1,5 +1,7 @@
 package com.cg.capstore.dao;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.Address;
@@ -47,6 +50,8 @@ public class AdminDaoImpl implements IAdminDao {
 	
 	@Override
 	public void sendInvite(Invitation invitation) throws Exception {
+		invitation.setDate(Timestamp.valueOf(LocalDateTime.now()));
+		invitation.setIsAccepted(0);
 		entityManager.persist(invitation);
 	}
 
@@ -130,7 +135,7 @@ public class AdminDaoImpl implements IAdminDao {
 		entityManager.persist(merchantDetails);
 		
 		User userDetails=new User();
-		userDetails.setPassword(details.getPassword());
+		userDetails.setPassword(BCrypt.hashpw(userDetails.getPassword(), BCrypt.gensalt(12)));
 		userDetails.setUsername(details.getUsername());
 		userDetails.setSecurityAnswer(details.getSecurityAnswer());
 		userDetails.setSecurityQuestion(details.getSecurityQuestion());

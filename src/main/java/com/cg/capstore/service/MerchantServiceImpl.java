@@ -188,5 +188,40 @@ public class MerchantServiceImpl implements IMerchantService {
 	public List<Coupon> listOfCoupons(String username) throws Exception {
 		return merchantDao.listOfCoupons(username);
 	}
+	
+	@Override
+	public Invitation findInviteById(int id) throws Exception {
+		Invitation invite = merchantDao.findInviteById(id);
+		if(invite == null)
+		{
+			logger.error("Invalid Invite Id" + id);
+			throw new Exception("Invalid Invite Id" + id);
+		}
+		return invite;
+	}
+	
+	@Override
+	public void acceptInvite(String username,int id) throws Exception {
+		Invitation invite = findInviteById(id);
+		if(!invite.getMerchant().getUsername().equals(username))
+		{
+			logger.error("No invite for this merchant " + username);
+			throw new Exception("No invite for this merchant " + username);
+		}
+		invite.setIsAccepted(1);
+		merchantDao.acceptInvite(invite);
+	}
+	
+	@Override
+	public void rejectInvite(String username,int id) throws Exception {
+		Invitation invite = findInviteById(id);
+		if(!invite.getMerchant().getUsername().equals(username))
+		{
+			logger.error("No invite for this merchant " + username);
+			throw new Exception("No invite for this merchant " + username);
+		}
+		invite.setIsAccepted(2);
+		merchantDao.rejectInvite(invite);
+	}
 
 }

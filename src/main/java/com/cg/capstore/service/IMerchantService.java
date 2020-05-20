@@ -49,4 +49,10 @@ public interface IMerchantService {
 	   boolean deleteCoupon(String couponName) throws Exception;
 	   List<Coupon> listOfCoupons(String username) throws Exception;
 
+	void acceptInvite(String username, int id) throws Exception;
+
+	void rejectInvite(String username, int id) throws Exception;
+
+	Invitation findInviteById(int id) throws Exception;
+
 }

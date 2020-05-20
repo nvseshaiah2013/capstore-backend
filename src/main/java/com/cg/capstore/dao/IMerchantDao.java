@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.cg.capstore.entities.Coupon;
+import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.Product;
@@ -52,5 +53,11 @@ public interface IMerchantDao {
 	boolean deleteCoupon(String couponName) throws Exception;
   
 	List<Coupon> listOfCoupons(String username) throws Exception;
+	
+	public Invitation findInviteById(int id) throws Exception;
+	
+	public void acceptInvite(Invitation invite) throws Exception;
+	
+	public void rejectInvite(Invitation invite) throws Exception;
 
 }
