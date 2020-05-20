@@ -135,7 +135,7 @@ public class AdminDaoImpl implements IAdminDao {
 		entityManager.persist(merchantDetails);
 		
 		User userDetails=new User();
-		userDetails.setPassword(BCrypt.hashpw(userDetails.getPassword(), BCrypt.gensalt(12)));
+		userDetails.setPassword(userDetails.getPassword());
 		userDetails.setUsername(details.getUsername());
 		userDetails.setSecurityAnswer(details.getSecurityAnswer());
 		userDetails.setSecurityQuestion(details.getSecurityQuestion());
