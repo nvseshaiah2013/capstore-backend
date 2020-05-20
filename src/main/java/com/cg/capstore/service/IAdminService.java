@@ -15,23 +15,24 @@ import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.Product;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
+import com.cg.capstore.exceptions.NotAvailableException;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
 
 public interface IAdminService {
 	
-	public List<CustomerDetails> getCustomerList();
+	public List<CustomerDetails> getCustomerList() throws  NotAvailableException;
 	
 	public List<Invitation> getInvites();
 	
 	public void sendInvite(Invitation invitation) throws Exception;
 	
-	public List<Address> getAddressByUsername(String username);
+	public List<Address> getAddressByUsername(String username) throws InvalidAttributeException, NotAvailableException;
 	
 	public List<Category> addCategory(Category category);
 
-	public List<Category> getAllCategory();
+	public List<Category> getAllCategory() throws  NotAvailableException;
 
-	public List<SubCategory> getAllSubCategory(int categoryId);
+	public List<SubCategory> getAllSubCategory(int categoryId) throws InvalidAttributeException;
 
 	public List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId);
 
@@ -41,13 +42,13 @@ public interface IAdminService {
 	
 	public List<MerchantDetails> topRatedMerchants() throws Exception;
 	
-	public void addMerchant(ThirdPartyMerchantDetails details);
+	public boolean addMerchant(ThirdPartyMerchantDetails details);
 	
 	public boolean checkValidPhoneNumber(String phoneNo) throws InvalidAttributeException;
 	
 	public boolean checkValidEmail(String email) throws InvalidAttributeException;
 	
-	public int setMinOrderValueAmount(int amount);
+	public int setMinOrderValueAmount(int amount) throws InvalidAttributeException;
 	
 	public int getMinOrderValueAmount();
 	
@@ -99,4 +100,6 @@ public interface IAdminService {
 	public void activateProduct(int prodId) throws Exception;
 
 	public void inActivateProduct(int prodId) throws Exception;
+
+	public boolean checkCategoryExists(String categoryName) throws InvalidAttributeException;
 }
