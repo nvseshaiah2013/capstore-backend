@@ -80,7 +80,8 @@ public class MerchantController {
 	}
 	
 	@GetMapping(value="/merchant/invites",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Set<Invitation>> getInvites(@RequestParam("username") String username) throws Exception {
+	public ResponseEntity<Set<Invitation>> getInvites(HttpServletRequest request) throws Exception {
+		String username = getUsernameOfMerchant(request);
 		return new ResponseEntity<Set<Invitation>>(merchantService.getInvites(username),HttpStatus.OK);
 	}
 	
