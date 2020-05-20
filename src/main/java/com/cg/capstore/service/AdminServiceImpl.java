@@ -20,6 +20,7 @@ import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.Product;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
+import com.cg.capstore.exceptions.NotAvailableException;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
 
 @Service
@@ -32,8 +33,18 @@ public class AdminServiceImpl implements IAdminService {
 	private Logger logger = Logger.getLogger(getClass());
 
 	@Override
-	public List<CustomerDetails> getCustomerList() {
-		return adminDao.getCustomerList();
+	public List<CustomerDetails> getCustomerList() throws  NotAvailableException {
+		List<CustomerDetails> list= adminDao.getCustomerList();
+		if(list.size()==0) {
+			logger.error("No Customer's availble");
+			throw new NotAvailableException("No Customer's available");
+		}
+		else
+		{
+			logger.info("Request for all customer details");
+			return list;
+		}
+			
 	}
 
 	@Override
@@ -42,34 +53,70 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	@Override
-	public List<Address> getAddressByUsername(String username) {
-		return adminDao.getAddressByUsername(username);
+	public List<Address> getAddressByUsername(String username) throws InvalidAttributeException, NotAvailableException {
+		if(!adminDao.checkValidEmail(username)) {
+		List<Address>addresses= adminDao.getAddressByUsername(username);
+		if(addresses.isEmpty()) {
+			logger.info("No address available ");
+			throw new NotAvailableException("No addresses available");
+		}
+		else {
+			logger.info("Request for address of "+username);
+			return addresses;
+		}
+		}
+		else {
+			logger.error("Invalid username");
+			throw new InvalidAttributeException("Username doesn't exist");
+		}
 	}
 
 	@Override
 	public List<Category> addCategory(Category category) {
-		return adminDao.addCategory(category);
+		List<Category> categories=adminDao.addCategory(category);
+		logger.info(category.getName()+" category added");
+		return categories;
 	}
 
 	@Override
-	public List<Category> getAllCategory() {
+	public List<Category> getAllCategory() throws  NotAvailableException {
 
-		return adminDao.getAllCategory();
+		List<Category> categories= adminDao.getAllCategory();
+		if(categories.isEmpty()) {
+			logger.warn("No categories available");
+			throw new NotAvailableException("No categories available");
+		}
+		else
+			{
+			logger.info("Request for all category");
+			return categories;
+			}
 	}
 
 
 
 	@Override
-	public List<SubCategory> getAllSubCategory(int categoryId) {
+	public List<SubCategory> getAllSubCategory(int categoryId) throws InvalidAttributeException {
 		
-		return adminDao.getAllSubCategory(categoryId);
+		
+		
+		List<SubCategory> subCategories= adminDao.getAllSubCategory(categoryId);
+		if(subCategories.isEmpty()) {
+			logger.warn("No subcategories available");
+			throw new InvalidAttributeException("No subcategories available");
+		}
+		else {
+			logger.info("Request for all subcategories of "+categoryId);
+			return subCategories;
+		}
 	}
 
 
 	@Override
 	public List<SubCategory> addSubCategory(SubCategory subCategory, int categoryId) {
-
-		return adminDao.addSubCategory(subCategory, categoryId);
+		List<SubCategory> subCategories=adminDao.addSubCategory(subCategory, categoryId);
+		logger.info(subCategory.getName()+" subcategory Added");
+		return subCategories;
 	}
 	
 	@Override
@@ -115,34 +162,63 @@ public class AdminServiceImpl implements IAdminService {
 	}
 	
 	@Override
-	public void addMerchant(ThirdPartyMerchantDetails details) {
-		adminDao.addMerchant(details);
+	public boolean addMerchant(ThirdPartyMerchantDetails details) {
+		boolean status=adminDao.addMerchant(details);
+		if(status) {
+		logger.info(details.getName()+" merchant's detail added");
+		return true;
+		}
+		else
+		{
+			logger.error("Merchant not added");
+			return false;
+		}
 	}
 
 	@Override
 	public boolean checkValidPhoneNumber(String phoneNo) throws InvalidAttributeException {
-		if(adminDao.checkValidPhoneNumber(phoneNo))
+		if(adminDao.checkValidPhoneNumber(phoneNo)) {
+			logger.info("Phone Number "+phoneNo+" validation request");
 			return true;
-		else
+		}
+		else {
+			logger.warn(phoneNo+" Phone Number Already Exists");
 			throw new InvalidAttributeException("Phone Number Already Exists");
+		}
 	}
 
 	@Override
 	public boolean checkValidEmail(String email) throws InvalidAttributeException {
-		if(adminDao.checkValidEmail(email))
+		if(adminDao.checkValidEmail(email)) {
+			logger.info("Email "+email+" validation request");
 			return true;
-		else
+		}
+		else {
+			logger.warn(email+" Email Already Exists");
 			throw new InvalidAttributeException("Email Already Exists");
+		}
 	}
 
 	@Override
-	public int setMinOrderValueAmount(int amount) {
-		return adminDao.setMinOrderValueAmount(amount);
+	public int setMinOrderValueAmount(int amount) throws InvalidAttributeException {
+		if(amount<1) {
+			logger.warn("Cannot set 0 or less than that minimum order value amount");
+			throw new InvalidAttributeException("Cannot set 0 or less than that");
+		}
+		else if(amount<100) {
+			logger.warn("Cannot set min order value less than 100");
+			throw new InvalidAttributeException("Capstore policy violated..!!! Cannot set min order value less than 100");
+		}
+		else {
+			int updatedAmount=adminDao.setMinOrderValueAmount(amount);
+			logger.info("Minimum order value amount updated");
+			return updatedAmount;
+		}
 	}
 
 	@Override
 	public int getMinOrderValueAmount() {
-		
+		logger.info("Request for minimum order value amount");
 		return  adminDao.getMinOrderValueAmount();
 	}
 	
@@ -245,6 +321,7 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public List<Category> updateCategory(Category category) {
+		logger.info(category.getName()+" Category updated");
 		return adminDao.updateCategory(category);
 }
 
@@ -342,6 +419,7 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public List<Address> deleteAddressByAddressId(int addressId,String username) {
+		logger.warn("Delete address of "+username);
 		return adminDao.deleteAddressByAddressId(addressId,username);
 	}
 
@@ -356,5 +434,18 @@ public class AdminServiceImpl implements IAdminService {
 		Product product = getProductById(prodId);
 		adminDao.inActivateProduct(product);
 
+	}
+
+	@Override
+	public boolean checkCategoryExists(String categoryName) throws InvalidAttributeException {
+		if(adminDao.checkCategoryExists(categoryName))
+		{logger.info("Check if exist category "+categoryName);
+		return true;
+		}
+		else {
+			logger.info(categoryName+" Category or Subcategory already exist");
+			throw new InvalidAttributeException("Category or Subcategory already exist");
+		}
+		
 	}
 }
