@@ -41,14 +41,16 @@ public class MerchantController {
 		return new ResponseEntity<List<MerchantDetails>>(merchants,HttpStatus.OK);
 	}
 	
-	@GetMapping("/merchant/merchantInfo/{username}")
-	public ResponseEntity<MerchantDetails> getMerchantInfo(@PathVariable String username){
+	@GetMapping("/merchant/merchantInfo")
+	public ResponseEntity<MerchantDetails> getMerchantInfo(HttpServletRequest request) throws Exception{
+		String username = getUsernameOfMerchant(request);
 		return new ResponseEntity<MerchantDetails>(merchantService.getMerchantInfo(username), HttpStatus.OK);
 	}
 	
 	
-	@GetMapping("/merchant/merchantOrders/{username}")
-	public ResponseEntity<Set<Order>> getMerchantOrders(@PathVariable String username){
+	@GetMapping("/merchant/merchantOrders")
+	public ResponseEntity<Set<Order>> getMerchantOrders(HttpServletRequest request) throws Exception{
+		String username = getUsernameOfMerchant(request);
 		return new ResponseEntity<Set<Order>> (merchantService.getMerchantOrders(username), HttpStatus.OK);
 	}
 	
@@ -71,8 +73,9 @@ public class MerchantController {
 	}
 
 	
-	@GetMapping("/merchant/getMerchantProducts/{username}")
-	public ResponseEntity<Set<Product>> getMerchantProducts(@PathVariable String username){
+	@GetMapping("/merchant/getMerchantProducts")
+	public ResponseEntity<Set<Product>> getMerchantProducts(HttpServletRequest request) throws Exception{
+		String username = getUsernameOfMerchant(request);
 		return new ResponseEntity<Set<Product>> (merchantService.getMerchantProducts(username), HttpStatus.OK);
 	}
 	
