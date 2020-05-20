@@ -1,5 +1,6 @@
 package com.cg.capstore.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.capstore.dao.IMerchantDao;
+import com.cg.capstore.entities.Coupon;
 import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
@@ -108,6 +110,77 @@ public class MerchantServiceImpl implements IMerchantService {
 		if(product == null) 
 			throw new Exception("Product with " + id + " not found");
 		return product;
+	}
+	
+	@Override
+	public boolean checkCouponCode(String code) throws Exception {
+		 if(!merchantDao.checkCouponCode(code)) {
+			 throw new RuntimeException("Coupon Code already Exist.");
+		 }
+		 return true;
+		 
+	}
+
+	@Override
+	public boolean addCoupon(Coupon coupon,String username) throws Exception {
+	    if(checkStartDate(coupon.getCouponStartDate()) && checkEndDate(coupon.getCouponStartDate(),coupon.getCouponEndDate())) {
+	    	coupon.setActive(true);
+	    	return merchantDao.addCoupon(coupon,username);
+	    }
+	    else{
+	    	return false;
+	    }
+		
+	}
+
+	@Override
+	public boolean checkStartDate(Timestamp date) throws Exception {
+		if(merchantDao.checkStartDate(date)) {
+			return true;
+		}
+		else {
+			throw new Exception("Start date must be greater then current time...");
+		}
+	}
+
+	@Override
+	public boolean checkEndDate(Timestamp startDate, Timestamp endDate) throws Exception {
+		if(merchantDao.checkEndDate(startDate, endDate))
+			return true;
+		else {
+			throw new Exception("End Date must be greater then start date..");
+		}
+	}
+
+	@Override
+	public boolean updateStatus() throws Exception {
+		return merchantDao.updateStatus();
+	}
+
+	@Override
+	public boolean checkIsActive(String couponName) throws Exception {
+		return merchantDao.checkIsActive(couponName);
+	}
+
+	@Override
+	public Coupon getCouponByName(String couponName) throws Exception {
+		return merchantDao.getCouponByName(couponName);
+	}
+
+	@Override
+	public boolean updateCoupon(String couponCode, Timestamp start, Timestamp end) throws Exception {
+		
+		return merchantDao.updateCoupon(couponCode, start, end);
+	}
+
+	@Override
+	public boolean deleteCoupon(String couponName) throws Exception {
+		return merchantDao.deleteCoupon(couponName);
+	}
+
+	@Override
+	public List<Coupon> listOfCoupons(String username) throws Exception {
+		return merchantDao.listOfCoupons(username);
 	}
 
 }
