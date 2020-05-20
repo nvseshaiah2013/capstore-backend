@@ -39,7 +39,7 @@ public interface IAdminDao {
 	
 	public List<MerchantDetails> topRatedMerchants();
 
-	public void addMerchant(ThirdPartyMerchantDetails details);
+	public boolean addMerchant(ThirdPartyMerchantDetails details);
 	
 	public boolean checkValidEmail(String email);
 	
@@ -82,4 +82,6 @@ public interface IAdminDao {
 	public void activateProduct(Product product) throws Exception;
 
 	public void inActivateProduct(Product product) throws Exception;
+
+	public boolean checkCategoryExists(String categoryName);
 }

@@ -114,7 +114,7 @@ public class AdminDaoImpl implements IAdminDao {
 	}
 
 	@Override
-	public void addMerchant(ThirdPartyMerchantDetails details) {
+	public boolean addMerchant(ThirdPartyMerchantDetails details) {
 		
 		MerchantDetails merchantDetails=new MerchantDetails();
 		merchantDetails.setAlternateEmail(details.getAlternateEmail());
@@ -145,7 +145,10 @@ public class AdminDaoImpl implements IAdminDao {
 		
 		userDetails.addAddress(addressDetails);
 		
-		entityManager.merge(userDetails);
+		if(entityManager.merge(userDetails) != null)
+			return true;
+		else
+			return false;
 
 	}
 
@@ -339,6 +342,28 @@ public class AdminDaoImpl implements IAdminDao {
 		product.setProductActivated(false);
 		entityManager.merge(product);
 
+	}
+
+	@Override
+	public boolean checkCategoryExists(String categoryName) {
+		String str="SELECT category.name FROM Category category";
+		TypedQuery<String> query=entityManager.createQuery(str, String.class);
+		List<String> list=query.getResultList().stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+		
+		str="SELECT category.name FROM SubCategory category";
+		query=entityManager.createQuery(str, String.class);
+		List<String> list2=query.getResultList().stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+		if(list.contains(categoryName) || list2.contains(categoryName))
+		{
+			return false;
+		}
+		else
+			return true;
+		
 	}
 	
 }
