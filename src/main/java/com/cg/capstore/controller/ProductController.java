@@ -2,6 +2,8 @@ package com.cg.capstore.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.capstore.entities.Category;
 import com.cg.capstore.entities.Product;
 import com.cg.capstore.service.IProductService;
+import com.cg.capstore.util.JwtUtil;
 
 @SpringBootApplication
 @RestController
@@ -27,6 +30,9 @@ public class ProductController {
 	@Autowired
 	private IProductService productService;
 	
+	@Autowired
+	private JwtUtil jwtUtil;
+	
 	
 	@GetMapping("/hello")
 	public ResponseEntity<Object> checkWorking(){
@@ -34,7 +40,8 @@ public class ProductController {
 	}
 	
 	@PostMapping("/addProduct")
-	public ResponseEntity<Object> addProduct(@RequestBody GetProduct productAndUserName) throws Exception{
+	public ResponseEntity<Object> addProduct(@RequestBody GetProduct productAndUserName, HttpServletRequest request) throws Exception{
+		String username = getUsernameOfMerchant(request);
 		Product product = new Product();
 		product.setDiscount(0);
 		product.setFeatured(false);
@@ -50,7 +57,7 @@ public class ProductController {
 		int category = productAndUserName.categoryName;
 		String subCategory = productAndUserName.subCategory;
 		
-		if(productService.addProduct(product,productAndUserName.username, category, subCategory)) {
+		if(productService.addProduct(product,username, category, subCategory)) {
 			return new ResponseEntity<Object>("Product is added successfully...", HttpStatus.OK);
 		}
 		else {
@@ -79,6 +86,13 @@ public class ProductController {
 		return new ResponseEntity<List<Category>>(productService.getAllCategory(), HttpStatus.OK);
 	}
 	
+	
+	public String getUsernameOfMerchant(HttpServletRequest request) throws Exception {
+		String header = request.getHeader("Authorization");
+		String token = header.substring(7);
+		String username = jwtUtil.extractUsername(token);
+		return username;	
+}
 }
 
 
@@ -91,6 +105,4 @@ class GetProduct{
 	public int noOfProducts;
 	public String productInfo;
 	public String productImage;
-	public String username;
 }
-

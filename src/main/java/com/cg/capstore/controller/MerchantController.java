@@ -85,16 +85,17 @@ public class MerchantController {
 		return new ResponseEntity<Set<Invitation>>(merchantService.getInvites(username),HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/merchant/activateProduct",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SuccessMessage> markProductAsActive(@RequestParam("username") String username, @RequestParam("id") Integer id) throws Exception {
+	@PostMapping(value="/merchant/activateProduct/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SuccessMessage> markProductAsActive(@PathVariable Integer id) throws Exception {
 		merchantService.activateProduct(id);
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product Activation ","Activated Product " +  id + " Successfully "),HttpStatus.OK);	
 	}
 	
-	@PostMapping(value="/merchant/inActivateProduct",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SuccessMessage> markProductAsInActive(@RequestParam("username") String username, @RequestParam("id") Integer id) throws Exception {
+	@PostMapping(value="/merchant/inActivateProduct/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SuccessMessage> markProductAsInActive(@PathVariable Integer id,HttpServletRequest request) throws Exception {
+		String username = getUsernameOfMerchant(request);
 		merchantService.deActivateProduct(id);
-		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product In Activation ","In Activated Product " +  id + " Successfully "),HttpStatus.OK);	
+		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product Deactivation ","Deactivated Product " +  id + " Successfully "),HttpStatus.OK);	
 	}
 	
 	public String getUsernameOfMerchant(HttpServletRequest request) throws Exception {
@@ -107,7 +108,7 @@ public class MerchantController {
 	@GetMapping(value="/sampleRoute")
 	public ResponseEntity<Object> viewUsername(HttpServletRequest request) throws Exception {
 		String username = getUsernameOfMerchant(request);
-		// then u can pass on the username to furthur functions;
+		// then u can pass on the username to further functions;
 		// in the function parameter u can pass any kind of arguments along with HttpServletRequest @ReqestBody etc.  See Line 104
 		System.out.println(username);
 		return ResponseEntity.ok().build();
