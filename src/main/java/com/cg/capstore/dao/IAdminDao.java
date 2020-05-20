@@ -84,4 +84,5 @@ public interface IAdminDao {
 	public void inActivateProduct(Product product) throws Exception;
 
 	public boolean checkCategoryExists(String categoryName);
+
 }

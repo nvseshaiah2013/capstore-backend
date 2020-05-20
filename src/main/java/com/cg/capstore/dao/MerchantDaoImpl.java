@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.Coupon;
+import com.cg.capstore.entities.Invitation;
 import com.cg.capstore.entities.MerchantDetails;
 import com.cg.capstore.entities.Order;
 import com.cg.capstore.entities.Product;
@@ -228,5 +229,21 @@ public class MerchantDaoImpl implements IMerchantDao {
 			throw new Exception("No coupons Available...");
 		}
 		return couponList;
+	}
+
+	@Override
+	public Invitation findInviteById(int id) throws Exception {
+		Invitation invite = entityManager.find(Invitation.class, id);
+		return invite;
+	}
+
+	@Override
+	public void acceptInvite(Invitation invite) throws Exception {
+		entityManager.merge(invite);		
+	}
+
+	@Override
+	public void rejectInvite(Invitation invite) throws Exception {
+		entityManager.merge(invite);		
 	}
 }

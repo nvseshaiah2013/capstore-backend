@@ -219,6 +219,20 @@ public class MerchantController {
 			throw new Exception("Internal Server Error...");
 		}
 	}
+	
+	@PostMapping(value="/merchant/rejectInvite",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> rejectInvite(@RequestParam("id") int id, HttpServletRequest request) throws Exception {
+		String username = getUsernameOfMerchant(request);
+		merchantService.rejectInvite(username, id);
+		return new ResponseEntity<Object> (new SuccessMessage("Invitation","Invite Rejected Successfully"),HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/merchant/acceptInvite",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> acceptInvite(@RequestParam("id") int id, HttpServletRequest request) throws Exception {
+		String username = getUsernameOfMerchant(request);
+		merchantService.acceptInvite(username, id);
+		return new ResponseEntity<Object> (new SuccessMessage("Invitation","Invite Accepted Successfully"),HttpStatus.OK);
+	}
 }
 
 class CouponValue1{

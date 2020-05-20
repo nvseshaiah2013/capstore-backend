@@ -1,6 +1,7 @@
 package com.cg.capstore.entities;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,12 @@ public class Invitation implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="USERNAME")
 	private MerchantDetails merchant;
+	
+	@Column(name="IN_DATE")
+	private Timestamp invitedDate;
+	
+	@Column(name="ACCEPTED")
+	private int isAccepted;
 	
 	public  Invitation () {
 		
@@ -65,6 +72,22 @@ public class Invitation implements Serializable{
 
 	public void setMerchant(MerchantDetails merchant) {
 		this.merchant = merchant;
+	}
+
+	public Timestamp getDate() {
+		return invitedDate;
+	}
+
+	public void setDate(Timestamp date) {
+		this.invitedDate = date;
+	}
+
+	public int getIsAccepted() {
+		return isAccepted;
+	}
+
+	public void setIsAccepted(int isAccepted) {
+		this.isAccepted = isAccepted;
 	}
 	
 	
