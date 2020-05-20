@@ -119,9 +119,9 @@ public class MerchantController {
 	}
 
 	@PostMapping("/merchant/addCoupon")
-	public ResponseEntity<Object> addCoupon(@RequestBody CouponValue1 couponValue,HttpServletRequest request) throws Exception{
+	public ResponseEntity<String> addCoupon(@RequestBody CouponValue1 couponValue,HttpServletRequest request) throws Exception{
 	   String username = getUsernameOfMerchant(request);
-		Coupon coupon = new Coupon();
+	   Coupon coupon = new Coupon();
 	   coupon.setCouponCode(couponValue.couponCode);
 	   coupon.setCouponAmount(couponValue.couponAmount);
 	   coupon.setCouponDesc(couponValue.couponDesc);
@@ -133,7 +133,7 @@ public class MerchantController {
 	   coupon.setCouponEndDate(endDate);
 	   coupon.setActive(false);
 	   if(merchantService.addCoupon(coupon,username)) {
-	   return new ResponseEntity<Object>("Coupon with coupon code: " + couponValue.couponCode + " generated successfully.", HttpStatus.OK);
+	   return new ResponseEntity<String>("Coupon with coupon code: " + couponValue.couponCode + " generated successfully.", HttpStatus.OK);
 	   }
 	   else {
 		   throw new Exception("Something went Wrong...");
@@ -142,8 +142,6 @@ public class MerchantController {
 	
 	@GetMapping("/merchant/checkstartdate")
 	public ResponseEntity<Object> checkStartDate(@RequestParam("start") String dateTime) throws Exception {
-//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//	    String dateandtime = formatter.format(dateTime);
 		Timestamp  time = Timestamp.valueOf(dateTime);
 		if(merchantService.checkStartDate(time)) {
 			return new ResponseEntity<Object>(true, HttpStatus.OK);
@@ -161,7 +159,7 @@ public class MerchantController {
 			return new ResponseEntity<Object>(true, HttpStatus.OK);
 		}
 		else {
-			throw new Exception("EndDate Must be greater then StartDate...");
+			throw new Exception("End Date Must be greater then Start Date...");
 		}
 	}
 	
@@ -172,7 +170,7 @@ public class MerchantController {
 		}
 		else
 		{
-			throw new Exception("Coupon Code Already Exist...");
+			throw new Exception("Coupon Code Already Exists...");
 		}
 	}
 	
@@ -188,14 +186,14 @@ public class MerchantController {
 			Coupon coupon = merchantService.getCouponByName(name);
 			return new ResponseEntity<Object>(coupon, HttpStatus.OK);
 		}catch (Exception exception) {
-			return new ResponseEntity<Object>(exception.getMessage(), HttpStatus.IM_USED);
+			return new ResponseEntity<Object>(exception.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		
 	}
 	
 	@GetMapping("/merchant/listOfCoupons")
 	public ResponseEntity<List<Coupon>> listOfCoupons(HttpServletRequest request) throws Exception{
-		 String username = getUsernameOfMerchant(request);
+		String username = getUsernameOfMerchant(request);
 		return new ResponseEntity<List<Coupon>>(merchantService.listOfCoupons(username), HttpStatus.OK);
 	}
 	
@@ -204,7 +202,7 @@ public class MerchantController {
 		Timestamp Date1 = Timestamp.valueOf(startDate);
 		Timestamp Date2 = Timestamp.valueOf(endDate);
 		if(merchantService.updateCoupon(CouponCode, Date1, Date2)) {
-			return new ResponseEntity<Object>("Coupon updated and activated successfully...",HttpStatus.OK);
+			return new ResponseEntity<Object>("Coupon Updated and Activated Successfully...",HttpStatus.OK);
 		}else {
 			throw new Exception("Something went wrong...");
 		}

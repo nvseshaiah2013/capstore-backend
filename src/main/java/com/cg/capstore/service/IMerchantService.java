@@ -20,13 +20,11 @@ public interface IMerchantService {
 
 	Order acceptMerchantOrder(long orderId, String status);
 
-
 	void activateMerchant(String username) throws Exception;
 
 	void deActivateMerchant(String username) throws Exception;
 
 	MerchantDetails findMerchantByUsername(String username) throws Exception;
-
 
 	Set<Product> getMerchantProducts(String username);
 
@@ -39,14 +37,23 @@ public interface IMerchantService {
 	Product findProductById(int id) throws Exception;
 	
 	boolean checkCouponCode(String code) throws Exception;
-	   boolean addCoupon(Coupon coupon,String username) throws Exception;
-	   boolean updateStatus() throws Exception;
-	   boolean checkStartDate(Timestamp date) throws Exception;
-	   boolean checkEndDate(Timestamp startDate, Timestamp endDate) throws Exception;
-	   boolean checkIsActive(String couponName) throws Exception;
-	   Coupon getCouponByName(String couponName) throws Exception;
-	   boolean updateCoupon(String couponCode, Timestamp start, Timestamp end) throws Exception;
-	   boolean deleteCoupon(String couponName) throws Exception;
-	   List<Coupon> listOfCoupons(String username) throws Exception;
+	
+	boolean addCoupon(Coupon coupon,String username) throws Exception;
+	
+	boolean updateStatus() throws Exception;
+	
+	boolean checkStartDate(Timestamp date) throws Exception;
+	
+	boolean checkEndDate(Timestamp startDate, Timestamp endDate) throws Exception;
+	
+	boolean checkIsActive(String couponName) throws Exception;
+	
+	Coupon getCouponByName(String couponName) throws Exception;
+	
+	boolean updateCoupon(String couponCode, Timestamp start, Timestamp end) throws Exception;
+	
+	boolean deleteCoupon(String couponName) throws Exception;
+	
+	List<Coupon> listOfCoupons(String username) throws Exception;
 
 }

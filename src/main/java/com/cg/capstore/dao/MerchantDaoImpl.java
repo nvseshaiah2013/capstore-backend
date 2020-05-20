@@ -25,9 +25,6 @@ public class MerchantDaoImpl implements IMerchantDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	
-	
-
 	@Override
 	public List<MerchantDetails> getMerchants() throws Exception {
 		String str = "SELECT merchant FROM MerchantDetails merchant";
