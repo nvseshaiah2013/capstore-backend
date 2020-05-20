@@ -1,0 +1,18 @@
+2020/05/20 16:29:50.382  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/20 16:29:50.382  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/20 16:29:50.382  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/20 16:29:56.641  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/20 16:30:06.885  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.MerchantServiceImpl : Product is disabled
+ 2020/05/20 16:30:06.886  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.MerchantServiceImpl : Product with particular id is found
+ 2020/05/20 16:30:11.028  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/20 16:30:11.073  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/20 16:30:20.294  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.MerchantServiceImpl : Product is disabled
+ 2020/05/20 16:30:20.294  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.MerchantServiceImpl : Product with particular id is found
+ 2020/05/20 16:30:23.820  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/20 16:30:23.820  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/20 16:30:32.151  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.MerchantServiceImpl : Invite for merchant received
+ 2020/05/20 16:30:32.151  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.MerchantServiceImpl : Details of merchant of particular id returned
+ 2020/05/20 16:30:57.747  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/20 16:38:40.775  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/20 16:38:40.777  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 

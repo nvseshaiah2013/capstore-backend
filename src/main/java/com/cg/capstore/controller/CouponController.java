@@ -36,9 +36,7 @@ public class CouponController {
 	@PostMapping("/addCoupon")
 	public ResponseEntity<Object> addCoupon(@RequestBody CouponValue couponValue) throws Exception{
 	   Coupon coupon = new Coupon();
-	   System.out.println("--------------------------------------------");
 	   System.out.println(couponValue);
-	   System.out.println("--------------------------------------------");
 	   coupon.setCouponCode(couponValue.couponCode);
 	   coupon.setCouponAmount(couponValue.couponAmount);
 	   coupon.setCouponDesc(couponValue.couponDesc);
@@ -59,8 +57,6 @@ public class CouponController {
 	
 	@GetMapping("/checkstartdate")
 	public ResponseEntity<Object> checkStartDate(@RequestParam("start") String dateTime) throws Exception {
-//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//	    String dateandtime = formatter.format(dateTime);
 		Timestamp  time = Timestamp.valueOf(dateTime);
 		if(couponService.checkStartDate(time)) {
 			return new ResponseEntity<Object>(true, HttpStatus.OK);
