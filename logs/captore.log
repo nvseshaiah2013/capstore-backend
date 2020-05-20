@@ -294,4 +294,43 @@
  2020/05/20 17:23:52.318  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for all category
  2020/05/20 17:24:04.545  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Request for all category
  2020/05/20 17:24:55.377  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 21:46:03.079  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Today's Product Sales returned
+ 2020/05/20 21:46:03.150  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Today's Revenues returned
+ 2020/05/20 21:46:03.353  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Merchant's Count returned
+ 2020/05/20 21:46:03.887  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Top Rated Merchants returned
+ 2020/05/20 21:46:04.828  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Customer's Count returned
+ 2020/05/20 21:46:05.279  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Trending Products returned
+ 2020/05/20 21:46:06.740  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Recent Orders returned
+ 2020/05/20 21:47:10.728  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Today's Product Sales returned
+ 2020/05/20 21:47:10.758  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Merchant's Count returned
+ 2020/05/20 21:47:10.761  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Today's Revenues returned
+ 2020/05/20 21:47:10.770  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Top Rated Merchants returned
+ 2020/05/20 21:47:10.776  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Customer's Count returned
+ 2020/05/20 21:47:11.613  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Trending Products returned
+ 2020/05/20 21:47:14.223  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Recent Orders returned
+ 2020/05/20 21:47:22.448  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Request for all customer details
+ 2020/05/20 21:47:44.200  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Request for address of sagar@gmail.com
+ 2020/05/20 21:48:07.834  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Request for minimum order value amount
+ 2020/05/20 21:48:29.318  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all customer details
+ 2020/05/20 21:49:14.283  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.CouponServiceImpl : Getting list of coupon
+ 2020/05/20 21:50:12.346  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 21:50:22.530  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 49
+ 2020/05/20 21:51:21.989  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Request for all customer details
+ 2020/05/20 21:51:22.090  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Last 7 Days revenues returned
+ 2020/05/20 21:51:22.161  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Last 7 Days orders returned
+ 2020/05/20 21:51:33.550  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 21:52:21.030  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 21:56:52.150  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 21:57:37.368  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Last 7 Days orders returned
+ 2020/05/20 21:57:37.552  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Request for all customer details
+ 2020/05/20 21:57:37.569  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Last 7 Days revenues returned
+ 2020/05/20 21:57:56.845  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 21:58:31.958  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 22:00:34.286  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 22:01:21.267  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 22:07:11.327  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 22:09:21.534  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 22:10:18.947  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 22:25:59.913  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/20 22:41:58.827  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Order updated..!!
  
