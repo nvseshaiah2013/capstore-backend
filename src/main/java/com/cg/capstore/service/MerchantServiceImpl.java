@@ -90,17 +90,23 @@ public class MerchantServiceImpl implements IMerchantService {
 	}
 	
 	@Override
-	public void activateProduct(int id) throws Exception {
+	public void activateProduct(int id,String username) throws Exception {
 		logger.info("Product is enabled");
 		Product product = findProductById(id);
+		if(product.getMerchant().getUsername().equals(username))
 		merchantDao.activateProduct(product);
+		else
+			throw new Exception("The product does not belong to this " + username );
 	}
 	
 	@Override
-	public void deActivateProduct(int id) throws Exception {
+	public void deActivateProduct(int id,String username) throws Exception {
 		logger.info("Product is disabled");
 		Product product = findProductById(id);
+		if(product.getMerchant().getUsername().equals(username))
 		merchantDao.inActivateProduct(product);
+		else
+			throw new Exception("The product does not belong to this " + username);
 	}
 	
 	@Override

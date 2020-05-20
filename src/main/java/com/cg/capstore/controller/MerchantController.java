@@ -89,15 +89,16 @@ public class MerchantController {
 	}
 	
 	@PostMapping(value="/merchant/activateProduct/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SuccessMessage> markProductAsActive(@PathVariable Integer id) throws Exception {
-		merchantService.activateProduct(id);
+	public ResponseEntity<SuccessMessage> markProductAsActive(@PathVariable Integer id,HttpServletRequest request) throws Exception {
+		String username = getUsernameOfMerchant(request);
+		merchantService.activateProduct(id,username);
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product Activation ","Activated Product " +  id + " Successfully "),HttpStatus.OK);	
 	}
 	
 	@PostMapping(value="/merchant/inActivateProduct/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> markProductAsInActive(@PathVariable Integer id,HttpServletRequest request) throws Exception {
 		String username = getUsernameOfMerchant(request);
-		merchantService.deActivateProduct(id);
+		merchantService.deActivateProduct(id,username);
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Product Deactivation ","Deactivated Product " +  id + " Successfully "),HttpStatus.OK);	
 	}
 	
