@@ -83,7 +83,7 @@ public class AdminController {
 	}
 	
 	@PostMapping(value="/category",consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Category>> addCategory(@RequestBody Category category)
+	public ResponseEntity<List<Category>> addCategory(@RequestBody Category category) throws InvalidAttributeException
 	{
 		List<Category> categories=adminService.addCategory(category);
 		

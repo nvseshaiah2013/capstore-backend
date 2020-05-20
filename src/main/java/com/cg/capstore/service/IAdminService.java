@@ -28,7 +28,7 @@ public interface IAdminService {
 	
 	public List<Address> getAddressByUsername(String username) throws InvalidAttributeException, NotAvailableException;
 	
-	public List<Category> addCategory(Category category);
+	public List<Category> addCategory(Category category) throws InvalidAttributeException;
 
 	public List<Category> getAllCategory() throws  NotAvailableException;
 
@@ -101,5 +101,7 @@ public interface IAdminService {
 
 	public void inActivateProduct(int prodId) throws Exception;
 
-	public boolean checkCategoryExists(String categoryName) throws InvalidAttributeException;
+	boolean checkCategoryExists(String categoryName) throws InvalidAttributeException;
+
+
 }
