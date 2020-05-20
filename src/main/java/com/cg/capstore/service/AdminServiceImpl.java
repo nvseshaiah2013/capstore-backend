@@ -72,10 +72,13 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	@Override
-	public List<Category> addCategory(Category category) {
-		List<Category> categories=adminDao.addCategory(category);
-		logger.info(category.getName()+" category added");
-		return categories;
+	public List<Category> addCategory(Category category) throws InvalidAttributeException {
+		
+			List<Category> categories=adminDao.addCategory(category);
+			logger.info(category.getName()+" category added");
+			return categories;	
+		
+		
 	}
 
 	@Override
@@ -438,11 +441,15 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public boolean checkCategoryExists(String categoryName) throws InvalidAttributeException {
-		if(adminDao.checkCategoryExists(categoryName))
-		{logger.info("Check if exist category "+categoryName);
-		return true;
+		
+		if(!adminDao.checkCategoryExists(categoryName))
+		{
+			
+			logger.info("Check if exist category "+categoryName);
+			return true;
 		}
 		else {
+			
 			logger.info(categoryName+" Category or Subcategory already exist");
 			throw new InvalidAttributeException("Category or Subcategory already exist");
 		}

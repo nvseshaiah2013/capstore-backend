@@ -346,6 +346,7 @@ public class AdminDaoImpl implements IAdminDao {
 
 	@Override
 	public boolean checkCategoryExists(String categoryName) {
+		categoryName=categoryName.toLowerCase();
 		String str="SELECT category.name FROM Category category";
 		TypedQuery<String> query=entityManager.createQuery(str, String.class);
 		List<String> list=query.getResultList().stream()
@@ -359,10 +360,11 @@ public class AdminDaoImpl implements IAdminDao {
                 .collect(Collectors.toList());
 		if(list.contains(categoryName) || list2.contains(categoryName))
 		{
+			return true;
+		}
+		else {
 			return false;
 		}
-		else
-			return true;
 		
 	}
 	
