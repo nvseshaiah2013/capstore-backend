@@ -121,22 +121,23 @@ public class MerchantServiceImpl implements IMerchantService {
 	@Override
 	public boolean checkCouponCode(String code) throws Exception {
 		 if(!merchantDao.checkCouponCode(code)) {
-			 throw new RuntimeException("Coupon Code already Exist.");
+			 logger.error("Coupon Code already Exist..");
+			 throw new RuntimeException("Coupon Code already Exist..");
 		 }
 		 return true;
-		 
 	}
 
 	@Override
 	public boolean addCoupon(Coupon coupon,String username) throws Exception {
 	    if(checkStartDate(coupon.getCouponStartDate()) && checkEndDate(coupon.getCouponStartDate(),coupon.getCouponEndDate())) {
 	    	coupon.setActive(true);
+	    	logger.info("New coupon added!!");
 	    	return merchantDao.addCoupon(coupon,username);
 	    }
 	    else{
+	    	logger.error("Error adding new coupon");
 	    	return false;
 	    }
-		
 	}
 
 	@Override
@@ -145,22 +146,31 @@ public class MerchantServiceImpl implements IMerchantService {
 			return true;
 		}
 		else {
+			logger.error("Invalid start date..!!");
 			throw new Exception("Start date must be greater then current time...");
 		}
 	}
 
 	@Override
 	public boolean checkEndDate(Timestamp startDate, Timestamp endDate) throws Exception {
-		if(merchantDao.checkEndDate(startDate, endDate))
+		if(merchantDao.checkEndDate(startDate, endDate)) {
 			return true;
+		}
 		else {
+			logger.error("Invalid end date..!!");
 			throw new Exception("End Date must be greater then start date..");
 		}
 	}
 
 	@Override
 	public boolean updateStatus() throws Exception {
-		return merchantDao.updateStatus();
+		boolean result=merchantDao.updateStatus();
+		if(result==false) {
+		   logger.error("Error updating status..!!");
+		   return result;
+		}
+		logger.info("Coupon status updated..!!");
+		return result;
 	}
 
 	@Override
@@ -170,22 +180,35 @@ public class MerchantServiceImpl implements IMerchantService {
 
 	@Override
 	public Coupon getCouponByName(String couponName) throws Exception {
+		logger.info("Fetched coupon by name..!!");
 		return merchantDao.getCouponByName(couponName);
 	}
 
 	@Override
 	public boolean updateCoupon(String couponCode, Timestamp start, Timestamp end) throws Exception {
-		
-		return merchantDao.updateCoupon(couponCode, start, end);
+		boolean result=merchantDao.updateCoupon(couponCode, start, end);
+		if(result==false) {
+			logger.error("Error updating coupon..!!");
+			return result;
+		}
+		logger.info("Coupon updated...!!");
+		return result;
 	}
 
 	@Override
 	public boolean deleteCoupon(String couponName) throws Exception {
-		return merchantDao.deleteCoupon(couponName);
+		boolean result=merchantDao.deleteCoupon(couponName);
+		if(result==false) {
+			logger.error("Error deleting coupon..!!");
+			return result;
+		}
+		logger.info("Deleted coupon..!!");
+		return result;
 	}
 
 	@Override
 	public List<Coupon> listOfCoupons(String username) throws Exception {
+		logger.info("Fetched all coupons..!!");
 		return merchantDao.listOfCoupons(username);
 	}
 	
@@ -223,5 +246,4 @@ public class MerchantServiceImpl implements IMerchantService {
 		invite.setIsAccepted(2);
 		merchantDao.rejectInvite(invite);
 	}
-
 }
