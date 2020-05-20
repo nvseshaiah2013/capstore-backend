@@ -2,7 +2,6 @@ package com.cg.capstore.controller;
 
 import java.util.List;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,6 +31,7 @@ import com.cg.capstore.response.SuccessMessage;
 import com.cg.capstore.response.ThirdPartyMerchantDetails;
 import com.cg.capstore.entities.SubCategory;
 import com.cg.capstore.exceptions.InvalidAttributeException;
+import com.cg.capstore.exceptions.NotAvailableException;
 import com.cg.capstore.service.IAdminService;
 
 @RestController
@@ -42,6 +42,7 @@ public class AdminController {
 	@Autowired
 	private IAdminService adminService;
 	
+	
 	@GetMapping(value="/orders",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Order>> getAllOrders() throws Exception{
 		List<Order> orders=adminService.getOrders();
@@ -49,7 +50,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="/customer",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CustomerDetails>> getAllCustomers()
+	public ResponseEntity<List<CustomerDetails>> getAllCustomers() throws NotAvailableException
 	{
 		List<CustomerDetails> customers=adminService.getCustomerList();
 		return new ResponseEntity<List<CustomerDetails>>(customers,HttpStatus.OK);
@@ -68,7 +69,7 @@ public class AdminController {
 	}
 
 	@GetMapping(value="/address/{username}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Address>> getAddressByUsername(@PathVariable String username)
+	public ResponseEntity<List<Address>> getAddressByUsername(@PathVariable String username) throws InvalidAttributeException, NotAvailableException
 	{
 		List<Address> addresses=adminService.getAddressByUsername(username);
 		return new ResponseEntity<List<Address>>(addresses,HttpStatus.OK);
@@ -85,10 +86,11 @@ public class AdminController {
 	public ResponseEntity<List<Category>> addCategory(@RequestBody Category category)
 	{
 		List<Category> categories=adminService.addCategory(category);
+		
 		return new ResponseEntity<List<Category>>(categories,HttpStatus.CREATED);
 	}
 	@GetMapping(value="/category",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Category>> getAllCategory()
+	public ResponseEntity<List<Category>> getAllCategory() throws NotAvailableException
 	{
 		List<Category> categories=adminService.getAllCategory();
 		return new ResponseEntity<List<Category>>(categories,HttpStatus.OK);
@@ -99,15 +101,22 @@ public class AdminController {
 		List<Category> categories=adminService.updateCategory(category);
 		return new ResponseEntity<List<Category>>(categories,HttpStatus.OK);
 	}
-	@PostMapping(value="/subCategory/{id}",consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<SubCategory>> addCategory(@RequestBody SubCategory subCategory,@PathVariable int id)
+	@GetMapping(value="/checkCategoryExist/{categoryName}")
+	public ResponseEntity<SuccessMessage> checkCategoryExists(@PathVariable String categoryName) throws InvalidAttributeException
 	{
+		adminService.checkCategoryExists(categoryName);
+		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Category Validation Request","Category Doesn't Exist"),HttpStatus.OK);
 		
+	}
+	@PostMapping(value="/subCategory/{id}",consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<SubCategory>> addSubCategory(@RequestBody SubCategory subCategory,@PathVariable int id)
+	{
 		List<SubCategory> subCategories=adminService.addSubCategory(subCategory,id);
+		
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.CREATED);
 	}
 	@GetMapping(value="/subCategory/{categoryId}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<SubCategory>> getAllSubCategory(@PathVariable int categoryId)
+	public ResponseEntity<List<SubCategory>> getAllSubCategory(@PathVariable int categoryId) throws InvalidAttributeException
 	{
 		List<SubCategory> subCategories=adminService.getAllSubCategory(categoryId);
 		return new ResponseEntity<List<SubCategory>>(subCategories,HttpStatus.OK);
@@ -179,6 +188,7 @@ public class AdminController {
 	public ResponseEntity<SuccessMessage> checkValidPhoneNo(@PathVariable String phoneNo) throws InvalidAttributeException
 	{
 		adminService.checkValidPhoneNumber(phoneNo);
+
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("PhoneNo Validation Request","PhoneNo Doesn't Exist"),HttpStatus.OK);
 	}
 	@GetMapping(value="/checkEmail/{email}")
@@ -188,9 +198,10 @@ public class AdminController {
 		return new ResponseEntity<SuccessMessage>(new SuccessMessage("Email Validation Request","Email Doesn't Exist"),HttpStatus.OK);
 	}
 	@GetMapping("/minOrderValue/{amount}")
-	public ResponseEntity<Integer> setMinOrderValueAmount(@PathVariable int amount)
+	public ResponseEntity<Integer> setMinOrderValueAmount(@PathVariable int amount) throws InvalidAttributeException
 	{
 		int updatedAmount=adminService.setMinOrderValueAmount(amount);
+
 		return new ResponseEntity<Integer>(updatedAmount,HttpStatus.ACCEPTED);
 	}
 	
