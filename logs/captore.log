@@ -100,4 +100,23 @@
  2020/05/20 11:16:36.645  WARN  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Cannot set 0 or less than that minimum order value amount
  2020/05/20 11:16:39.736  WARN  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Cannot set min order value less than 100
  2020/05/20 11:16:43.200  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.controller.AdminController : Minimum order value amount updated
+ 2020/05/20 11:44:32.155  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Request for minimum order value amount
+ 2020/05/20 11:44:38.370  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 11:44:51.502  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for minimum order value amount
+ 2020/05/20 11:44:53.943  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 11:45:24.648  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 11:45:28.490  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Request for minimum order value amount
+ 2020/05/20 11:45:31.707  WARN  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Cannot set 0 or less than that minimum order value amount
+ 2020/05/20 11:45:34.569  WARN  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Cannot set min order value less than 100
+ 2020/05/20 11:45:40.186  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Minimum order value amount updated
+ 2020/05/20 11:45:43.775  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 11:45:48.549  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 4
+ 2020/05/20 11:45:56.880  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 2
+ 2020/05/20 11:46:01.629  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 1
+ 2020/05/20 11:49:04.546  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 11:54:32.072  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 11:54:39.416  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Shoe Category updated
+ 2020/05/20 11:56:16.603  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 11:56:24.913  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Shoes Category updated
+ 2020/05/20 11:56:32.118  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Request for all category
  
