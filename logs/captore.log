@@ -242,4 +242,56 @@
  2020/05/20 16:40:06.265  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Request for all category
  2020/05/20 16:41:52.231  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for all category
  2020/05/20 16:45:09.612  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:49:15.898  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:49:21.611  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Home Category or Subcategory already exist
+ 2020/05/20 16:49:47.448  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Check if exist category Home Appliance
+ 2020/05/20 16:49:49.233  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Home Appliance category added
+ 2020/05/20 16:50:11.649  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:50:20.562  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Check if exist category homm
+ 2020/05/20 16:50:22.090  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : homm category added
+ 2020/05/20 16:50:29.379  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : home Category or Subcategory already exist
+ 2020/05/20 16:50:37.908  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Check if exist category homee
+ 2020/05/20 16:50:39.440  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : homee category added
+ 2020/05/20 16:51:02.577  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:51:07.949  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : home Category or Subcategory already exist
+ 2020/05/20 16:51:13.648  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Check if exist category homet
+ 2020/05/20 16:51:15.412  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : homet category added
+ 2020/05/20 16:51:35.321  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:51:39.563  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : home Category or Subcategory already exist
+ 2020/05/20 16:51:44.192  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Check if exist category homes
+ 2020/05/20 16:51:45.964  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : homes category added
+ 2020/05/20 16:52:10.273  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:52:29.122  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:52:36.266  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : home Category or Subcategory already exist
+ 2020/05/20 16:52:40.394  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Check if exist category hope
+ 2020/05/20 16:52:42.136  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : hope category added
+ 2020/05/20 16:53:01.562  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 2
+ 2020/05/20 16:53:40.652  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:53:56.611  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 2
+ 2020/05/20 16:56:52.036  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:57:04.382  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Shoe Category updated
+ 2020/05/20 16:57:11.685  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:58:46.388  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 16:59:47.106  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 49
+ 2020/05/20 16:59:54.904  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Request for all customer details
+ 2020/05/20 16:59:59.323  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Request for address of sagar@gmail.com
+ 2020/05/20 17:01:35.161  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Request for minimum order value amount
+ 2020/05/20 17:01:39.771  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Minimum order value amount updated
+ 2020/05/20 17:01:44.022  WARN  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Cannot set min order value less than 100
+ 2020/05/20 17:01:46.690  WARN  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Cannot set 0 or less than that minimum order value amount
+ 2020/05/20 17:01:52.085  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Minimum order value amount updated
+ 2020/05/20 17:10:53.226  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 17:10:56.066  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 49
+ 2020/05/20 17:13:49.669  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 17:14:17.021  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 49
+ 2020/05/20 17:16:04.670  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : loafers Category or Subcategory already exist
+ 2020/05/20 17:16:21.950  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 17:16:25.481  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 49
+ 2020/05/20 17:16:33.117  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : sneaker Category or Subcategory already exist
+ 2020/05/20 17:16:41.178  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Check if exist category mocassin
+ 2020/05/20 17:16:43.497  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : mocassin subcategory Added
+ 2020/05/20 17:16:49.066  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 49
+ 2020/05/20 17:23:52.318  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 17:24:04.545  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/20 17:24:55.377  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Request for all category
  
