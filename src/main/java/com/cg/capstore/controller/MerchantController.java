@@ -28,7 +28,7 @@ import com.cg.capstore.service.IMerchantService;
 import com.cg.capstore.util.JwtUtil;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class MerchantController {
 	
 	@Autowired

@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.capstore.entities.Coupon;
 import com.cg.capstore.service.ICouponService;
 
-@SpringBootApplication
+
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/admin")
 public class CouponController {
 	

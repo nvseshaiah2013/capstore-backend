@@ -47,6 +47,7 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public List<Invitation> getInvites() {
+		logger.info("Admin asked for list of Invites");
 		return adminDao.getInvites();
 	}
 
@@ -228,6 +229,7 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public List<CommonFeedback> getFeedbacks() {
+		logger.info("Admin asked for List of Feedbacks");
 		return this.adminDao.getFeedbacks();
 	}
 
@@ -235,6 +237,7 @@ public class AdminServiceImpl implements IAdminService {
 	public CommonFeedback redirectFeedback(int id) throws Exception {
 		CommonFeedback feedback = findCommonFeedbackById(id);
 		this.adminDao.redirectFeedback(feedback);
+		logger.info("Admin redirected Feedback " + id );
 		return feedback;
 	}
 
@@ -277,24 +280,28 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public Set<CommonFeedback> getCommonFeedbackByMerchant(String username) throws Exception {
 		MerchantDetails merchant = findMerchantByUsername(username);
+		logger.info("Admin asked for all the feedbacks by merchant " + username);
 		return merchant.getFeedbacks();
 	}
 
 	@Override
 	public Set<Order> getOrdersByMerchant(String username) throws Exception {
 		MerchantDetails merchant = findMerchantByUsername(username);
+		logger.info("Admin asked for all the orders received by merchant " + username);
 		return merchant.getOrders();
 	}
 
 	@Override
 	public Set<Product> getProductsByMerchant(String username) throws Exception {
 		MerchantDetails merchant = findMerchantByUsername(username);
+		logger.info("Admin asked for all the Products of merchant " + username);
 		return merchant.getProducts();
 	}
 
 	@Override
 	public Set<CommonFeedback> getFeedbacksByMerchant(String username) throws Exception {
 		MerchantDetails merchant = findMerchantByUsername(username);
+		logger.info("Admin asked for all the feedbacks by merchant " + username);
 		return merchant.getFeedbacks();
 	}
 
@@ -398,13 +405,14 @@ public class AdminServiceImpl implements IAdminService {
 	public void activateProduct(int prodId) throws Exception {
 		Product product = getProductById(prodId);
 		adminDao.activateProduct(product);
+		logger.info("Product activated by admin with product Id " + prodId);
 	}
 
 	@Override
 	public void inActivateProduct(int prodId) throws Exception {
 		Product product = getProductById(prodId);
 		adminDao.inActivateProduct(product);
-
+		logger.info("Product deactivated by admin with product Id " + prodId);
 	}
 
 	@Override

@@ -56,11 +56,23 @@ public class AdminController {
 		return new ResponseEntity<List<CustomerDetails>>(customers,HttpStatus.OK);
 	}
 
+	/**
+	 * Function to get a list of invites sent by the admin
+	 * REturns a list of invites
+	 * 
+	 * 
+	 */
+
 	@GetMapping(value="/invites",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Invitation>> getInvites(){
 		List<Invitation> invites = adminService.getInvites();
 		return new ResponseEntity<List<Invitation>>(invites,HttpStatus.OK);
 	}
+
+	/*
+		Function to send an invite to merchant
+		On Success it sends an invite to merchant
+	*/
 	
 	@PostMapping(value="/invite",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> sendInvite(@RequestBody Invitation invitation ) throws Exception{
@@ -137,12 +149,25 @@ public class AdminController {
 		return new ResponseEntity<List<MerchantDetails>>(adminService.topRatedMerchants(), HttpStatus.OK);
 	}
 
+	/**
+	 * FUnction to get a list of Common Feedbacks received by merchant
+	 * On Success returns a list of common feedbacks
+	 * throws merchant not found with merchant username 
+	 * 
+	 */
+
 	
 	@GetMapping(value="/commonFeedbacks",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CommonFeedback>> getFeedbacks(){
 		List<CommonFeedback> feedbacks = this.adminService.getFeedbacks();
 		return new ResponseEntity<List<CommonFeedback>>(feedbacks,HttpStatus.OK);
 	}
+
+	/*
+		Function To Redirect the feedbacks to merchant
+		On Success redirects the feedback to merchant identified by his username
+		Throws Feedback Id Not Found Exception
+	*/
 	
 	@PostMapping(value="/redirectFeedback/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> redirectFeedback(@PathVariable int id) throws Exception
@@ -161,11 +186,23 @@ public class AdminController {
 	public ResponseEntity<Integer> getOrderCount(@RequestParam("username") String username) throws Exception {
 		return new ResponseEntity<Integer>(this.adminService.getOrderCount(username),HttpStatus.OK);
 	}
+
+	/*
+		Function to Get the list of all orders of merchant identified by his username
+		On Success Returns a List of ORders
+		Throw Merchant with usrname not Found Exception
+	*/
 	
 	@GetMapping(value="/orders/all",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Set<Order>> getOrdersByMerchantUsername(@RequestParam("username") String username) throws Exception{
 		return new ResponseEntity<Set<Order>>(this.adminService.getOrdersByMerchant(username),HttpStatus.OK);
 	}
+
+	/*
+		Function Get The list of all products of merchant by identifying his username
+		On Success Returns a List of products
+		Throws Merchant with username not Found Exception
+	*/
 	
 	@GetMapping(value="products/all",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Set<Product>> getProductsByMerchantUsername(@RequestParam("username") String username ) throws Exception {
@@ -285,6 +322,12 @@ public class AdminController {
 		return new ResponseEntity<MerchantDetails>(adminService.findMerchantByUsername(username),HttpStatus.OK);
 	}
 
+	/*
+	 * Function To Dectivate a Product 
+	 * On Success Activates the Product with product
+	 * Id Throws Exception Product with Product Id Not Found
+	 */
+
 
 	@PostMapping(value = "/activateProduct", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> markProductAsActive(@RequestParam("username") String username,
@@ -293,6 +336,12 @@ public class AdminController {
 		return new ResponseEntity<SuccessMessage>(
 				new SuccessMessage("Product Activation ", "Activated Product " + id + " Successfully "), HttpStatus.OK);
 	}
+
+	/*
+		Function To Activate a Product
+		On Success Activates the Product with product Id
+		Throws Exception Product with Product Id Not Found
+	*/
 
 	@PostMapping(value = "/inActivateProduct", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuccessMessage> markProductAsInActive(@RequestParam("username") String username,

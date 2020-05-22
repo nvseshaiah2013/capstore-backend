@@ -21,9 +21,9 @@ import com.cg.capstore.entities.Product;
 import com.cg.capstore.service.IProductService;
 import com.cg.capstore.util.JwtUtil;
 
-@SpringBootApplication
+
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/merchant/product")
 public class ProductController {
 

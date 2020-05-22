@@ -333,4 +333,136 @@
  2020/05/20 22:10:18.947  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
  2020/05/20 22:25:59.913  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
  2020/05/20 22:41:58.827  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Order updated..!!
+ 2020/05/21 00:13:44.599  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 00:15:15.702  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Email abbc@gmail.com validation request
+ 2020/05/21 00:15:15.869  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Email aabcc@gmail.com validation request
+ 2020/05/21 00:15:16.059  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Phone Number 9111191111 validation request
+ 2020/05/21 00:15:16.510  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Phone Number 8111181111 validation request
+ 2020/05/21 00:15:18.931  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Venkata Seshaiah merchant's detail added
+ 2020/05/21 00:15:23.682  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 08:52:44.442  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Today's Product Sales returned
+ 2020/05/21 08:52:44.448  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Today's Revenues returned
+ 2020/05/21 08:52:44.448  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Top Rated Merchants returned
+ 2020/05/21 08:52:44.442  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Customer's Count returned
+ 2020/05/21 08:52:44.442  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Merchant's Count returned
+ 2020/05/21 08:52:46.192  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Trending Products returned
+ 2020/05/21 08:52:49.325  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Recent Orders returned
+ 2020/05/21 08:52:55.503  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 08:53:03.195  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.MerchantServiceImpl : Merchant is activated
+ 2020/05/21 08:53:03.196  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.MerchantServiceImpl : Details of merchant of particular id returned
+ 2020/05/21 08:53:05.349  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 08:53:14.033  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : Merchant is activated
+ 2020/05/21 08:53:14.034  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : Details of merchant of particular id returned
+ 2020/05/21 08:53:16.271  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 08:53:40.588  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the feedbacks by merchant vamsi586
+ 2020/05/21 08:53:47.631  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Admin asked for List of Feedbacks
+ 2020/05/21 08:54:07.404  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 08:54:14.123  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Admin asked for list of Invites
+ 2020/05/21 08:56:07.757  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 08:59:25.192  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Admin asked for list of Invites
+ 2020/05/21 09:04:11.011  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Admin asked for List of Feedbacks
+ 2020/05/21 09:06:56.267  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Today's Revenues returned
+ 2020/05/21 09:06:56.278  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Merchant's Count returned
+ 2020/05/21 09:06:56.278  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Customer's Count returned
+ 2020/05/21 09:06:56.279  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Top Rated Merchants returned
+ 2020/05/21 09:06:56.315  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Today's Product Sales returned
+ 2020/05/21 09:06:57.450  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Trending Products returned
+ 2020/05/21 09:06:59.996  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Recent Orders returned
+ 2020/05/21 09:07:29.100  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 09:07:51.447  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the Products of merchant Amarjeet.soni@gmail.com
+ 2020/05/21 09:08:08.695  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Product Data Returned
+ 2020/05/21 09:08:08.696  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Product deactivated by admin with product Id 227
+ 2020/05/21 09:08:10.525  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the Products of merchant Amarjeet.soni@gmail.com
+ 2020/05/21 09:08:31.369  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Product Data Returned
+ 2020/05/21 09:08:31.370  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Product activated by admin with product Id 227
+ 2020/05/21 09:08:33.090  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the Products of merchant Amarjeet.soni@gmail.com
+ 2020/05/21 09:08:51.361  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the orders received by merchant Amarjeet.soni@gmail.com
+ 2020/05/21 09:09:20.864  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 09:09:56.875  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Admin asked for list of Invites
+ 2020/05/21 09:10:12.327  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Admin asked for List of Feedbacks
+ 2020/05/21 09:10:32.033  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Admin redirected Feedback 263
+ 2020/05/21 09:10:33.421  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Admin asked for List of Feedbacks
+ 2020/05/21 09:11:34.385  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/21 09:11:34.412  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/21 09:11:34.416  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/21 09:11:37.867  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.MerchantServiceImpl : Invite for merchant received
+ 2020/05/21 09:11:37.868  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.MerchantServiceImpl : Details of merchant of particular id returned
+ 2020/05/21 09:11:52.797  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.MerchantServiceImpl : Invite for merchant received
+ 2020/05/21 09:11:52.797  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.MerchantServiceImpl : Details of merchant of particular id returned
+ 2020/05/21 09:11:52.833  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/21 09:12:03.526  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Admin asked for list of Invites
+ 2020/05/21 21:28:27.906  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Today's Product Sales returned
+ 2020/05/21 21:28:27.990  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Trending Products returned
+ 2020/05/21 21:28:27.981  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Today's Revenues returned
+ 2020/05/21 21:28:27.976  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Merchant's Count returned
+ 2020/05/21 21:28:27.953  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Customer's Count returned
+ 2020/05/21 21:28:28.257  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Recent Orders returned
+ 2020/05/21 21:28:27.971  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Top Rated Merchants returned
+ 2020/05/21 21:28:40.993  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/21 21:28:55.266  ERROR -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Error while updating the order..!!
+ 2020/05/21 21:28:58.387  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Order updated..!!
+ 2020/05/21 21:28:59.085  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/21 21:29:10.125  ERROR -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Error while updating the order..!!
+ 2020/05/21 21:29:19.217  ERROR -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Error while updating the order..!!
+ 2020/05/21 21:29:29.769  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Order updated..!!
+ 2020/05/21 21:29:30.063  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/21 21:29:37.599  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.CouponServiceImpl : Getting list of coupon
+ 2020/05/21 21:29:42.318  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/21 21:29:44.745  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 49
+ 2020/05/21 21:29:48.302  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 50
+ 2020/05/21 21:30:10.649  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Request for all customer details
+ 2020/05/21 21:30:16.600  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Request for address of rohit@gmail.com
+ 2020/05/21 21:30:20.770  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Request for address of sagar@gmail.com
+ 2020/05/21 21:30:23.260  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : No address available 
+ 2020/05/21 21:30:39.210  ERROR -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Invalid username
+ 2020/05/21 21:30:45.212  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Request for address of sagar@gmail.com
+ 2020/05/21 21:30:47.817  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Admin asked for List of Feedbacks
+ 2020/05/21 21:31:23.671  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Admin asked for List of Feedbacks
+ 2020/05/21 21:31:37.763  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Admin asked for List of Feedbacks
+ 2020/05/21 21:34:19.440  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Admin asked for List of Feedbacks
+ 2020/05/21 21:34:26.092  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for all customer details
+ 2020/05/21 21:34:27.855  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.MerchantServiceImpl : List of Merchants returned
+ 2020/05/21 21:34:33.316  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the Products of merchant vamsi586
+ 2020/05/21 21:34:35.123  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Product Data Returned
+ 2020/05/21 21:34:35.153  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.AdminServiceImpl : Product deactivated by admin with product Id 1015
+ 2020/05/21 21:34:35.528  INFO  -  [http-nio-8083-exec-9] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the Products of merchant vamsi586
+ 2020/05/21 21:34:47.781  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Product Data Returned
+ 2020/05/21 21:34:47.782  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Product activated by admin with product Id 1015
+ 2020/05/21 21:34:48.058  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the Products of merchant vamsi586
+ 2020/05/21 21:35:09.759  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the feedbacks by merchant vamsi586
+ 2020/05/21 21:35:19.151  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Admin asked for all the orders received by merchant vamsi586
+ 2020/05/21 21:35:35.591  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.AdminServiceImpl : Request for all category
+ 2020/05/21 21:35:37.432  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.AdminServiceImpl : Request for all subcategories of 49
+ 2020/05/21 21:35:42.144  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Request for minimum order value amount
+ 2020/05/21 21:35:46.657  WARN  -  [http-nio-8083-exec-10] com.cg.capstore.service.AdminServiceImpl : Cannot set 0 or less than that minimum order value amount
+ 2020/05/21 21:35:53.967  WARN  -  [http-nio-8083-exec-7] com.cg.capstore.service.AdminServiceImpl : Cannot set min order value less than 100
+ 2020/05/21 21:36:02.519  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.AdminServiceImpl : Fetched all orders..!!
+ 2020/05/21 21:36:02.629  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.AdminServiceImpl : Request for all customer details
+ 2020/05/21 21:36:02.768  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.AdminServiceImpl : Last 7 Days revenues returned
+ 2020/05/21 21:36:02.823  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.AdminServiceImpl : Last 7 Days orders returned
+ 2020/05/21 21:36:41.184  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/21 21:36:41.386  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/21 21:36:41.421  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/21 21:36:51.086  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/21 21:37:14.585  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/21 21:37:17.309  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.MerchantServiceImpl : Merchant accepted the order
+ 2020/05/21 21:37:21.223  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/21 21:37:21.275  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/21 21:37:25.391  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : Merchant accepted the order
+ 2020/05/21 21:37:29.874  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/21 21:37:30.001  INFO  -  [http-nio-8083-exec-2] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/21 21:37:35.125  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/21 21:37:35.179  INFO  -  [http-nio-8083-exec-10] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/21 21:37:37.218  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.MerchantServiceImpl : Invite for merchant received
+ 2020/05/21 21:37:37.235  INFO  -  [http-nio-8083-exec-7] com.cg.capstore.service.MerchantServiceImpl : Details of merchant of particular id returned
+ 2020/05/22 20:44:59.737  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/22 20:44:59.748  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/22 20:44:59.748  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/22 20:45:07.016  INFO  -  [http-nio-8083-exec-1] com.cg.capstore.service.MerchantServiceImpl : List of Product returned
+ 2020/05/22 20:45:46.950  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.MerchantServiceImpl : Invite for merchant received
+ 2020/05/22 20:45:46.950  INFO  -  [http-nio-8083-exec-8] com.cg.capstore.service.MerchantServiceImpl : Details of merchant of particular id returned
+ 2020/05/22 20:45:49.769  INFO  -  [http-nio-8083-exec-5] com.cg.capstore.service.MerchantServiceImpl : Details of Merchants returned
+ 2020/05/22 20:45:49.790  INFO  -  [http-nio-8083-exec-6] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/22 20:45:49.819  INFO  -  [http-nio-8083-exec-3] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
+ 2020/05/22 20:45:49.842  INFO  -  [http-nio-8083-exec-4] com.cg.capstore.service.MerchantServiceImpl : No of orders of Merchants returned
  
