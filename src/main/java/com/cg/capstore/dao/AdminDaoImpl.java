@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
 import com.cg.capstore.entities.Address;
@@ -135,7 +134,7 @@ public class AdminDaoImpl implements IAdminDao {
 		entityManager.persist(merchantDetails);
 		
 		User userDetails=new User();
-		userDetails.setPassword(BCrypt.hashpw(userDetails.getPassword(), BCrypt.gensalt(12)));
+		userDetails.setPassword(details.getPassword());
 		userDetails.setUsername(details.getUsername());
 		userDetails.setSecurityAnswer(details.getSecurityAnswer());
 		userDetails.setSecurityQuestion(details.getSecurityQuestion());
@@ -291,15 +290,17 @@ public class AdminDaoImpl implements IAdminDao {
 
 	@Override
 	public Double todayRevenue() {
-		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where to_char(o.orderDate,'dd-mm-yy')='17-05-20'");
-		//Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
+		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where DATE_FORMAT(o.orderDate,'%d-%m-%Y')='17-05-2020'");
+//		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where o.orderDate = CURRENT_DATE");
+		
+		//Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o where DATE_FORMAT(o.orderDate,'dd-mm-yy')=DATE_FORMAT(sysdate,'dd-mm-yy')");
 		return (Double)query.getSingleResult();
 	}
 	
 	@Override
 	public Long todayProductSales() {
-		//Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where to_char(o.orderDate,'dd-mm-yy')=to_char(sysdate,'dd-mm-yy')");
-		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where to_char(o.orderDate,'dd-mm-yy')='17-05-20'");
+		//Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where DATE_FORMAT(o.orderDate,'dd-mm-yy')=DATE_FORMAT(sysdate,'dd-mm-yy')");
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o where DATE_FORMAT(o.orderDate,'%d-%m-%Y')='17-05-2020'");
 		return (Long)query.getSingleResult();
 	}
 
@@ -312,13 +313,13 @@ public class AdminDaoImpl implements IAdminDao {
 
 	@Override
 	public List<Double> recentRevenues() {
-		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o GROUP BY to_char(o.orderDate,'dd-mm-yy') ORDER BY to_char(o.orderDate,'dd-mm-yy') DESC");
+		Query query=entityManager.createQuery("SELECT sum(o.orderAmount) FROM Order o GROUP BY DATE_FORMAT(o.orderDate,'%d-%m-%Y') ORDER BY DATE_FORMAT(o.orderDate,'%d-%m-%Y') DESC");
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Long> recentOrdersCount() {
-		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o GROUP BY to_char(o.orderDate,'dd-mm-yy') ORDER BY to_char(o.orderDate,'dd-mm-yy') DESC");
+		Query query=entityManager.createQuery("SELECT COUNT(*) FROM Order o GROUP BY DATE_FORMAT(o.orderDate,'%d-%m-%Y') ORDER BY DATE_FORMAT(o.orderDate,'%d-%m-%Y') DESC");
 		return query.getResultList();
 	}
 

@@ -146,7 +146,7 @@ public class CustomerDaoImpl implements ICustomerDao{
 	@Override
 	public Set<Order> getOrders(String username) {
 		if (customerRepository.existsById(username)) {
-			CustomerDetails cd = customerRepository.getOne(username);
+			CustomerDetails cd = customerRepository.findById(username).get();
 			return cd.getOrders();
 		}
 
@@ -156,7 +156,7 @@ public class CustomerDaoImpl implements ICustomerDao{
 	@Override
 	public String getStatus(String username, Integer orderId) {
 		if (customerRepository.existsById(username)) {
-			CustomerDetails customer = customerRepository.getOne(username);
+			CustomerDetails customer = customerRepository.findById(username).get();
 			Set<Order> orders = customer.getOrders();
 			for (Order order : orders) {
 				if (order.getOrderId() == orderId) {
@@ -175,7 +175,7 @@ public class CustomerDaoImpl implements ICustomerDao{
 	@Override
 	public boolean updateStatus(String username, Integer orderId, String status) {
 		if (customerRepository.existsById(username)) {
-			CustomerDetails customer = customerRepository.getOne(username);
+			CustomerDetails customer = customerRepository.findById(username).get();
 			Set<Order> orders = customer.getOrders();
 
 			for (Order order : orders) {

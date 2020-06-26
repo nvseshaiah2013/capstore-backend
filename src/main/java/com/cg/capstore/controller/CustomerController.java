@@ -125,6 +125,7 @@ public class CustomerController {
 	public ResponseEntity<CustomerDetails> getUserDetails(HttpServletRequest request) {
 		final String token = request.getHeader("Authorization");
 		final String username = jwtUtil.extractUsername(token.substring(7));
+		System.out.println(username);
 		return new ResponseEntity<CustomerDetails>(customerService.getUserDetails(username), HttpStatus.OK);
 	}
 
